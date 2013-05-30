@@ -32,3 +32,9 @@ Here is some CSV data
 {{ d['code002.py|idio|pycon|pyg']['graph-data'] }}
 
 ![xy plot from csv data](pyplot-xy-example.png)
+
+Here are the values in 'x':
+{{ d['code002.py.txt-vars.json'].from_json()['x'] }}
+
+Here are the values in 'y':
+{{ d['code002.py.txt-vars.json'].from_json()['y'] }}

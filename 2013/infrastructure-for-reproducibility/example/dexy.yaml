@@ -1,5 +1,8 @@
 .md|jinja|markdown|easyhtml:
     - .py|idio
     - .py|idio|pycon|pyg:
-        - pycon: { add-new-files: True }
+        - pycon: {
+            add-new-files: True,
+            record-vars: True
+        }
         - .csv

@@ -398,34 +398,34 @@ Change widths as necessary
 <p>Generate random data and plot a histogram:
 <div class="highlight"><pre><a name="example--code001.py-idio-pycon-pyg.html-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
 <a name="example--code001.py-idio-pycon-pyg.html-2"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">pyplot</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
-<a name="example--code001.py-idio-pycon-pyg.html-3"></a><span class="go">(array([  1,   0,   0,   1,   0,   0,   0,   1,   2,   0,   2,   0,   3,</span>
-<a name="example--code001.py-idio-pycon-pyg.html-4"></a><span class="go">         2,   4,   7,   4,   5,   7,  11,  16,   7,  10,  22,  36,  39,</span>
-<a name="example--code001.py-idio-pycon-pyg.html-5"></a><span class="go">        35,  41,  44,  55,  72,  73,  80,  89, 106, 130, 122, 164, 144,</span>
-<a name="example--code001.py-idio-pycon-pyg.html-6"></a><span class="go">       170, 208, 211, 207, 232, 235, 253, 253, 282, 259, 285, 306, 285,</span>
-<a name="example--code001.py-idio-pycon-pyg.html-7"></a><span class="go">       292, 327, 315, 329, 286, 304, 279, 297, 258, 257, 233, 243, 205,</span>
-<a name="example--code001.py-idio-pycon-pyg.html-8"></a><span class="go">       193, 192, 170, 155, 124, 134, 128, 104,  92,  80,  62,  56,  53,</span>
-<a name="example--code001.py-idio-pycon-pyg.html-9"></a><span class="go">        60,  52,  37,  38,  23,  23,  18,  11,   7,   5,   7,  10,   7,</span>
-<a name="example--code001.py-idio-pycon-pyg.html-10"></a><span class="go">         6,   1,   3,   0,   1,   1,   0,   0,   1]), array([-4.12189527, -4.04472509, -3.96755491, -3.89038473, -3.81321455,</span>
-<a name="example--code001.py-idio-pycon-pyg.html-11"></a><span class="go">       -3.73604436, -3.65887418, -3.581704  , -3.50453382, -3.42736364,</span>
-<a name="example--code001.py-idio-pycon-pyg.html-12"></a><span class="go">       -3.35019346, -3.27302328, -3.1958531 , -3.11868292, -3.04151274,</span>
-<a name="example--code001.py-idio-pycon-pyg.html-13"></a><span class="go">       -2.96434256, -2.88717238, -2.8100022 , -2.73283202, -2.65566183,</span>
-<a name="example--code001.py-idio-pycon-pyg.html-14"></a><span class="go">       -2.57849165, -2.50132147, -2.42415129, -2.34698111, -2.26981093,</span>
-<a name="example--code001.py-idio-pycon-pyg.html-15"></a><span class="go">       -2.19264075, -2.11547057, -2.03830039, -1.96113021, -1.88396003,</span>
-<a name="example--code001.py-idio-pycon-pyg.html-16"></a><span class="go">       -1.80678985, -1.72961967, -1.65244948, -1.5752793 , -1.49810912,</span>
-<a name="example--code001.py-idio-pycon-pyg.html-17"></a><span class="go">       -1.42093894, -1.34376876, -1.26659858, -1.1894284 , -1.11225822,</span>
-<a name="example--code001.py-idio-pycon-pyg.html-18"></a><span class="go">       -1.03508804, -0.95791786, -0.88074768, -0.8035775 , -0.72640732,</span>
-<a name="example--code001.py-idio-pycon-pyg.html-19"></a><span class="go">       -0.64923713, -0.57206695, -0.49489677, -0.41772659, -0.34055641,</span>
-<a name="example--code001.py-idio-pycon-pyg.html-20"></a><span class="go">       -0.26338623, -0.18621605, -0.10904587, -0.03187569,  0.04529449,</span>
-<a name="example--code001.py-idio-pycon-pyg.html-21"></a><span class="go">        0.12246467,  0.19963485,  0.27680503,  0.35397522,  0.4311454 ,</span>
-<a name="example--code001.py-idio-pycon-pyg.html-22"></a><span class="go">        0.50831558,  0.58548576,  0.66265594,  0.73982612,  0.8169963 ,</span>
-<a name="example--code001.py-idio-pycon-pyg.html-23"></a><span class="go">        0.89416648,  0.97133666,  1.04850684,  1.12567702,  1.2028472 ,</span>
-<a name="example--code001.py-idio-pycon-pyg.html-24"></a><span class="go">        1.28001738,  1.35718757,  1.43435775,  1.51152793,  1.58869811,</span>
-<a name="example--code001.py-idio-pycon-pyg.html-25"></a><span class="go">        1.66586829,  1.74303847,  1.82020865,  1.89737883,  1.97454901,</span>
-<a name="example--code001.py-idio-pycon-pyg.html-26"></a><span class="go">        2.05171919,  2.12888937,  2.20605955,  2.28322973,  2.36039992,</span>
-<a name="example--code001.py-idio-pycon-pyg.html-27"></a><span class="go">        2.4375701 ,  2.51474028,  2.59191046,  2.66908064,  2.74625082,</span>
-<a name="example--code001.py-idio-pycon-pyg.html-28"></a><span class="go">        2.823421  ,  2.90059118,  2.97776136,  3.05493154,  3.13210172,</span>
-<a name="example--code001.py-idio-pycon-pyg.html-29"></a><span class="go">        3.2092719 ,  3.28644208,  3.36361227,  3.44078245,  3.51795263,</span>
-<a name="example--code001.py-idio-pycon-pyg.html-30"></a><span class="go">        3.59512281]), &lt;a list of 100 Patch objects&gt;)</span>
+<a name="example--code001.py-idio-pycon-pyg.html-3"></a><span class="go">(array([  1,   0,   0,   0,   0,   0,   0,   0,   0,   1,   1,   2,   1,</span>
+<a name="example--code001.py-idio-pycon-pyg.html-4"></a><span class="go">         3,   1,   1,   2,   5,  13,  13,  12,  15,  28,  26,  32,  36,</span>
+<a name="example--code001.py-idio-pycon-pyg.html-5"></a><span class="go">        49,  81,  80,  95, 115, 114, 151, 172, 179, 192, 195, 241, 239,</span>
+<a name="example--code001.py-idio-pycon-pyg.html-6"></a><span class="go">       267, 278, 309, 322, 370, 324, 376, 403, 350, 402, 348, 384, 351,</span>
+<a name="example--code001.py-idio-pycon-pyg.html-7"></a><span class="go">       329, 334, 302, 319, 236, 233, 234, 228, 188, 161, 125, 130,  98,</span>
+<a name="example--code001.py-idio-pycon-pyg.html-8"></a><span class="go">       100,  78,  63,  56,  39,  25,  35,  30,  14,  14,  15,   8,   9,</span>
+<a name="example--code001.py-idio-pycon-pyg.html-9"></a><span class="go">         4,   2,   4,   3,   3,   0,   0,   0,   0,   0,   0,   0,   0,</span>
+<a name="example--code001.py-idio-pycon-pyg.html-10"></a><span class="go">         0,   0,   0,   0,   0,   0,   0,   0,   1]), array([-4.53225772, -4.43749528, -4.34273284, -4.24797041, -4.15320797,</span>
+<a name="example--code001.py-idio-pycon-pyg.html-11"></a><span class="go">       -4.05844553, -3.9636831 , -3.86892066, -3.77415822, -3.67939579,</span>
+<a name="example--code001.py-idio-pycon-pyg.html-12"></a><span class="go">       -3.58463335, -3.48987091, -3.39510848, -3.30034604, -3.2055836 ,</span>
+<a name="example--code001.py-idio-pycon-pyg.html-13"></a><span class="go">       -3.11082117, -3.01605873, -2.92129629, -2.82653386, -2.73177142,</span>
+<a name="example--code001.py-idio-pycon-pyg.html-14"></a><span class="go">       -2.63700898, -2.54224655, -2.44748411, -2.35272167, -2.25795923,</span>
+<a name="example--code001.py-idio-pycon-pyg.html-15"></a><span class="go">       -2.1631968 , -2.06843436, -1.97367192, -1.87890949, -1.78414705,</span>
+<a name="example--code001.py-idio-pycon-pyg.html-16"></a><span class="go">       -1.68938461, -1.59462218, -1.49985974, -1.4050973 , -1.31033487,</span>
+<a name="example--code001.py-idio-pycon-pyg.html-17"></a><span class="go">       -1.21557243, -1.12080999, -1.02604756, -0.93128512, -0.83652268,</span>
+<a name="example--code001.py-idio-pycon-pyg.html-18"></a><span class="go">       -0.74176025, -0.64699781, -0.55223537, -0.45747294, -0.3627105 ,</span>
+<a name="example--code001.py-idio-pycon-pyg.html-19"></a><span class="go">       -0.26794806, -0.17318563, -0.07842319,  0.01633925,  0.11110168,</span>
+<a name="example--code001.py-idio-pycon-pyg.html-20"></a><span class="go">        0.20586412,  0.30062656,  0.39538899,  0.49015143,  0.58491387,</span>
+<a name="example--code001.py-idio-pycon-pyg.html-21"></a><span class="go">        0.6796763 ,  0.77443874,  0.86920118,  0.96396362,  1.05872605,</span>
+<a name="example--code001.py-idio-pycon-pyg.html-22"></a><span class="go">        1.15348849,  1.24825093,  1.34301336,  1.4377758 ,  1.53253824,</span>
+<a name="example--code001.py-idio-pycon-pyg.html-23"></a><span class="go">        1.62730067,  1.72206311,  1.81682555,  1.91158798,  2.00635042,</span>
+<a name="example--code001.py-idio-pycon-pyg.html-24"></a><span class="go">        2.10111286,  2.19587529,  2.29063773,  2.38540017,  2.4801626 ,</span>
+<a name="example--code001.py-idio-pycon-pyg.html-25"></a><span class="go">        2.57492504,  2.66968748,  2.76444991,  2.85921235,  2.95397479,</span>
+<a name="example--code001.py-idio-pycon-pyg.html-26"></a><span class="go">        3.04873722,  3.14349966,  3.2382621 ,  3.33302453,  3.42778697,</span>
+<a name="example--code001.py-idio-pycon-pyg.html-27"></a><span class="go">        3.52254941,  3.61731184,  3.71207428,  3.80683672,  3.90159915,</span>
+<a name="example--code001.py-idio-pycon-pyg.html-28"></a><span class="go">        3.99636159,  4.09112403,  4.18588646,  4.2806489 ,  4.37541134,</span>
+<a name="example--code001.py-idio-pycon-pyg.html-29"></a><span class="go">        4.47017378,  4.56493621,  4.65969865,  4.75446109,  4.84922352,</span>
+<a name="example--code001.py-idio-pycon-pyg.html-30"></a><span class="go">        4.94398596]), &lt;a list of 100 Patch objects&gt;)</span>
 </pre></div></p>
 <p>Save the histogram to a png file:
 <div class="highlight"><pre><a name="example--code001.py-idio-pycon-pyg.html-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">figfilename</span> <span class="o">=</span> <span class="s">&quot;pyplot-hist-example.png&quot;</span>
@@ -465,10 +465,14 @@ Change widths as necessary
 </pre></div>
 
 <div class="highlight"><pre><a name="example--code002.py-idio-pycon-pyg.html-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">pyplot</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-<a name="example--code002.py-idio-pycon-pyg.html-2"></a><span class="go">[&lt;matplotlib.lines.Line2D object at 0x2557850&gt;]</span>
+<a name="example--code002.py-idio-pycon-pyg.html-2"></a><span class="go">[&lt;matplotlib.lines.Line2D object at 0x2e46850&gt;]</span>
 </pre></div>
 
 <p><img alt="xy plot from csv data" src="pyplot-xy-example.png" /></p>
+<p>Here are the values in 'x':
+["1", "2", "3"]</p>
+<p>Here are the values in 'y':
+["1", "4", "9"]</p>
         </div>
     </div>
     </body>
