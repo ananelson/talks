@@ -1,0 +1,378 @@
+<div class="highlight"><pre><a name="impress-demo.css-pyg.html-1"></a><span class="c">/**</span>
+<a name="impress-demo.css-pyg.html-2"></a><span class="c"> * This is a stylesheet for a demo presentation for impress.js</span>
+<a name="impress-demo.css-pyg.html-3"></a><span class="c"> * </span>
+<a name="impress-demo.css-pyg.html-4"></a><span class="c"> * It is not meant to be a part of impress.js and is not required by impress.js.</span>
+<a name="impress-demo.css-pyg.html-5"></a><span class="c"> * I expect that anyone creating a presentation for impress.js would create their own</span>
+<a name="impress-demo.css-pyg.html-6"></a><span class="c"> * set of styles.</span>
+<a name="impress-demo.css-pyg.html-7"></a><span class="c"> */</span>
+<a name="impress-demo.css-pyg.html-8"></a>
+<a name="impress-demo.css-pyg.html-9"></a>
+<a name="impress-demo.css-pyg.html-10"></a><span class="c">/* http://meyerweb.com/eric/tools/css/reset/ </span>
+<a name="impress-demo.css-pyg.html-11"></a><span class="c">   v2.0 | 20110126</span>
+<a name="impress-demo.css-pyg.html-12"></a><span class="c">   License: none (public domain)</span>
+<a name="impress-demo.css-pyg.html-13"></a><span class="c">*/</span>
+<a name="impress-demo.css-pyg.html-14"></a>
+<a name="impress-demo.css-pyg.html-15"></a><span class="nt">html</span><span class="o">,</span> <span class="nt">body</span><span class="o">,</span> <span class="nt">div</span><span class="o">,</span> <span class="nt">span</span><span class="o">,</span> <span class="nt">applet</span><span class="o">,</span> <span class="nt">object</span><span class="o">,</span> <span class="nt">iframe</span><span class="o">,</span>
+<a name="impress-demo.css-pyg.html-16"></a><span class="nt">h1</span><span class="o">,</span> <span class="nt">h2</span><span class="o">,</span> <span class="nt">h3</span><span class="o">,</span> <span class="nt">h4</span><span class="o">,</span> <span class="nt">h5</span><span class="o">,</span> <span class="nt">h6</span><span class="o">,</span> <span class="nt">p</span><span class="o">,</span> <span class="nt">blockquote</span><span class="o">,</span> <span class="nt">pre</span><span class="o">,</span>
+<a name="impress-demo.css-pyg.html-17"></a><span class="nt">a</span><span class="o">,</span> <span class="nt">abbr</span><span class="o">,</span> <span class="nt">acronym</span><span class="o">,</span> <span class="nt">address</span><span class="o">,</span> <span class="nt">big</span><span class="o">,</span> <span class="nt">cite</span><span class="o">,</span> <span class="nt">code</span><span class="o">,</span>
+<a name="impress-demo.css-pyg.html-18"></a><span class="nt">del</span><span class="o">,</span> <span class="nt">dfn</span><span class="o">,</span> <span class="nt">em</span><span class="o">,</span> <span class="nt">img</span><span class="o">,</span> <span class="nt">ins</span><span class="o">,</span> <span class="nt">kbd</span><span class="o">,</span> <span class="nt">q</span><span class="o">,</span> <span class="nt">s</span><span class="o">,</span> <span class="nt">samp</span><span class="o">,</span>
+<a name="impress-demo.css-pyg.html-19"></a><span class="nt">small</span><span class="o">,</span> <span class="nt">strike</span><span class="o">,</span> <span class="nt">strong</span><span class="o">,</span> <span class="nt">sub</span><span class="o">,</span> <span class="nt">sup</span><span class="o">,</span> <span class="nt">tt</span><span class="o">,</span> <span class="nt">var</span><span class="o">,</span>
+<a name="impress-demo.css-pyg.html-20"></a><span class="nt">b</span><span class="o">,</span> <span class="nt">u</span><span class="o">,</span> <span class="nt">i</span><span class="o">,</span> <span class="nt">center</span><span class="o">,</span>
+<a name="impress-demo.css-pyg.html-21"></a><span class="nt">dl</span><span class="o">,</span> <span class="nt">dt</span><span class="o">,</span> <span class="nt">dd</span><span class="o">,</span> <span class="nt">ol</span><span class="o">,</span> <span class="nt">ul</span><span class="o">,</span> <span class="nt">li</span><span class="o">,</span>
+<a name="impress-demo.css-pyg.html-22"></a><span class="nt">fieldset</span><span class="o">,</span> <span class="nt">form</span><span class="o">,</span> <span class="nt">label</span><span class="o">,</span> <span class="nt">legend</span><span class="o">,</span>
+<a name="impress-demo.css-pyg.html-23"></a><span class="nt">table</span><span class="o">,</span> <span class="nt">caption</span><span class="o">,</span> <span class="nt">tbody</span><span class="o">,</span> <span class="nt">tfoot</span><span class="o">,</span> <span class="nt">thead</span><span class="o">,</span> <span class="nt">tr</span><span class="o">,</span> <span class="nt">th</span><span class="o">,</span> <span class="nt">td</span><span class="o">,</span>
+<a name="impress-demo.css-pyg.html-24"></a><span class="nt">article</span><span class="o">,</span> <span class="nt">aside</span><span class="o">,</span> <span class="nt">canvas</span><span class="o">,</span> <span class="nt">details</span><span class="o">,</span> <span class="nt">embed</span><span class="o">,</span> 
+<a name="impress-demo.css-pyg.html-25"></a><span class="nt">figure</span><span class="o">,</span> <span class="nt">figcaption</span><span class="o">,</span> <span class="nt">footer</span><span class="o">,</span> <span class="nt">header</span><span class="o">,</span> <span class="nt">hgroup</span><span class="o">,</span> 
+<a name="impress-demo.css-pyg.html-26"></a><span class="nt">menu</span><span class="o">,</span> <span class="nt">nav</span><span class="o">,</span> <span class="nt">output</span><span class="o">,</span> <span class="nt">ruby</span><span class="o">,</span> <span class="nt">section</span><span class="o">,</span> <span class="nt">summary</span><span class="o">,</span>
+<a name="impress-demo.css-pyg.html-27"></a><span class="nt">time</span><span class="o">,</span> <span class="nt">mark</span><span class="o">,</span> <span class="nt">audio</span><span class="o">,</span> <span class="nt">video</span> <span class="p">{</span>
+<a name="impress-demo.css-pyg.html-28"></a>    <span class="k">margin</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-29"></a>    <span class="k">padding</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-30"></a>    <span class="k">border</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-31"></a>    <span class="k">font-size</span><span class="o">:</span> <span class="m">100</span><span class="o">%</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-32"></a>    <span class="k">font</span><span class="o">:</span> <span class="k">inherit</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-33"></a>    <span class="k">vertical-align</span><span class="o">:</span> <span class="k">baseline</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-34"></a><span class="p">}</span>
+<a name="impress-demo.css-pyg.html-35"></a>
+<a name="impress-demo.css-pyg.html-36"></a><span class="nt">pre</span><span class="o">,</span> <span class="nt">code</span> <span class="p">{</span>
+<a name="impress-demo.css-pyg.html-37"></a>    <span class="k">font-family</span><span class="o">:</span> <span class="s1">&#39;Andale Mono&#39;</span><span class="o">,</span> <span class="s1">&#39;Courier New&#39;</span><span class="o">,</span> <span class="k">monospace</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-38"></a>    <span class="k">font-size</span><span class="o">:</span> <span class="m">70</span><span class="o">%</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-39"></a><span class="p">}</span>
+<a name="impress-demo.css-pyg.html-40"></a>
+<a name="impress-demo.css-pyg.html-41"></a><span class="c">/* HTML5 display-role reset for older browsers */</span>
+<a name="impress-demo.css-pyg.html-42"></a><span class="nt">article</span><span class="o">,</span> <span class="nt">aside</span><span class="o">,</span> <span class="nt">details</span><span class="o">,</span> <span class="nt">figcaption</span><span class="o">,</span> <span class="nt">figure</span><span class="o">,</span> 
+<a name="impress-demo.css-pyg.html-43"></a><span class="nt">footer</span><span class="o">,</span> <span class="nt">header</span><span class="o">,</span> <span class="nt">hgroup</span><span class="o">,</span> <span class="nt">menu</span><span class="o">,</span> <span class="nt">nav</span><span class="o">,</span> <span class="nt">section</span> <span class="p">{</span>
+<a name="impress-demo.css-pyg.html-44"></a>    <span class="k">display</span><span class="o">:</span> <span class="k">block</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-45"></a><span class="p">}</span>
+<a name="impress-demo.css-pyg.html-46"></a><span class="nt">body</span> <span class="p">{</span>
+<a name="impress-demo.css-pyg.html-47"></a><span class="p">}</span>
+<a name="impress-demo.css-pyg.html-48"></a><span class="nt">ol</span><span class="o">,</span> <span class="nt">ul</span> <span class="p">{</span>
+<a name="impress-demo.css-pyg.html-49"></a>    <span class="k">margin-left</span><span class="o">:</span> <span class="m">30px</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-50"></a><span class="p">}</span>
+<a name="impress-demo.css-pyg.html-51"></a><span class="nt">blockquote</span><span class="o">,</span> <span class="nt">q</span> <span class="p">{</span>
+<a name="impress-demo.css-pyg.html-52"></a>    <span class="k">quotes</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-53"></a><span class="p">}</span>
+<a name="impress-demo.css-pyg.html-54"></a><span class="nt">blockquote</span><span class="nd">:before</span><span class="o">,</span> <span class="nt">blockquote</span><span class="nd">:after</span><span class="o">,</span>
+<a name="impress-demo.css-pyg.html-55"></a><span class="nt">q</span><span class="nd">:before</span><span class="o">,</span> <span class="nt">q</span><span class="nd">:after</span> <span class="p">{</span>
+<a name="impress-demo.css-pyg.html-56"></a>    <span class="k">content</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-57"></a>    <span class="k">content</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-58"></a><span class="p">}</span>
+<a name="impress-demo.css-pyg.html-59"></a>
+<a name="impress-demo.css-pyg.html-60"></a><span class="nt">table</span> <span class="p">{</span>
+<a name="impress-demo.css-pyg.html-61"></a>    <span class="k">border-collapse</span><span class="o">:</span> <span class="k">collapse</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-62"></a>    <span class="k">border-spacing</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-63"></a><span class="p">}</span>
+<a name="impress-demo.css-pyg.html-64"></a>
+<a name="impress-demo.css-pyg.html-65"></a>
+<a name="impress-demo.css-pyg.html-66"></a><span class="nt">body</span> <span class="p">{</span>
+<a name="impress-demo.css-pyg.html-67"></a>    <span class="k">background</span><span class="o">:</span> <span class="m">#fff</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-68"></a>    <span class="k">font-family</span><span class="o">:</span> <span class="s1">&#39;PT Sans&#39;</span><span class="o">,</span><span class="k">sans-serif</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-69"></a>    <span class="k">min-height</span><span class="o">:</span> <span class="m">740px</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-70"></a><span class="p">}</span>
+<a name="impress-demo.css-pyg.html-71"></a>
+<a name="impress-demo.css-pyg.html-72"></a><span class="nt">b</span><span class="o">,</span> <span class="nt">strong</span> <span class="p">{</span> <span class="k">font-weight</span><span class="o">:</span> <span class="k">bold</span> <span class="p">}</span>
+<a name="impress-demo.css-pyg.html-73"></a><span class="nt">i</span><span class="o">,</span> <span class="nt">em</span> <span class="p">{</span> <span class="k">font-style</span><span class="o">:</span> <span class="k">italic</span><span class="p">}</span>
+<a name="impress-demo.css-pyg.html-74"></a>
+<a name="impress-demo.css-pyg.html-75"></a><span class="nt">a</span> <span class="p">{</span>
+<a name="impress-demo.css-pyg.html-76"></a>    <span class="k">color</span><span class="o">:</span> <span class="k">inherit</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-77"></a>    <span class="k">text-decoration</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-78"></a>    <span class="k">padding</span><span class="o">:</span> <span class="m">0</span> <span class="m">0.1em</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-79"></a>    <span class="k">background</span><span class="o">:</span> <span class="n">rgba</span><span class="p">(</span><span class="m">255</span><span class="o">,</span><span class="m">255</span><span class="o">,</span><span class="m">255</span><span class="o">,</span><span class="m">0</span><span class="o">.</span><span class="m">5</span><span class="p">);</span>
+<a name="impress-demo.css-pyg.html-80"></a>    <span class="k">border</span><span class="o">-</span><span class="n">radius</span><span class="o">:</span> <span class="m">0.2em</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-81"></a>    
+<a name="impress-demo.css-pyg.html-82"></a>    <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">transition</span><span class="o">:</span> <span class="m">0.5s</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-83"></a>    <span class="o">-</span><span class="n">moz</span><span class="o">-</span><span class="n">transition</span><span class="o">:</span>    <span class="m">0.5s</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-84"></a>    <span class="o">-</span><span class="n">ms</span><span class="o">-</span><span class="n">transition</span><span class="o">:</span>     <span class="m">0.5s</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-85"></a>    <span class="o">-</span><span class="n">o</span><span class="o">-</span><span class="n">transition</span><span class="o">:</span>      <span class="m">0.5s</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-86"></a>    <span class="n">transition</span><span class="o">:</span>         <span class="m">0.5s</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-87"></a><span class="p">}</span>
+<a name="impress-demo.css-pyg.html-88"></a>
+<a name="impress-demo.css-pyg.html-89"></a><span class="nt">a</span><span class="nd">:hover</span> <span class="p">{</span>
+<a name="impress-demo.css-pyg.html-90"></a>    <span class="k">background</span><span class="o">:</span> <span class="nb">yellow</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-91"></a><span class="p">}</span>
+<a name="impress-demo.css-pyg.html-92"></a>
+<a name="impress-demo.css-pyg.html-93"></a><span class="c">/* enable clicking on elements &#39;hiding&#39; behind body in 3D */</span>
+<a name="impress-demo.css-pyg.html-94"></a><span class="nt">body</span>     <span class="p">{</span> <span class="k">pointer</span><span class="o">-</span><span class="n">events</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span> <span class="p">}</span>
+<a name="impress-demo.css-pyg.html-95"></a><span class="nf">#impress</span> <span class="p">{</span> <span class="k">pointer</span><span class="o">-</span><span class="n">events</span><span class="o">:</span> <span class="k">auto</span><span class="p">;</span> <span class="p">}</span>
+<a name="impress-demo.css-pyg.html-96"></a>
+<a name="impress-demo.css-pyg.html-97"></a><span class="c">/* COMMON STEP STYLES */</span>
+<a name="impress-demo.css-pyg.html-98"></a>
+<a name="impress-demo.css-pyg.html-99"></a><span class="nc">.step</span> <span class="p">{</span>
+<a name="impress-demo.css-pyg.html-100"></a><span class="p">}</span>
+<a name="impress-demo.css-pyg.html-101"></a>
+<a name="impress-demo.css-pyg.html-102"></a><span class="nc">.final</span> <span class="p">{</span>
+<a name="impress-demo.css-pyg.html-103"></a><span class="p">}</span>
+<a name="impress-demo.css-pyg.html-104"></a>
+<a name="impress-demo.css-pyg.html-105"></a><span class="nc">.step</span> <span class="p">{</span>
+<a name="impress-demo.css-pyg.html-106"></a>    <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">transition</span><span class="o">:</span> <span class="k">opacity</span> <span class="m">1s</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-107"></a>    <span class="o">-</span><span class="n">moz</span><span class="o">-</span><span class="n">transition</span><span class="o">:</span>    <span class="k">opacity</span> <span class="m">1s</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-108"></a>    <span class="o">-</span><span class="n">ms</span><span class="o">-</span><span class="n">transition</span><span class="o">:</span>     <span class="k">opacity</span> <span class="m">1s</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-109"></a>    <span class="o">-</span><span class="n">o</span><span class="o">-</span><span class="n">transition</span><span class="o">:</span>      <span class="k">opacity</span> <span class="m">1s</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-110"></a>    <span class="n">transition</span><span class="o">:</span>         <span class="k">opacity</span> <span class="m">1s</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-111"></a><span class="p">}</span>
+<a name="impress-demo.css-pyg.html-112"></a>
+<a name="impress-demo.css-pyg.html-113"></a><span class="c">/* fade out inactive slides */</span>
+<a name="impress-demo.css-pyg.html-114"></a><span class="nc">.step</span><span class="nd">:not</span><span class="o">(</span><span class="nc">.active</span><span class="o">)</span> <span class="p">{</span>
+<a name="impress-demo.css-pyg.html-115"></a>    <span class="k">opacity</span><span class="o">:</span> <span class="m">0</span><span class="o">.</span><span class="m">3</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-116"></a><span class="p">}</span>
+<a name="impress-demo.css-pyg.html-117"></a>
+<a name="impress-demo.css-pyg.html-118"></a><span class="c">/* STEP SPECIFIC STYLES */</span>
+<a name="impress-demo.css-pyg.html-119"></a>
+<a name="impress-demo.css-pyg.html-120"></a><span class="c">/* hint on the first slide */</span>
+<a name="impress-demo.css-pyg.html-121"></a>
+<a name="impress-demo.css-pyg.html-122"></a><span class="nc">.hint</span> <span class="p">{</span>
+<a name="impress-demo.css-pyg.html-123"></a>    <span class="k">position</span><span class="o">:</span> <span class="k">fixed</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-124"></a>    <span class="k">left</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-125"></a>    <span class="k">right</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-126"></a>    <span class="k">bottom</span><span class="o">:</span> <span class="m">200px</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-127"></a>    
+<a name="impress-demo.css-pyg.html-128"></a>    <span class="k">background</span><span class="o">:</span> <span class="n">rgba</span><span class="p">(</span><span class="m">100</span><span class="o">,</span><span class="m">100</span><span class="o">,</span><span class="m">100</span><span class="o">,</span><span class="m">0</span><span class="o">.</span><span class="m">5</span><span class="p">);</span>
+<a name="impress-demo.css-pyg.html-129"></a>    <span class="k">color</span><span class="o">:</span> <span class="m">#EEE</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-130"></a>    <span class="k">text-align</span><span class="o">:</span> <span class="k">center</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-131"></a>    
+<a name="impress-demo.css-pyg.html-132"></a>    <span class="k">font-size</span><span class="o">:</span> <span class="m">50px</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-133"></a>    <span class="k">padding</span><span class="o">:</span> <span class="m">20px</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-134"></a>    
+<a name="impress-demo.css-pyg.html-135"></a>    <span class="k">z-index</span><span class="o">:</span> <span class="m">100</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-136"></a>    
+<a name="impress-demo.css-pyg.html-137"></a>    <span class="k">opacity</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-138"></a>    
+<a name="impress-demo.css-pyg.html-139"></a>    <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">transform</span><span class="o">:</span> <span class="n">translateY</span><span class="p">(</span><span class="m">400px</span><span class="p">);</span>
+<a name="impress-demo.css-pyg.html-140"></a>    <span class="o">-</span><span class="n">moz</span><span class="o">-</span><span class="n">transform</span><span class="o">:</span>    <span class="n">translateY</span><span class="p">(</span><span class="m">400px</span><span class="p">);</span>
+<a name="impress-demo.css-pyg.html-141"></a>    <span class="o">-</span><span class="n">ms</span><span class="o">-</span><span class="n">transform</span><span class="o">:</span>     <span class="n">translateY</span><span class="p">(</span><span class="m">400px</span><span class="p">);</span>
+<a name="impress-demo.css-pyg.html-142"></a>    <span class="o">-</span><span class="n">o</span><span class="o">-</span><span class="n">transform</span><span class="o">:</span>      <span class="n">translateY</span><span class="p">(</span><span class="m">400px</span><span class="p">);</span>
+<a name="impress-demo.css-pyg.html-143"></a>    <span class="n">transform</span><span class="o">:</span>         <span class="n">translateY</span><span class="p">(</span><span class="m">400px</span><span class="p">);</span>
+<a name="impress-demo.css-pyg.html-144"></a>
+<a name="impress-demo.css-pyg.html-145"></a>    <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">transition</span><span class="o">:</span> <span class="k">opacity</span> <span class="m">1s</span><span class="o">,</span> <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">transform</span> <span class="m">0.5s</span> <span class="m">1s</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-146"></a>    <span class="o">-</span><span class="n">moz</span><span class="o">-</span><span class="n">transition</span><span class="o">:</span>    <span class="k">opacity</span> <span class="m">1s</span><span class="o">,</span>    <span class="o">-</span><span class="n">moz</span><span class="o">-</span><span class="n">transform</span> <span class="m">0.5s</span> <span class="m">1s</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-147"></a>    <span class="o">-</span><span class="n">ms</span><span class="o">-</span><span class="n">transition</span><span class="o">:</span>     <span class="k">opacity</span> <span class="m">1s</span><span class="o">,</span>     <span class="o">-</span><span class="n">ms</span><span class="o">-</span><span class="n">transform</span> <span class="m">0.5s</span> <span class="m">1s</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-148"></a>    <span class="o">-</span><span class="n">o</span><span class="o">-</span><span class="n">transition</span><span class="o">:</span>      <span class="k">opacity</span> <span class="m">1s</span><span class="o">,</span>      <span class="o">-</span><span class="n">o</span><span class="o">-</span><span class="n">transform</span> <span class="m">0.5s</span> <span class="m">1s</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-149"></a>    <span class="n">transition</span><span class="o">:</span>         <span class="k">opacity</span> <span class="m">1s</span><span class="o">,</span>         <span class="n">transform</span> <span class="m">0.5s</span> <span class="m">1s</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-150"></a><span class="p">}</span>
+<a name="impress-demo.css-pyg.html-151"></a>
+<a name="impress-demo.css-pyg.html-152"></a><span class="nc">.impress-on-start</span> <span class="nc">.hint</span> <span class="p">{</span>
+<a name="impress-demo.css-pyg.html-153"></a>    <span class="k">opacity</span><span class="o">:</span> <span class="m">1</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-154"></a>    
+<a name="impress-demo.css-pyg.html-155"></a>    <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">transition</span><span class="o">:</span> <span class="k">opacity</span> <span class="m">1s</span> <span class="m">5s</span><span class="o">,</span> <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">transform</span> <span class="m">0.5s</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-156"></a>    <span class="o">-</span><span class="n">moz</span><span class="o">-</span><span class="n">transition</span><span class="o">:</span>    <span class="k">opacity</span> <span class="m">1s</span> <span class="m">5s</span><span class="o">,</span>    <span class="o">-</span><span class="n">moz</span><span class="o">-</span><span class="n">transform</span> <span class="m">0.5s</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-157"></a>    <span class="o">-</span><span class="n">ms</span><span class="o">-</span><span class="n">transition</span><span class="o">:</span>     <span class="k">opacity</span> <span class="m">1s</span> <span class="m">5s</span><span class="o">,</span>     <span class="o">-</span><span class="n">ms</span><span class="o">-</span><span class="n">transform</span> <span class="m">0.5s</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-158"></a>    <span class="o">-</span><span class="n">o</span><span class="o">-</span><span class="n">transition</span><span class="o">:</span>      <span class="k">opacity</span> <span class="m">1s</span> <span class="m">5s</span><span class="o">,</span>      <span class="o">-</span><span class="n">o</span><span class="o">-</span><span class="n">transform</span> <span class="m">0.5s</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-159"></a>    <span class="n">transition</span><span class="o">:</span>         <span class="k">opacity</span> <span class="m">1s</span> <span class="m">5s</span><span class="o">,</span>         <span class="n">transform</span> <span class="m">0.5s</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-160"></a>    
+<a name="impress-demo.css-pyg.html-161"></a>    <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">transform</span><span class="o">:</span> <span class="n">translateY</span><span class="p">(</span><span class="m">0px</span><span class="p">);</span>
+<a name="impress-demo.css-pyg.html-162"></a>    <span class="o">-</span><span class="n">moz</span><span class="o">-</span><span class="n">transform</span><span class="o">:</span>    <span class="n">translateY</span><span class="p">(</span><span class="m">0px</span><span class="p">);</span>
+<a name="impress-demo.css-pyg.html-163"></a>    <span class="o">-</span><span class="n">ms</span><span class="o">-</span><span class="n">transform</span><span class="o">:</span>     <span class="n">translateY</span><span class="p">(</span><span class="m">0px</span><span class="p">);</span>
+<a name="impress-demo.css-pyg.html-164"></a>    <span class="o">-</span><span class="n">o</span><span class="o">-</span><span class="n">transform</span><span class="o">:</span>      <span class="n">translateY</span><span class="p">(</span><span class="m">0px</span><span class="p">);</span>
+<a name="impress-demo.css-pyg.html-165"></a>    <span class="n">transform</span><span class="o">:</span>         <span class="n">translateY</span><span class="p">(</span><span class="m">0px</span><span class="p">);</span>
+<a name="impress-demo.css-pyg.html-166"></a><span class="p">}</span>
+<a name="impress-demo.css-pyg.html-167"></a>
+<a name="impress-demo.css-pyg.html-168"></a><span class="c">/* impress.js title */</span>
+<a name="impress-demo.css-pyg.html-169"></a>
+<a name="impress-demo.css-pyg.html-170"></a><span class="nf">#title</span> <span class="p">{</span>
+<a name="impress-demo.css-pyg.html-171"></a>    <span class="k">padding</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-172"></a><span class="p">}</span>
+<a name="impress-demo.css-pyg.html-173"></a>
+<a name="impress-demo.css-pyg.html-174"></a><span class="nf">#title</span> <span class="nc">.try</span> <span class="p">{</span>
+<a name="impress-demo.css-pyg.html-175"></a>    <span class="k">font-size</span><span class="o">:</span> <span class="m">64px</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-176"></a>    <span class="k">position</span><span class="o">:</span> <span class="k">absolute</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-177"></a>    <span class="k">top</span><span class="o">:</span> <span class="m">-0.5em</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-178"></a>    <span class="k">left</span><span class="o">:</span> <span class="m">1.5em</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-179"></a>    
+<a name="impress-demo.css-pyg.html-180"></a>    <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">transform</span><span class="o">:</span> <span class="n">translateZ</span><span class="p">(</span><span class="m">20px</span><span class="p">);</span>
+<a name="impress-demo.css-pyg.html-181"></a>    <span class="o">-</span><span class="n">moz</span><span class="o">-</span><span class="n">transform</span><span class="o">:</span>    <span class="n">translateZ</span><span class="p">(</span><span class="m">20px</span><span class="p">);</span>
+<a name="impress-demo.css-pyg.html-182"></a>    <span class="o">-</span><span class="n">ms</span><span class="o">-</span><span class="n">transform</span><span class="o">:</span>     <span class="n">translateZ</span><span class="p">(</span><span class="m">20px</span><span class="p">);</span>
+<a name="impress-demo.css-pyg.html-183"></a>    <span class="o">-</span><span class="n">o</span><span class="o">-</span><span class="n">transform</span><span class="o">:</span>      <span class="n">translateZ</span><span class="p">(</span><span class="m">20px</span><span class="p">);</span>
+<a name="impress-demo.css-pyg.html-184"></a>    <span class="n">transform</span><span class="o">:</span>         <span class="n">translateZ</span><span class="p">(</span><span class="m">20px</span><span class="p">);</span>
+<a name="impress-demo.css-pyg.html-185"></a><span class="p">}</span>
+<a name="impress-demo.css-pyg.html-186"></a>
+<a name="impress-demo.css-pyg.html-187"></a><span class="nf">#title</span> <span class="nt">h1</span> <span class="p">{</span>
+<a name="impress-demo.css-pyg.html-188"></a>    <span class="k">font-size</span><span class="o">:</span> <span class="m">190px</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-189"></a>    
+<a name="impress-demo.css-pyg.html-190"></a>    <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">transform</span><span class="o">:</span> <span class="n">translateZ</span><span class="p">(</span><span class="m">50px</span><span class="p">);</span>
+<a name="impress-demo.css-pyg.html-191"></a>    <span class="o">-</span><span class="n">moz</span><span class="o">-</span><span class="n">transform</span><span class="o">:</span>    <span class="n">translateZ</span><span class="p">(</span><span class="m">50px</span><span class="p">);</span>
+<a name="impress-demo.css-pyg.html-192"></a>    <span class="o">-</span><span class="n">ms</span><span class="o">-</span><span class="n">transform</span><span class="o">:</span>     <span class="n">translateZ</span><span class="p">(</span><span class="m">50px</span><span class="p">);</span>
+<a name="impress-demo.css-pyg.html-193"></a>    <span class="o">-</span><span class="n">o</span><span class="o">-</span><span class="n">transform</span><span class="o">:</span>      <span class="n">translateZ</span><span class="p">(</span><span class="m">50px</span><span class="p">);</span>
+<a name="impress-demo.css-pyg.html-194"></a>    <span class="n">transform</span><span class="o">:</span>         <span class="n">translateZ</span><span class="p">(</span><span class="m">50px</span><span class="p">);</span>
+<a name="impress-demo.css-pyg.html-195"></a><span class="p">}</span>
+<a name="impress-demo.css-pyg.html-196"></a>
+<a name="impress-demo.css-pyg.html-197"></a><span class="nf">#title</span> <span class="nc">.footnote</span> <span class="p">{</span>
+<a name="impress-demo.css-pyg.html-198"></a>    <span class="k">font-size</span><span class="o">:</span> <span class="m">32px</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-199"></a><span class="p">}</span>
+<a name="impress-demo.css-pyg.html-200"></a>
+<a name="impress-demo.css-pyg.html-201"></a><span class="c">/* big thoughts */</span>
+<a name="impress-demo.css-pyg.html-202"></a>
+<a name="impress-demo.css-pyg.html-203"></a><span class="nf">#big</span> <span class="p">{</span>
+<a name="impress-demo.css-pyg.html-204"></a>    <span class="k">width</span><span class="o">:</span> <span class="m">600px</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-205"></a>    <span class="k">text-align</span><span class="o">:</span> <span class="k">center</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-206"></a>    <span class="k">font-size</span><span class="o">:</span> <span class="m">60px</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-207"></a>    <span class="k">line-height</span><span class="o">:</span> <span class="m">1</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-208"></a><span class="p">}</span>
+<a name="impress-demo.css-pyg.html-209"></a>
+<a name="impress-demo.css-pyg.html-210"></a><span class="nf">#big</span> <span class="nt">b</span> <span class="p">{</span>
+<a name="impress-demo.css-pyg.html-211"></a>    <span class="k">display</span><span class="o">:</span> <span class="k">block</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-212"></a>    <span class="k">font-size</span><span class="o">:</span> <span class="m">250px</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-213"></a>    <span class="k">line-height</span><span class="o">:</span> <span class="m">250px</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-214"></a><span class="p">}</span>
+<a name="impress-demo.css-pyg.html-215"></a>
+<a name="impress-demo.css-pyg.html-216"></a><span class="nf">#big</span> <span class="nc">.thoughts</span> <span class="p">{</span>
+<a name="impress-demo.css-pyg.html-217"></a>    <span class="k">font-size</span><span class="o">:</span> <span class="m">90px</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-218"></a>    <span class="k">line-height</span><span class="o">:</span> <span class="m">150px</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-219"></a><span class="p">}</span>
+<a name="impress-demo.css-pyg.html-220"></a>
+<a name="impress-demo.css-pyg.html-221"></a><span class="c">/* tiny ideas */</span>
+<a name="impress-demo.css-pyg.html-222"></a>
+<a name="impress-demo.css-pyg.html-223"></a><span class="nf">#tiny</span> <span class="p">{</span>
+<a name="impress-demo.css-pyg.html-224"></a>    <span class="k">width</span><span class="o">:</span> <span class="m">500px</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-225"></a>    <span class="k">text-align</span><span class="o">:</span> <span class="k">center</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-226"></a><span class="p">}</span>
+<a name="impress-demo.css-pyg.html-227"></a>
+<a name="impress-demo.css-pyg.html-228"></a><span class="nf">#ing</span> <span class="p">{</span>
+<a name="impress-demo.css-pyg.html-229"></a>    <span class="k">width</span><span class="o">:</span> <span class="m">500px</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-230"></a><span class="p">}</span>
+<a name="impress-demo.css-pyg.html-231"></a>
+<a name="impress-demo.css-pyg.html-232"></a><span class="nf">#ing</span> <span class="nt">b</span> <span class="p">{</span>
+<a name="impress-demo.css-pyg.html-233"></a>    <span class="k">display</span><span class="o">:</span> <span class="k">inline</span><span class="o">-</span><span class="k">block</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-234"></a>    <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">transition</span><span class="o">:</span> <span class="m">0.5s</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-235"></a>    <span class="o">-</span><span class="n">moz</span><span class="o">-</span><span class="n">transition</span><span class="o">:</span>    <span class="m">0.5s</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-236"></a>    <span class="o">-</span><span class="n">ms</span><span class="o">-</span><span class="n">transition</span><span class="o">:</span>     <span class="m">0.5s</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-237"></a>    <span class="o">-</span><span class="n">o</span><span class="o">-</span><span class="n">transition</span><span class="o">:</span>      <span class="m">0.5s</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-238"></a>    <span class="n">transition</span><span class="o">:</span>         <span class="m">0.5s</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-239"></a><span class="p">}</span>
+<a name="impress-demo.css-pyg.html-240"></a>
+<a name="impress-demo.css-pyg.html-241"></a><span class="nf">#ing</span><span class="nc">.present</span> <span class="nc">.positioning</span> <span class="p">{</span>
+<a name="impress-demo.css-pyg.html-242"></a>    <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">transform</span><span class="o">:</span> <span class="n">translateY</span><span class="p">(</span><span class="m">-10px</span><span class="p">);</span>
+<a name="impress-demo.css-pyg.html-243"></a>    <span class="o">-</span><span class="n">moz</span><span class="o">-</span><span class="n">transform</span><span class="o">:</span>    <span class="n">translateY</span><span class="p">(</span><span class="m">-10px</span><span class="p">);</span>
+<a name="impress-demo.css-pyg.html-244"></a>    <span class="o">-</span><span class="n">ms</span><span class="o">-</span><span class="n">transform</span><span class="o">:</span>     <span class="n">translateY</span><span class="p">(</span><span class="m">-10px</span><span class="p">);</span>
+<a name="impress-demo.css-pyg.html-245"></a>    <span class="o">-</span><span class="n">o</span><span class="o">-</span><span class="n">transform</span><span class="o">:</span>      <span class="n">translateY</span><span class="p">(</span><span class="m">-10px</span><span class="p">);</span>
+<a name="impress-demo.css-pyg.html-246"></a>    <span class="n">transform</span><span class="o">:</span>         <span class="n">translateY</span><span class="p">(</span><span class="m">-10px</span><span class="p">);</span>
+<a name="impress-demo.css-pyg.html-247"></a><span class="p">}</span>
+<a name="impress-demo.css-pyg.html-248"></a>
+<a name="impress-demo.css-pyg.html-249"></a><span class="nf">#ing</span><span class="nc">.present</span> <span class="nc">.rotating</span> <span class="p">{</span>
+<a name="impress-demo.css-pyg.html-250"></a>    <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">transform</span><span class="o">:</span> <span class="n">rotate</span><span class="p">(</span><span class="m">-10</span><span class="n">deg</span><span class="p">);</span>
+<a name="impress-demo.css-pyg.html-251"></a>    <span class="o">-</span><span class="n">moz</span><span class="o">-</span><span class="n">transform</span><span class="o">:</span>    <span class="n">rotate</span><span class="p">(</span><span class="m">-10</span><span class="n">deg</span><span class="p">);</span>
+<a name="impress-demo.css-pyg.html-252"></a>    <span class="o">-</span><span class="n">ms</span><span class="o">-</span><span class="n">transform</span><span class="o">:</span>     <span class="n">rotate</span><span class="p">(</span><span class="m">-10</span><span class="n">deg</span><span class="p">);</span>
+<a name="impress-demo.css-pyg.html-253"></a>    <span class="o">-</span><span class="n">o</span><span class="o">-</span><span class="n">transform</span><span class="o">:</span>      <span class="n">rotate</span><span class="p">(</span><span class="m">-10</span><span class="n">deg</span><span class="p">);</span>
+<a name="impress-demo.css-pyg.html-254"></a>    <span class="n">transform</span><span class="o">:</span>         <span class="n">rotate</span><span class="p">(</span><span class="m">-10</span><span class="n">deg</span><span class="p">);</span>
+<a name="impress-demo.css-pyg.html-255"></a>
+<a name="impress-demo.css-pyg.html-256"></a>    <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">transition</span><span class="o">-</span><span class="n">delay</span><span class="o">:</span> <span class="m">0.25s</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-257"></a>    <span class="o">-</span><span class="n">moz</span><span class="o">-</span><span class="n">transition</span><span class="o">-</span><span class="n">delay</span><span class="o">:</span>    <span class="m">0.25s</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-258"></a>    <span class="o">-</span><span class="n">ms</span><span class="o">-</span><span class="n">transition</span><span class="o">-</span><span class="n">delay</span><span class="o">:</span>     <span class="m">0.25s</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-259"></a>    <span class="o">-</span><span class="n">o</span><span class="o">-</span><span class="n">transition</span><span class="o">-</span><span class="n">delay</span><span class="o">:</span>      <span class="m">0.25s</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-260"></a>    <span class="n">transition</span><span class="o">-</span><span class="n">delay</span><span class="o">:</span>         <span class="m">0.25s</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-261"></a><span class="p">}</span>
+<a name="impress-demo.css-pyg.html-262"></a>
+<a name="impress-demo.css-pyg.html-263"></a><span class="nf">#ing</span><span class="nc">.present</span> <span class="nc">.scaling</span> <span class="p">{</span>
+<a name="impress-demo.css-pyg.html-264"></a>    <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">transform</span><span class="o">:</span> <span class="n">scale</span><span class="p">(</span><span class="m">0</span><span class="o">.</span><span class="m">7</span><span class="p">);</span>
+<a name="impress-demo.css-pyg.html-265"></a>    <span class="o">-</span><span class="n">moz</span><span class="o">-</span><span class="n">transform</span><span class="o">:</span>    <span class="n">scale</span><span class="p">(</span><span class="m">0</span><span class="o">.</span><span class="m">7</span><span class="p">);</span>
+<a name="impress-demo.css-pyg.html-266"></a>    <span class="o">-</span><span class="n">ms</span><span class="o">-</span><span class="n">transform</span><span class="o">:</span>     <span class="n">scale</span><span class="p">(</span><span class="m">0</span><span class="o">.</span><span class="m">7</span><span class="p">);</span>
+<a name="impress-demo.css-pyg.html-267"></a>    <span class="o">-</span><span class="n">o</span><span class="o">-</span><span class="n">transform</span><span class="o">:</span>      <span class="n">scale</span><span class="p">(</span><span class="m">0</span><span class="o">.</span><span class="m">7</span><span class="p">);</span>
+<a name="impress-demo.css-pyg.html-268"></a>    <span class="n">transform</span><span class="o">:</span>         <span class="n">scale</span><span class="p">(</span><span class="m">0</span><span class="o">.</span><span class="m">7</span><span class="p">);</span>
+<a name="impress-demo.css-pyg.html-269"></a>
+<a name="impress-demo.css-pyg.html-270"></a>    <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">transition</span><span class="o">-</span><span class="n">delay</span><span class="o">:</span> <span class="m">0.5s</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-271"></a>    <span class="o">-</span><span class="n">moz</span><span class="o">-</span><span class="n">transition</span><span class="o">-</span><span class="n">delay</span><span class="o">:</span>    <span class="m">0.5s</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-272"></a>    <span class="o">-</span><span class="n">ms</span><span class="o">-</span><span class="n">transition</span><span class="o">-</span><span class="n">delay</span><span class="o">:</span>     <span class="m">0.5s</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-273"></a>    <span class="o">-</span><span class="n">o</span><span class="o">-</span><span class="n">transition</span><span class="o">-</span><span class="n">delay</span><span class="o">:</span>      <span class="m">0.5s</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-274"></a>    <span class="n">transition</span><span class="o">-</span><span class="n">delay</span><span class="o">:</span>         <span class="m">0.5s</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-275"></a><span class="p">}</span>
+<a name="impress-demo.css-pyg.html-276"></a>
+<a name="impress-demo.css-pyg.html-277"></a><span class="c">/* imagination */</span>
+<a name="impress-demo.css-pyg.html-278"></a>
+<a name="impress-demo.css-pyg.html-279"></a><span class="nf">#imagination</span> <span class="p">{</span>
+<a name="impress-demo.css-pyg.html-280"></a>    <span class="k">width</span><span class="o">:</span> <span class="m">600px</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-281"></a><span class="p">}</span>
+<a name="impress-demo.css-pyg.html-282"></a>
+<a name="impress-demo.css-pyg.html-283"></a><span class="nf">#imagination</span> <span class="nc">.imagination</span> <span class="p">{</span>
+<a name="impress-demo.css-pyg.html-284"></a>    <span class="k">font-size</span><span class="o">:</span> <span class="m">78px</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-285"></a><span class="p">}</span>
+<a name="impress-demo.css-pyg.html-286"></a>
+<a name="impress-demo.css-pyg.html-287"></a><span class="c">/* use the source, Luke */</span>
+<a name="impress-demo.css-pyg.html-288"></a>
+<a name="impress-demo.css-pyg.html-289"></a><span class="nf">#overview</span> <span class="p">{</span>
+<a name="impress-demo.css-pyg.html-290"></a>    <span class="k">z-index</span><span class="o">:</span> <span class="m">-1</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-291"></a>    <span class="k">padding</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-292"></a><span class="p">}</span>
+<a name="impress-demo.css-pyg.html-293"></a>
+<a name="impress-demo.css-pyg.html-294"></a><span class="c">/* on overview step everything is visible */</span>
+<a name="impress-demo.css-pyg.html-295"></a>
+<a name="impress-demo.css-pyg.html-296"></a><span class="nc">.impress-on-overview</span> <span class="nc">.step</span> <span class="p">{</span>
+<a name="impress-demo.css-pyg.html-297"></a>    <span class="k">opacity</span><span class="o">:</span> <span class="m">1</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-298"></a>    <span class="k">cursor</span><span class="o">:</span> <span class="k">pointer</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-299"></a><span class="p">}</span>
+<a name="impress-demo.css-pyg.html-300"></a>
+<a name="impress-demo.css-pyg.html-301"></a><span class="c">/*</span>
+<a name="impress-demo.css-pyg.html-302"></a><span class="c"> * SLIDE STEP STYLES</span>
+<a name="impress-demo.css-pyg.html-303"></a><span class="c"> *</span>
+<a name="impress-demo.css-pyg.html-304"></a><span class="c"> * inspired by: http://html5slides.googlecode.com/svn/trunk/styles.css</span>
+<a name="impress-demo.css-pyg.html-305"></a><span class="c"> *</span>
+<a name="impress-demo.css-pyg.html-306"></a><span class="c"> * ;)</span>
+<a name="impress-demo.css-pyg.html-307"></a><span class="c"> */</span>
+<a name="impress-demo.css-pyg.html-308"></a>
+<a name="impress-demo.css-pyg.html-309"></a><span class="nc">.slide</span> <span class="p">{</span>
+<a name="impress-demo.css-pyg.html-310"></a>    <span class="k">display</span><span class="o">:</span> <span class="k">block</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-311"></a>
+<a name="impress-demo.css-pyg.html-312"></a>    <span class="k">width</span><span class="o">:</span> <span class="m">500px</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-313"></a>    <span class="k">height</span><span class="o">:</span> <span class="m">500px</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-314"></a>
+<a name="impress-demo.css-pyg.html-315"></a>    <span class="k">border</span><span class="o">:</span> <span class="k">medium</span> <span class="k">solid</span> <span class="nb">gray</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-316"></a>    <span class="k">border</span><span class="o">-</span><span class="n">radius</span><span class="o">:</span> <span class="m">15px</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-317"></a>    <span class="k">padding</span><span class="o">:</span> <span class="m">20px</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-318"></a>
+<a name="impress-demo.css-pyg.html-319"></a>    <span class="k">background-color</span><span class="o">:</span> <span class="nb">white</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-320"></a>
+<a name="impress-demo.css-pyg.html-321"></a>    <span class="k">font-family</span><span class="o">:</span> <span class="s1">&#39;Open Sans&#39;</span><span class="o">,</span> <span class="n">Arial</span><span class="o">,</span> <span class="k">sans-serif</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-322"></a>
+<a name="impress-demo.css-pyg.html-323"></a>    <span class="k">color</span><span class="o">:</span> <span class="nb">darkblue</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-324"></a>
+<a name="impress-demo.css-pyg.html-325"></a>    <span class="k">font-size</span><span class="o">:</span> <span class="m">30px</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-326"></a><span class="p">}</span>
+<a name="impress-demo.css-pyg.html-327"></a>
+<a name="impress-demo.css-pyg.html-328"></a><span class="nc">.slide</span> <span class="nt">h2</span> <span class="p">{</span>
+<a name="impress-demo.css-pyg.html-329"></a>    <span class="k">font-size</span><span class="o">:</span> <span class="m">60px</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-330"></a><span class="p">}</span>
+<a name="impress-demo.css-pyg.html-331"></a>
+<a name="impress-demo.css-pyg.html-332"></a><span class="nc">.slide</span> <span class="nt">q</span> <span class="p">{</span>
+<a name="impress-demo.css-pyg.html-333"></a>    <span class="k">display</span><span class="o">:</span> <span class="k">block</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-334"></a>    <span class="k">font-size</span><span class="o">:</span> <span class="m">50px</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-335"></a>    <span class="k">line-height</span><span class="o">:</span> <span class="m">72px</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-336"></a>
+<a name="impress-demo.css-pyg.html-337"></a>    <span class="k">margin-top</span><span class="o">:</span> <span class="m">100px</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-338"></a><span class="p">}</span>
+<a name="impress-demo.css-pyg.html-339"></a>
+<a name="impress-demo.css-pyg.html-340"></a><span class="nc">.slide</span> <span class="nt">q</span> <span class="nt">strong</span> <span class="p">{</span>
+<a name="impress-demo.css-pyg.html-341"></a>    <span class="k">white-space</span><span class="o">:</span> <span class="k">nowrap</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-342"></a><span class="p">}</span>
+<a name="impress-demo.css-pyg.html-343"></a>
+<a name="impress-demo.css-pyg.html-344"></a>
+<a name="impress-demo.css-pyg.html-345"></a><span class="c">/* IMPRESS NOT SUPPORTED STYLES */</span>
+<a name="impress-demo.css-pyg.html-346"></a>
+<a name="impress-demo.css-pyg.html-347"></a><span class="nc">.fallback-message</span> <span class="p">{</span>
+<a name="impress-demo.css-pyg.html-348"></a>    <span class="k">font-family</span><span class="o">:</span> <span class="k">sans-serif</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-349"></a>    <span class="k">line-height</span><span class="o">:</span> <span class="m">1</span><span class="o">.</span><span class="m">3</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-350"></a>    
+<a name="impress-demo.css-pyg.html-351"></a>    <span class="k">display</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-352"></a>    <span class="k">width</span><span class="o">:</span> <span class="m">780px</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-353"></a>    <span class="k">padding</span><span class="o">:</span> <span class="m">10px</span> <span class="m">10px</span> <span class="m">0</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-354"></a>    <span class="k">margin</span><span class="o">:</span> <span class="m">20px</span> <span class="k">auto</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-355"></a>
+<a name="impress-demo.css-pyg.html-356"></a>    <span class="k">border</span><span class="o">-</span><span class="n">radius</span><span class="o">:</span> <span class="m">10px</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-357"></a>    <span class="k">border</span><span class="o">:</span> <span class="m">1px</span> <span class="k">solid</span> <span class="m">#E4C652</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-358"></a>    <span class="k">background</span><span class="o">:</span> <span class="m">#EEDC94</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-359"></a><span class="p">}</span>
+<a name="impress-demo.css-pyg.html-360"></a>
+<a name="impress-demo.css-pyg.html-361"></a><span class="nc">.fallback-message</span> <span class="nt">p</span> <span class="p">{</span>
+<a name="impress-demo.css-pyg.html-362"></a>    <span class="k">margin-bottom</span><span class="o">:</span> <span class="m">10px</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-363"></a><span class="p">}</span>
+<a name="impress-demo.css-pyg.html-364"></a>
+<a name="impress-demo.css-pyg.html-365"></a><span class="nc">.impress-disabled</span> <span class="nc">.step</span><span class="o">,</span>
+<a name="impress-demo.css-pyg.html-366"></a><span class="nc">.impress-not-supported</span> <span class="nc">.step</span> <span class="p">{</span>
+<a name="impress-demo.css-pyg.html-367"></a>    <span class="k">position</span><span class="o">:</span> <span class="k">relative</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-368"></a>    <span class="k">opacity</span><span class="o">:</span> <span class="m">1</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-369"></a>    <span class="k">margin</span><span class="o">:</span> <span class="m">20px</span> <span class="k">auto</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-370"></a><span class="p">}</span>
+<a name="impress-demo.css-pyg.html-371"></a>
+<a name="impress-demo.css-pyg.html-372"></a><span class="nc">.impress-not-supported</span> <span class="nc">.fallback-message</span> <span class="p">{</span>
+<a name="impress-demo.css-pyg.html-373"></a>    <span class="k">display</span><span class="o">:</span> <span class="k">block</span><span class="p">;</span>
+<a name="impress-demo.css-pyg.html-374"></a><span class="p">}</span>
+<a name="impress-demo.css-pyg.html-375"></a>
+<a name="impress-demo.css-pyg.html-376"></a>
+<a name="impress-demo.css-pyg.html-377"></a><span class="p">{</span><span class="err">{</span> <span class="n">pygments</span><span class="p">[</span><span class="s1">&#39;pastie.css&#39;</span><span class="p">]</span> <span class="p">}</span><span class="err">}</span>
+</pre></div>

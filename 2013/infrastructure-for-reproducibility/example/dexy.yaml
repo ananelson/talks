@@ -1,0 +1,5 @@
+.md|jinja|markdown|easyhtml:
+    - .py|idio
+    - .py|idio|pycon|pyg:
+        - pycon: { add-new-files: True }
+        - .csv

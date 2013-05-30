@@ -1,0 +1,156 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Dexy for Reproducible Science</title>
+    <link href="impress-demo.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="favicon.png" />
+</head>
+
+<body class="impress-not-supported">
+
+<div class="fallback-message">
+    <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+</div>
+
+<div id="impress">
+    <div class="slide step" id="slide0">
+<h2>Dexy for Reproducible Science</h2>
+<p><a href="http://dexy.it">http://dexy.it</a><br />
+<a href="http://twitter.com/dexyit">@dexyit</a><br />
+<br /><br />
+Ana Nelson<br />
+<a href="http://twitter.com/ananelson">@ananelson</a><br />
+ana@ananelson.com</p>
+</div>
+
+<div class="slide step" id="slide1">
+<p><img src="logo.png" width="400px;" /></p>
+<ul>
+<li>document-oriented 'make'</li>
+<li>free-form, general-purpose authoring and automation</li>
+<li>multi-language, multi-format</li>
+<li>Open Source (MIT)</li>
+<li>Written in Python</li>
+</ul>
+</div>
+
+<div class="slide step" id="slide2">
+<h2>Dexy Can</h2>
+<ul>
+<li>Run Python code</li>
+<li>Compile and run C code</li>
+<li>Run text-to-speech on a file...</li>
+<li>...then make R graph a waveform of the audio.</li>
+<li>Convert Markdown to HTML</li>
+<li>Compile LaTeX to PDF</li>
+<li>Upload images to S3</li>
+<li>Post HTML to a WordPress blog</li>
+<li>Just about anything code can do, dexy can do.</li>
+</ul>
+</div>
+
+<div class="slide step" id="slide3">
+<h2>Installation</h2>
+<p>Python (2.6 or 2.7) &#10004;<br />
+pip (or easy_install) &#10004;<br />
+<code>pip install dexy</code></p>
+</div>
+
+<div class="slide step" id="slide4">
+<p>Write documents,<br />
+write scripts,<br />
+use dexy to tie it all together.<br />
+<br /><br />
+Example config file:</p>
+<div class="highlight"><pre><a name="example--dexy.yaml-pyg.html-1"></a><span class="l-Scalar-Plain">.md|jinja|markdown|easyhtml</span><span class="p-Indicator">:</span>
+<a name="example--dexy.yaml-pyg.html-2"></a>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">.py|idio</span>
+<a name="example--dexy.yaml-pyg.html-3"></a>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">.py|idio|pycon|pyg</span><span class="p-Indicator">:</span>
+<a name="example--dexy.yaml-pyg.html-4"></a>        <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">pycon</span><span class="p-Indicator">:</span> <span class="p-Indicator">{</span> <span class="nv">add-new-files</span><span class="p-Indicator">:</span> <span class="nv">True</span> <span class="p-Indicator">}</span>
+<a name="example--dexy.yaml-pyg.html-5"></a>        <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">.csv</span>
+</pre></div>
+</div>
+
+<div class="slide step" id="slide5">
+<h2>Demo</h2>
+<ul>
+<li><a target="_new" href="/example/index.html">generated file</a></li>
+<li><a target="_new" href="/example/index.md.html">markdown source</a></li>
+<li><a target="_new" href="/example/code001.py.html">python source 1</a></li>
+<li><a target="_new" href="/example/code002.py.html">python source 2</a></li>
+<li><a target="_new" href="/example/data.csv.html">csv</a></li>
+<li>Run all with: <code>dexy</code></li>
+</ul>
+</div>
+
+<div class="slide step" id="slide6">
+<h2>Capture &amp; Representation</h2>
+<ul>
+<li>Dexy requires users to construct a reproducible workflow (using any number of command line/scriptable tools).</li>
+<li>Dexy's config files capture dependencies and instructions (i.e. which filters to apply to which files).</li>
+</ul>
+</div>
+
+<div class="slide step" id="slide7">
+<h2>Portability</h2>
+<ul>
+<li>Dexy itself is portable (in principle) to any platform which supports Python.</li>
+<li>Some filters will be unavailable on some platforms - if they depend on libraries/tools not supported or with different behavior.</li>
+<li>Dexy is flexible - we can generate portability reports or warn users.</li>
+</ul>
+</div>
+
+<div class="slide step" id="slide8">
+<h2>Document Linkage</h2>
+<ul>
+<li>Dexy was designed for this.</li>
+<li>Include whole documents, or sections of documents.</li>
+<li>Dexy's helper library works with variety of templating tools, including Jinja.</li>
+<li>Dexy is designed to work with assets in input files and those generated as side-effects of running scripts.</li>
+</ul>
+</div>
+
+<div class="slide step" id="slide9">
+<h2>Archival</h2>
+<ul>
+<li>Dexy makes it easy to upgrade projects to work with available software.</li>
+<li>Dexy can be developed to generate full project archives including software used to generate a certain run.</li>
+</ul>
+</div>
+
+<div class="slide step" id="slide10">
+<h2>Thanks</h2>
+<p>Should Dexy support your tool?<br />
+info@dexy.it</p>
+</div>
+</div>
+
+<div class="hint">
+    <p>Use a spacebar or arrow keys to navigate</p>
+</div>
+<script>
+if ("ontouchstart" in document.documentElement) { 
+    document.querySelector(".hint").innerHTML = "<p>Tap on the left or right to navigate</p>";
+}
+</script>
+
+<script src="impress.js"></script>
+<script src="jquery.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.step').map(function (i, x) {
+            var rand = Math.round(Math.random() * 10) + 1;
+            $(x).attr('data-y', rand * 7000);
+            $(x).attr('data-x', 7000 * i);
+            $(x).attr('data-scale', rand);
+        });
+
+        impress().init();
+    });
+</script>
+
+</body>
+</html>

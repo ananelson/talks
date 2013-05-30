@@ -1,0 +1,20 @@
+slides.md|jinja|impress|markdown:
+    - title: Dexy for Reproducible Science
+    - source
+
+assets:
+    - .css|jinja
+    - .js
+    - .png
+    - .jpg
+    - .*|pyg:
+        - ws-template: False
+        - output: True
+        - pyg: { noclasses: True }
+
+source:
+    - .txt
+    - .md
+    - .py|idio
+    - .yaml|idio
+    - .yaml|pyg
