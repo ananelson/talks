@@ -12,8 +12,10 @@ ana@ananelson.com
 <img src="logo.png" width="400px;" />
 
 * document-oriented 'make'
-* free-form, general-purpose authoring and automation
-* multi-language, multi-format
+* project automation
+* code is code, prose is prose, data is data
+* many-to-many relationships of prose to code/data
+* document live code
 * Open Source (MIT)
 * Written in Python
 
@@ -25,11 +27,22 @@ Dexy Can
 * Compile and run C code
 * Run text-to-speech on a file...
 * ...then make R graph a waveform of the audio.
+* Spin up EC2 instances, run scripts via ssh.
 * Convert Markdown to HTML
-* Compile LaTeX to PDF
-* Upload images to S3
-* Post HTML to a WordPress blog
-* Just about anything code can do, dexy can do.
+* Obtain data from APIs
+* Publish results to APIs (WordPress)
+* <http://dexy.it/filters>
+
+
+Software Documentation
+----------------------
+
+You can also use Dexy to document your:
+
+* web app (e.g. installation guide from bash script, screenshots from casper.js)
+* command line tool
+* library
+* Desktop app via Sikuli?
 
 
 Installation
@@ -84,8 +97,9 @@ Document Linkage
 
 Archival
 --------
-- Dexy makes it easy to upgrade projects to work with available software.
-- Dexy can be developed to generate full project archives including software used to generate a certain run.
+- Dexy's minimal approach makes it easy to upgrade projects to work with currently available software.
+- Dexy's working files and logs can be added to a project repository to record a snapshot of a particular run.
+- Dexy is highly extensible - can generate reports/archives including software used.
 
 
 Thanks

@@ -31,8 +31,10 @@ ana@ananelson.com</p>
 <p><img src="logo.png" width="400px;" /></p>
 <ul>
 <li>document-oriented 'make'</li>
-<li>free-form, general-purpose authoring and automation</li>
-<li>multi-language, multi-format</li>
+<li>project automation</li>
+<li>code is code, prose is prose, data is data</li>
+<li>many-to-many relationships of prose to code/data</li>
+<li>document live code</li>
 <li>Open Source (MIT)</li>
 <li>Written in Python</li>
 </ul>
@@ -45,22 +47,33 @@ ana@ananelson.com</p>
 <li>Compile and run C code</li>
 <li>Run text-to-speech on a file...</li>
 <li>...then make R graph a waveform of the audio.</li>
+<li>Spin up EC2 instances, run scripts via ssh.</li>
 <li>Convert Markdown to HTML</li>
-<li>Compile LaTeX to PDF</li>
-<li>Upload images to S3</li>
-<li>Post HTML to a WordPress blog</li>
-<li>Just about anything code can do, dexy can do.</li>
+<li>Obtain data from APIs</li>
+<li>Publish results to APIs (WordPress)</li>
+<li><a href="http://dexy.it/filters">http://dexy.it/filters</a></li>
 </ul>
 </div>
 
 <div class="slide step" id="slide3">
+<h2>Software Documentation</h2>
+<p>You can also use Dexy to document your:</p>
+<ul>
+<li>web app (e.g. installation guide from bash script, screenshots from casper.js)</li>
+<li>command line tool</li>
+<li>library</li>
+<li>Desktop app via Sikuli?</li>
+</ul>
+</div>
+
+<div class="slide step" id="slide4">
 <h2>Installation</h2>
 <p>Python (2.6 or 2.7) &#10004;<br />
 pip (or easy_install) &#10004;<br />
 <code>pip install dexy</code></p>
 </div>
 
-<div class="slide step" id="slide4">
+<div class="slide step" id="slide5">
 <p>Write documents,<br />
 write scripts,<br />
 use dexy to tie it all together.<br />
@@ -77,7 +90,7 @@ Example config file:</p>
 </pre></div>
 </div>
 
-<div class="slide step" id="slide5">
+<div class="slide step" id="slide6">
 <h2>Demo</h2>
 <ul>
 <li><a target="_new" href="/example/index.html">generated file</a></li>
@@ -89,7 +102,7 @@ Example config file:</p>
 </ul>
 </div>
 
-<div class="slide step" id="slide6">
+<div class="slide step" id="slide7">
 <h2>Capture &amp; Representation</h2>
 <ul>
 <li>Dexy requires users to construct a reproducible workflow (using any number of command line/scriptable tools).</li>
@@ -97,7 +110,7 @@ Example config file:</p>
 </ul>
 </div>
 
-<div class="slide step" id="slide7">
+<div class="slide step" id="slide8">
 <h2>Portability</h2>
 <ul>
 <li>Dexy itself is portable (in principle) to any platform which supports Python.</li>
@@ -106,7 +119,7 @@ Example config file:</p>
 </ul>
 </div>
 
-<div class="slide step" id="slide8">
+<div class="slide step" id="slide9">
 <h2>Document Linkage</h2>
 <ul>
 <li>Dexy was designed for this.</li>
@@ -116,15 +129,16 @@ Example config file:</p>
 </ul>
 </div>
 
-<div class="slide step" id="slide9">
+<div class="slide step" id="slide10">
 <h2>Archival</h2>
 <ul>
-<li>Dexy makes it easy to upgrade projects to work with available software.</li>
-<li>Dexy can be developed to generate full project archives including software used to generate a certain run.</li>
+<li>Dexy's minimal approach makes it easy to upgrade projects to work with currently available software.</li>
+<li>Dexy's working files and logs can be added to a project repository to record a snapshot of a particular run.</li>
+<li>Dexy is highly extensible - can generate reports/archives including software used.</li>
 </ul>
 </div>
 
-<div class="slide step" id="slide10">
+<div class="slide step" id="slide11">
 <h2>Thanks</h2>
 <p>Should Dexy support your tool?<br />
 info@dexy.it</p>
