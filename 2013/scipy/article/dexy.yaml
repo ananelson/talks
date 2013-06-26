@@ -1,0 +1,5 @@
+article.rst|jinja|rstbody|l|hd|ft|latex:
+    - headers
+    - .R|idio|r|pyg|l:
+        - r: { add-new-files: True }
+    - _*.tex|jinja

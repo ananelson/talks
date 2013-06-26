@@ -1,0 +1,49 @@
+<div class="highlight"><pre><a name="_template.html-pyg.html-1"></a><span class="cp">&lt;!doctype html&gt;</span>
+<a name="_template.html-pyg.html-2"></a>
+<a name="_template.html-pyg.html-3"></a><span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">&quot;en&quot;</span><span class="nt">&gt;</span>
+<a name="_template.html-pyg.html-4"></a><span class="nt">&lt;head&gt;</span>
+<a name="_template.html-pyg.html-5"></a>    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">&quot;utf-8&quot;</span> <span class="nt">/&gt;</span>
+<a name="_template.html-pyg.html-6"></a>    <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content=</span><span class="s">&quot;width=1024&quot;</span> <span class="nt">/&gt;</span>
+<a name="_template.html-pyg.html-7"></a>    <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;apple-mobile-web-app-capable&quot;</span> <span class="na">content=</span><span class="s">&quot;yes&quot;</span> <span class="nt">/&gt;</span>
+<a name="_template.html-pyg.html-8"></a>    <span class="nt">&lt;title&gt;</span>{{ page_title }}<span class="nt">&lt;/title&gt;</span>
+<a name="_template.html-pyg.html-9"></a>    <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;impress-demo.css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="nt">/&gt;</span>
+<a name="_template.html-pyg.html-10"></a>    <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;shortcut icon&quot;</span> <span class="na">href=</span><span class="s">&quot;favicon.png&quot;</span> <span class="nt">/&gt;</span>
+<a name="_template.html-pyg.html-11"></a><span class="nt">&lt;/head&gt;</span>
+<a name="_template.html-pyg.html-12"></a>
+<a name="_template.html-pyg.html-13"></a><span class="nt">&lt;body</span> <span class="na">class=</span><span class="s">&quot;impress-not-supported&quot;</span><span class="nt">&gt;</span>
+<a name="_template.html-pyg.html-14"></a>
+<a name="_template.html-pyg.html-15"></a><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;fallback-message&quot;</span><span class="nt">&gt;</span>
+<a name="_template.html-pyg.html-16"></a>    <span class="nt">&lt;p&gt;</span>For the best experience please use the latest <span class="nt">&lt;b&gt;</span>Chrome<span class="nt">&lt;/b&gt;</span>, <span class="nt">&lt;b&gt;</span>Safari<span class="nt">&lt;/b&gt;</span> or <span class="nt">&lt;b&gt;</span>Firefox<span class="nt">&lt;/b&gt;</span> browser.<span class="nt">&lt;/p&gt;</span>
+<a name="_template.html-pyg.html-17"></a><span class="nt">&lt;/div&gt;</span>
+<a name="_template.html-pyg.html-18"></a>
+<a name="_template.html-pyg.html-19"></a><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;impress&quot;</span><span class="nt">&gt;</span>
+<a name="_template.html-pyg.html-20"></a>    {{ content }}
+<a name="_template.html-pyg.html-21"></a><span class="nt">&lt;/div&gt;</span>
+<a name="_template.html-pyg.html-22"></a>
+<a name="_template.html-pyg.html-23"></a><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;hint&quot;</span><span class="nt">&gt;</span>
+<a name="_template.html-pyg.html-24"></a>    <span class="nt">&lt;p&gt;</span>Use a spacebar or arrow keys to navigate<span class="nt">&lt;/p&gt;</span>
+<a name="_template.html-pyg.html-25"></a><span class="nt">&lt;/div&gt;</span>
+<a name="_template.html-pyg.html-26"></a><span class="nt">&lt;script&gt;</span>
+<a name="_template.html-pyg.html-27"></a><span class="k">if</span> <span class="p">(</span><span class="s2">&quot;ontouchstart&quot;</span> <span class="k">in</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">)</span> <span class="p">{</span> 
+<a name="_template.html-pyg.html-28"></a>    <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;.hint&quot;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s2">&quot;&lt;p&gt;Tap on the left or right to navigate&lt;/p&gt;&quot;</span><span class="p">;</span>
+<a name="_template.html-pyg.html-29"></a><span class="p">}</span>
+<a name="_template.html-pyg.html-30"></a><span class="nt">&lt;/script&gt;</span>
+<a name="_template.html-pyg.html-31"></a>
+<a name="_template.html-pyg.html-32"></a><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;impress.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+<a name="_template.html-pyg.html-33"></a><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;jquery.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+<a name="_template.html-pyg.html-34"></a><span class="nt">&lt;script&gt;</span>
+<a name="_template.html-pyg.html-35"></a>    <span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<a name="_template.html-pyg.html-36"></a>        <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.step&#39;</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+<a name="_template.html-pyg.html-37"></a>            <span class="kd">var</span> <span class="nx">rand</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+<a name="_template.html-pyg.html-38"></a>            <span class="nx">$</span><span class="p">(</span><span class="nx">x</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;data-y&#39;</span><span class="p">,</span> <span class="nx">rand</span> <span class="o">*</span> <span class="mi">7000</span><span class="p">);</span>
+<a name="_template.html-pyg.html-39"></a>            <span class="nx">$</span><span class="p">(</span><span class="nx">x</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;data-x&#39;</span><span class="p">,</span> <span class="mi">10000</span> <span class="o">*</span> <span class="nx">i</span><span class="p">);</span>
+<a name="_template.html-pyg.html-40"></a>            <span class="nx">$</span><span class="p">(</span><span class="nx">x</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;data-scale&#39;</span><span class="p">,</span> <span class="nx">rand</span><span class="p">);</span>
+<a name="_template.html-pyg.html-41"></a>        <span class="p">});</span>
+<a name="_template.html-pyg.html-42"></a>
+<a name="_template.html-pyg.html-43"></a>        <span class="nx">impress</span><span class="p">().</span><span class="nx">init</span><span class="p">();</span>
+<a name="_template.html-pyg.html-44"></a>    <span class="p">});</span>
+<a name="_template.html-pyg.html-45"></a><span class="nt">&lt;/script&gt;</span>
+<a name="_template.html-pyg.html-46"></a>
+<a name="_template.html-pyg.html-47"></a><span class="nt">&lt;/body&gt;</span>
+<a name="_template.html-pyg.html-48"></a><span class="nt">&lt;/html&gt;</span>
+</pre></div>

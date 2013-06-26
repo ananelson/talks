@@ -1,0 +1,48 @@
+<div class="highlight"><pre><a name="article--_header.tex-pyg.html-1"></a><span class="k">\documentclass</span><span class="nb">{</span>tufte-handout<span class="nb">}</span>
+<a name="article--_header.tex-pyg.html-2"></a>
+<a name="article--_header.tex-pyg.html-3"></a><span class="c">%\geometry{showframe}% for debugging purposes -- displays the margins</span>
+<a name="article--_header.tex-pyg.html-4"></a>
+<a name="article--_header.tex-pyg.html-5"></a><span class="k">\usepackage</span><span class="nb">{</span>amsmath<span class="nb">}</span>
+<a name="article--_header.tex-pyg.html-6"></a>
+<a name="article--_header.tex-pyg.html-7"></a><span class="c">% Set up the images/graphics package</span>
+<a name="article--_header.tex-pyg.html-8"></a><span class="k">\usepackage</span><span class="nb">{</span>graphicx<span class="nb">}</span>
+<a name="article--_header.tex-pyg.html-9"></a><span class="k">\setkeys</span><span class="nb">{</span>Gin<span class="nb">}{</span>width=<span class="k">\linewidth</span>,totalheight=<span class="k">\textheight</span>,keepaspectratio<span class="nb">}</span>
+<a name="article--_header.tex-pyg.html-10"></a><span class="k">\graphicspath</span><span class="nb">{{</span>graphics/<span class="nb">}}</span>
+<a name="article--_header.tex-pyg.html-11"></a>
+<a name="article--_header.tex-pyg.html-12"></a><span class="k">\title</span><span class="nb">{</span>An Example of the Usage of the Tufte-Handout Style<span class="k">\thanks</span><span class="nb">{</span>Inspired by Edward~R. Tufte!<span class="nb">}}</span>
+<a name="article--_header.tex-pyg.html-13"></a><span class="k">\author</span><span class="na">[The Tufte-LaTeX Developers]</span><span class="nb">{</span>The Tufte-<span class="k">\LaTeX\ </span>Developers<span class="nb">}</span>
+<a name="article--_header.tex-pyg.html-14"></a><span class="k">\date</span><span class="nb">{</span>24 January 2009<span class="nb">}</span>  <span class="c">% if the \date{} command is left out, the current date will be used</span>
+<a name="article--_header.tex-pyg.html-15"></a>
+<a name="article--_header.tex-pyg.html-16"></a><span class="c">% The following package makes prettier tables.  We&#39;re all about the bling!</span>
+<a name="article--_header.tex-pyg.html-17"></a><span class="k">\usepackage</span><span class="nb">{</span>booktabs<span class="nb">}</span>
+<a name="article--_header.tex-pyg.html-18"></a>
+<a name="article--_header.tex-pyg.html-19"></a><span class="c">% The units package provides nice, non-stacked fractions and better spacing</span>
+<a name="article--_header.tex-pyg.html-20"></a><span class="c">% for units.</span>
+<a name="article--_header.tex-pyg.html-21"></a><span class="k">\usepackage</span><span class="nb">{</span>units<span class="nb">}</span>
+<a name="article--_header.tex-pyg.html-22"></a>
+<a name="article--_header.tex-pyg.html-23"></a><span class="c">% The fancyvrb package lets us customize the formatting of verbatim</span>
+<a name="article--_header.tex-pyg.html-24"></a><span class="c">% environments.  We use a slightly smaller font.</span>
+<a name="article--_header.tex-pyg.html-25"></a><span class="k">\usepackage</span><span class="nb">{</span>fancyvrb<span class="nb">}</span>
+<a name="article--_header.tex-pyg.html-26"></a><span class="k">\fvset</span><span class="nb">{</span>fontsize=<span class="k">\normalsize</span><span class="nb">}</span>
+<a name="article--_header.tex-pyg.html-27"></a>
+<a name="article--_header.tex-pyg.html-28"></a><span class="c">% Small sections of multiple columns</span>
+<a name="article--_header.tex-pyg.html-29"></a><span class="k">\usepackage</span><span class="nb">{</span>multicol<span class="nb">}</span>
+<a name="article--_header.tex-pyg.html-30"></a>
+<a name="article--_header.tex-pyg.html-31"></a><span class="c">% Provides paragraphs of dummy text</span>
+<a name="article--_header.tex-pyg.html-32"></a><span class="k">\usepackage</span><span class="nb">{</span>lipsum<span class="nb">}</span>
+<a name="article--_header.tex-pyg.html-33"></a>
+<a name="article--_header.tex-pyg.html-34"></a><span class="c">% Pygments syntax highlighting codes</span>
+<a name="article--_header.tex-pyg.html-35"></a>&lt;&lt; pygments[&#39;pastie.tex&#39;] &gt;&gt;
+<a name="article--_header.tex-pyg.html-36"></a>
+<a name="article--_header.tex-pyg.html-37"></a><span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
+<a name="article--_header.tex-pyg.html-38"></a>
+<a name="article--_header.tex-pyg.html-39"></a><span class="k">\maketitle</span><span class="c">% this prints the handout title, author, and date</span>
+<a name="article--_header.tex-pyg.html-40"></a>
+<a name="article--_header.tex-pyg.html-41"></a><span class="k">\begin</span><span class="nb">{</span>abstract<span class="nb">}</span>
+<a name="article--_header.tex-pyg.html-42"></a><span class="k">\noindent</span> This document describes the Tufte handout <span class="k">\LaTeX\ </span>document style.
+<a name="article--_header.tex-pyg.html-43"></a>It also provides examples and comments on the style&#39;s use.  Only a brief
+<a name="article--_header.tex-pyg.html-44"></a>overview is presented here; for a complete reference, see the sample book.
+<a name="article--_header.tex-pyg.html-45"></a><span class="k">\end</span><span class="nb">{</span>abstract<span class="nb">}</span>
+<a name="article--_header.tex-pyg.html-46"></a>
+<a name="article--_header.tex-pyg.html-47"></a><span class="c">%\printclassoptions</span>
+</pre></div>

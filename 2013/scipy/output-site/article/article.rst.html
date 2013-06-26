@@ -1,0 +1,27 @@
+<div class="highlight"><pre><a name="article--article.rst-pyg.html-1"></a><span class="gh">========================================</span>
+<a name="article--article.rst-pyg.html-2"></a><span class="gh">Writing Reproducible Documents with Dexy</span>
+<a name="article--article.rst-pyg.html-3"></a><span class="gh">========================================</span>
+<a name="article--article.rst-pyg.html-4"></a>
+<a name="article--article.rst-pyg.html-5"></a>  author: Ana Nelson
+<a name="article--article.rst-pyg.html-6"></a>
+<a name="article--article.rst-pyg.html-7"></a><span class="gh">Example 1</span>
+<a name="article--article.rst-pyg.html-8"></a><span class="gh">---------</span>
+<a name="article--article.rst-pyg.html-9"></a>
+<a name="article--article.rst-pyg.html-10"></a><span class="cp">{%</span> <span class="k">from</span> <span class="s1">&#39;dexy.jinja&#39;</span> <span class="k">import</span> <span class="nv">code</span><span class="o">,</span><span class="nv">codes</span> <span class="k">with context</span> -<span class="cp">%}</span>
+<a name="article--article.rst-pyg.html-11"></a>
+<a name="article--article.rst-pyg.html-12"></a>First we assign variables:
+<a name="article--article.rst-pyg.html-13"></a>
+<a name="article--article.rst-pyg.html-14"></a><span class="cp">{{</span> <span class="nv">codes</span><span class="o">(</span><span class="s1">&#39;code001.R|idio|r|pyg&#39;</span><span class="o">,</span> <span class="s1">&#39;assign-variables&#39;</span><span class="o">)</span> <span class="cp">}}</span>
+<a name="article--article.rst-pyg.html-15"></a>
+<a name="article--article.rst-pyg.html-16"></a>### Multiplication
+<a name="article--article.rst-pyg.html-17"></a>
+<a name="article--article.rst-pyg.html-18"></a>Let&#39;s do some multiplication:
+<a name="article--article.rst-pyg.html-19"></a>
+<a name="article--article.rst-pyg.html-20"></a><span class="cp">{{</span> <span class="nv">codes</span><span class="o">(</span><span class="s1">&#39;code001.R|idio|r|pyg&#39;</span><span class="o">,</span> <span class="s1">&#39;multiply&#39;</span><span class="o">)</span> <span class="cp">}}</span>
+<a name="article--article.rst-pyg.html-21"></a>
+<a name="article--article.rst-pyg.html-22"></a>Here&#39;s a graph:
+<a name="article--article.rst-pyg.html-23"></a>
+<a name="article--article.rst-pyg.html-24"></a><span class="cp">{{</span> <span class="nv">codes</span><span class="o">(</span><span class="s1">&#39;code001.R|idio|r|pyg&#39;</span><span class="o">,</span> <span class="s1">&#39;graph&#39;</span><span class="o">)</span> <span class="cp">}}</span>
+<a name="article--article.rst-pyg.html-25"></a>
+<a name="article--article.rst-pyg.html-26"></a><span class="p">..</span> <span class="ow">image</span><span class="p">::</span> plot.pdf
+</pre></div>

@@ -1,0 +1,55 @@
+<div class="highlight"><pre><a name="example--index.md-pyg.html-1"></a>[TOC]
+<a name="example--index.md-pyg.html-2"></a>
+<a name="example--index.md-pyg.html-3"></a>## A Python/Numpy/Matplotlib Example
+<a name="example--index.md-pyg.html-4"></a>
+<a name="example--index.md-pyg.html-5"></a>First we import matplotlib and other libraries:
+<a name="example--index.md-pyg.html-6"></a><span class="cp">{{</span> <span class="nv">d</span><span class="o">[</span><span class="s1">&#39;code001.py|idio|pycon|pyg&#39;</span><span class="o">][</span><span class="s1">&#39;imports&#39;</span><span class="o">]</span> <span class="cp">}}</span>
+<a name="example--index.md-pyg.html-7"></a>
+<a name="example--index.md-pyg.html-8"></a>Here is just the original source code:
+<a name="example--index.md-pyg.html-9"></a><span class="cp">{{</span> <span class="nv">d</span><span class="o">[</span><span class="s1">&#39;code001.py|idio&#39;</span><span class="o">][</span><span class="s1">&#39;imports&#39;</span><span class="o">]</span> <span class="cp">}}</span>
+<a name="example--index.md-pyg.html-10"></a>
+<a name="example--index.md-pyg.html-11"></a>We tell pyplot to use Agg backend, since we want to save graphs to images. Then we import pyplot:
+<a name="example--index.md-pyg.html-12"></a><span class="cp">{{</span> <span class="nv">d</span><span class="o">[</span><span class="s1">&#39;code001.py|idio|pycon|pyg&#39;</span><span class="o">][</span><span class="s1">&#39;pyplot&#39;</span><span class="o">]</span> <span class="cp">}}</span>
+<a name="example--index.md-pyg.html-13"></a>
+<a name="example--index.md-pyg.html-14"></a>Generate random data and plot a histogram:
+<a name="example--index.md-pyg.html-15"></a><span class="cp">{{</span> <span class="nv">d</span><span class="o">[</span><span class="s1">&#39;code001.py|idio|pycon|pyg&#39;</span><span class="o">][</span><span class="s1">&#39;hist&#39;</span><span class="o">]</span> <span class="cp">}}</span>
+<a name="example--index.md-pyg.html-16"></a>
+<a name="example--index.md-pyg.html-17"></a>Save the histogram to a png file:
+<a name="example--index.md-pyg.html-18"></a><span class="cp">{{</span> <span class="nv">d</span><span class="o">[</span><span class="s1">&#39;code001.py|idio|pycon|pyg&#39;</span><span class="o">][</span><span class="s1">&#39;save&#39;</span><span class="o">]</span> <span class="cp">}}</span>
+<a name="example--index.md-pyg.html-19"></a>
+<a name="example--index.md-pyg.html-20"></a>Here is the graph:
+<a name="example--index.md-pyg.html-21"></a>
+<a name="example--index.md-pyg.html-22"></a>![A Histogram](pyplot-hist-example.png)
+<a name="example--index.md-pyg.html-23"></a>
+<a name="example--index.md-pyg.html-24"></a>## A Python CSV Example
+<a name="example--index.md-pyg.html-25"></a>
+<a name="example--index.md-pyg.html-26"></a>Here is some CSV data
+<a name="example--index.md-pyg.html-27"></a>
+<a name="example--index.md-pyg.html-28"></a><span class="nt">&lt;pre&gt;</span>
+<a name="example--index.md-pyg.html-29"></a><span class="cp">{{</span> <span class="nv">d</span><span class="o">[</span><span class="s1">&#39;data.csv&#39;</span><span class="o">]</span> <span class="cp">}}</span>
+<a name="example--index.md-pyg.html-30"></a><span class="nt">&lt;/pre&gt;</span>
+<a name="example--index.md-pyg.html-31"></a>
+<a name="example--index.md-pyg.html-32"></a><span class="cp">{{</span> <span class="nv">d</span><span class="o">[</span><span class="s1">&#39;code002.py|idio|pycon|pyg&#39;</span><span class="o">][</span><span class="s1">&#39;import-data&#39;</span><span class="o">]</span> <span class="cp">}}</span>
+<a name="example--index.md-pyg.html-33"></a>
+<a name="example--index.md-pyg.html-34"></a><span class="cp">{{</span> <span class="nv">d</span><span class="o">[</span><span class="s1">&#39;code002.py|idio|pycon|pyg&#39;</span><span class="o">][</span><span class="s1">&#39;graph-data&#39;</span><span class="o">]</span> <span class="cp">}}</span>
+<a name="example--index.md-pyg.html-35"></a>
+<a name="example--index.md-pyg.html-36"></a>![xy plot from csv data](pyplot-xy-example.png)
+<a name="example--index.md-pyg.html-37"></a>
+<a name="example--index.md-pyg.html-38"></a>Here are the values in &#39;x&#39;:
+<a name="example--index.md-pyg.html-39"></a><span class="cp">{{</span> <span class="nv">d</span><span class="o">[</span><span class="s1">&#39;code002.py.txt-vars.json&#39;</span><span class="o">]</span><span class="nv">.from_json</span><span class="o">()[</span><span class="s1">&#39;x&#39;</span><span class="o">]</span> <span class="cp">}}</span>
+<a name="example--index.md-pyg.html-40"></a>
+<a name="example--index.md-pyg.html-41"></a>Here are the values in &#39;y&#39;:
+<a name="example--index.md-pyg.html-42"></a><span class="cp">{{</span> <span class="nv">d</span><span class="o">[</span><span class="s1">&#39;code002.py.txt-vars.json&#39;</span><span class="o">]</span><span class="nv">.from_json</span><span class="o">()[</span><span class="s1">&#39;y&#39;</span><span class="o">]</span> <span class="cp">}}</span>
+<a name="example--index.md-pyg.html-43"></a>
+<a name="example--index.md-pyg.html-44"></a>## Dexy
+<a name="example--index.md-pyg.html-45"></a>
+<a name="example--index.md-pyg.html-46"></a><span class="cp">{{</span> <span class="nv">d</span><span class="o">[</span><span class="s1">&#39;tree.sh|shint|pyg&#39;</span><span class="o">]</span> <span class="cp">}}</span>
+<a name="example--index.md-pyg.html-47"></a>
+<a name="example--index.md-pyg.html-48"></a>### Config
+<a name="example--index.md-pyg.html-49"></a>
+<a name="example--index.md-pyg.html-50"></a><span class="cp">{{</span> <span class="nv">d</span><span class="o">[</span><span class="s1">&#39;dexy.yaml|pyg&#39;</span><span class="o">]</span> <span class="cp">}}</span>
+<a name="example--index.md-pyg.html-51"></a>
+<a name="example--index.md-pyg.html-52"></a>### Document Source
+<a name="example--index.md-pyg.html-53"></a>
+<a name="example--index.md-pyg.html-54"></a><span class="cp">{{</span> <span class="nv">d</span><span class="o">[</span><span class="s1">&#39;index.md|pyg&#39;</span><span class="o">]</span> <span class="cp">}}</span>
+</pre></div>

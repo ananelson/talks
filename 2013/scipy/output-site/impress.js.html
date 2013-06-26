@@ -1,0 +1,801 @@
+<div class="highlight"><pre><a name="impress.js-pyg.html-1"></a><span class="cm">/**</span>
+<a name="impress.js-pyg.html-2"></a><span class="cm"> * impress.js</span>
+<a name="impress.js-pyg.html-3"></a><span class="cm"> *</span>
+<a name="impress.js-pyg.html-4"></a><span class="cm"> * impress.js is a presentation tool based on the power of CSS3 transforms and transitions</span>
+<a name="impress.js-pyg.html-5"></a><span class="cm"> * in modern browsers and inspired by the idea behind prezi.com.</span>
+<a name="impress.js-pyg.html-6"></a><span class="cm"> *</span>
+<a name="impress.js-pyg.html-7"></a><span class="cm"> *</span>
+<a name="impress.js-pyg.html-8"></a><span class="cm"> * Copyright 2011-2012 Bartek Szopka (@bartaz)</span>
+<a name="impress.js-pyg.html-9"></a><span class="cm"> *</span>
+<a name="impress.js-pyg.html-10"></a><span class="cm"> * Released under the MIT and GPL Licenses.</span>
+<a name="impress.js-pyg.html-11"></a><span class="cm"> *</span>
+<a name="impress.js-pyg.html-12"></a><span class="cm"> * ------------------------------------------------</span>
+<a name="impress.js-pyg.html-13"></a><span class="cm"> *  author:  Bartek Szopka</span>
+<a name="impress.js-pyg.html-14"></a><span class="cm"> *  version: 0.5.3</span>
+<a name="impress.js-pyg.html-15"></a><span class="cm"> *  url:     http://bartaz.github.com/impress.js/</span>
+<a name="impress.js-pyg.html-16"></a><span class="cm"> *  source:  http://github.com/bartaz/impress.js/</span>
+<a name="impress.js-pyg.html-17"></a><span class="cm"> */</span>
+<a name="impress.js-pyg.html-18"></a>
+<a name="impress.js-pyg.html-19"></a><span class="cm">/*jshint bitwise:true, curly:true, eqeqeq:true, forin:true, latedef:true, newcap:true,</span>
+<a name="impress.js-pyg.html-20"></a><span class="cm">         noarg:true, noempty:true, undef:true, strict:true, browser:true */</span>
+<a name="impress.js-pyg.html-21"></a>
+<a name="impress.js-pyg.html-22"></a><span class="c1">// You are one of those who like to know how thing work inside?</span>
+<a name="impress.js-pyg.html-23"></a><span class="c1">// Let me show you the cogs that make impress.js run...</span>
+<a name="impress.js-pyg.html-24"></a><span class="p">(</span><span class="kd">function</span> <span class="p">(</span> <span class="nb">document</span><span class="p">,</span> <span class="nb">window</span> <span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-25"></a>    <span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+<a name="impress.js-pyg.html-26"></a>    
+<a name="impress.js-pyg.html-27"></a>    <span class="c1">// HELPER FUNCTIONS</span>
+<a name="impress.js-pyg.html-28"></a>    
+<a name="impress.js-pyg.html-29"></a>    <span class="c1">// `pfx` is a function that takes a standard CSS property name as a parameter</span>
+<a name="impress.js-pyg.html-30"></a>    <span class="c1">// and returns it&#39;s prefixed version valid for current browser it runs in.</span>
+<a name="impress.js-pyg.html-31"></a>    <span class="c1">// The code is heavily inspired by Modernizr http://www.modernizr.com/</span>
+<a name="impress.js-pyg.html-32"></a>    <span class="kd">var</span> <span class="nx">pfx</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-33"></a>        
+<a name="impress.js-pyg.html-34"></a>        <span class="kd">var</span> <span class="nx">style</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;dummy&#39;</span><span class="p">).</span><span class="nx">style</span><span class="p">,</span>
+<a name="impress.js-pyg.html-35"></a>            <span class="nx">prefixes</span> <span class="o">=</span> <span class="s1">&#39;Webkit Moz O ms Khtml&#39;</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">),</span>
+<a name="impress.js-pyg.html-36"></a>            <span class="nx">memory</span> <span class="o">=</span> <span class="p">{};</span>
+<a name="impress.js-pyg.html-37"></a>        
+<a name="impress.js-pyg.html-38"></a>        <span class="k">return</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">prop</span> <span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-39"></a>            <span class="k">if</span> <span class="p">(</span> <span class="k">typeof</span> <span class="nx">memory</span><span class="p">[</span> <span class="nx">prop</span> <span class="p">]</span> <span class="o">===</span> <span class="s2">&quot;undefined&quot;</span> <span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-40"></a>                
+<a name="impress.js-pyg.html-41"></a>                <span class="kd">var</span> <span class="nx">ucProp</span>  <span class="o">=</span> <span class="nx">prop</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">toUpperCase</span><span class="p">()</span> <span class="o">+</span> <span class="nx">prop</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+<a name="impress.js-pyg.html-42"></a>                    <span class="nx">props</span>   <span class="o">=</span> <span class="p">(</span><span class="nx">prop</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="nx">prefixes</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">ucProp</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="nx">ucProp</span><span class="p">).</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">);</span>
+<a name="impress.js-pyg.html-43"></a>                
+<a name="impress.js-pyg.html-44"></a>                <span class="nx">memory</span><span class="p">[</span> <span class="nx">prop</span> <span class="p">]</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<a name="impress.js-pyg.html-45"></a>                <span class="k">for</span> <span class="p">(</span> <span class="kd">var</span> <span class="nx">i</span> <span class="k">in</span> <span class="nx">props</span> <span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-46"></a>                    <span class="k">if</span> <span class="p">(</span> <span class="nx">style</span><span class="p">[</span> <span class="nx">props</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">]</span> <span class="o">!==</span> <span class="kc">undefined</span> <span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-47"></a>                        <span class="nx">memory</span><span class="p">[</span> <span class="nx">prop</span> <span class="p">]</span> <span class="o">=</span> <span class="nx">props</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+<a name="impress.js-pyg.html-48"></a>                        <span class="k">break</span><span class="p">;</span>
+<a name="impress.js-pyg.html-49"></a>                    <span class="p">}</span>
+<a name="impress.js-pyg.html-50"></a>                <span class="p">}</span>
+<a name="impress.js-pyg.html-51"></a>            
+<a name="impress.js-pyg.html-52"></a>            <span class="p">}</span>
+<a name="impress.js-pyg.html-53"></a>            
+<a name="impress.js-pyg.html-54"></a>            <span class="k">return</span> <span class="nx">memory</span><span class="p">[</span> <span class="nx">prop</span> <span class="p">];</span>
+<a name="impress.js-pyg.html-55"></a>        <span class="p">};</span>
+<a name="impress.js-pyg.html-56"></a>    
+<a name="impress.js-pyg.html-57"></a>    <span class="p">})();</span>
+<a name="impress.js-pyg.html-58"></a>    
+<a name="impress.js-pyg.html-59"></a>    <span class="c1">// `arraify` takes an array-like object and turns it into real Array</span>
+<a name="impress.js-pyg.html-60"></a>    <span class="c1">// to make all the Array.prototype goodness available.</span>
+<a name="impress.js-pyg.html-61"></a>    <span class="kd">var</span> <span class="nx">arrayify</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">a</span> <span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-62"></a>        <span class="k">return</span> <span class="p">[].</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span> <span class="nx">a</span> <span class="p">);</span>
+<a name="impress.js-pyg.html-63"></a>    <span class="p">};</span>
+<a name="impress.js-pyg.html-64"></a>    
+<a name="impress.js-pyg.html-65"></a>    <span class="c1">// `css` function applies the styles given in `props` object to the element</span>
+<a name="impress.js-pyg.html-66"></a>    <span class="c1">// given as `el`. It runs all property names through `pfx` function to make</span>
+<a name="impress.js-pyg.html-67"></a>    <span class="c1">// sure proper prefixed version of the property is used.</span>
+<a name="impress.js-pyg.html-68"></a>    <span class="kd">var</span> <span class="nx">css</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">el</span><span class="p">,</span> <span class="nx">props</span> <span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-69"></a>        <span class="kd">var</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">pkey</span><span class="p">;</span>
+<a name="impress.js-pyg.html-70"></a>        <span class="k">for</span> <span class="p">(</span> <span class="nx">key</span> <span class="k">in</span> <span class="nx">props</span> <span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-71"></a>            <span class="k">if</span> <span class="p">(</span> <span class="nx">props</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-72"></a>                <span class="nx">pkey</span> <span class="o">=</span> <span class="nx">pfx</span><span class="p">(</span><span class="nx">key</span><span class="p">);</span>
+<a name="impress.js-pyg.html-73"></a>                <span class="k">if</span> <span class="p">(</span> <span class="nx">pkey</span> <span class="o">!==</span> <span class="kc">null</span> <span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-74"></a>                    <span class="nx">el</span><span class="p">.</span><span class="nx">style</span><span class="p">[</span><span class="nx">pkey</span><span class="p">]</span> <span class="o">=</span> <span class="nx">props</span><span class="p">[</span><span class="nx">key</span><span class="p">];</span>
+<a name="impress.js-pyg.html-75"></a>                <span class="p">}</span>
+<a name="impress.js-pyg.html-76"></a>            <span class="p">}</span>
+<a name="impress.js-pyg.html-77"></a>        <span class="p">}</span>
+<a name="impress.js-pyg.html-78"></a>        <span class="k">return</span> <span class="nx">el</span><span class="p">;</span>
+<a name="impress.js-pyg.html-79"></a>    <span class="p">};</span>
+<a name="impress.js-pyg.html-80"></a>    
+<a name="impress.js-pyg.html-81"></a>    <span class="c1">// `toNumber` takes a value given as `numeric` parameter and tries to turn</span>
+<a name="impress.js-pyg.html-82"></a>    <span class="c1">// it into a number. If it is not possible it returns 0 (or other value</span>
+<a name="impress.js-pyg.html-83"></a>    <span class="c1">// given as `fallback`).</span>
+<a name="impress.js-pyg.html-84"></a>    <span class="kd">var</span> <span class="nx">toNumber</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">numeric</span><span class="p">,</span> <span class="nx">fallback</span><span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-85"></a>        <span class="k">return</span> <span class="nb">isNaN</span><span class="p">(</span><span class="nx">numeric</span><span class="p">)</span> <span class="o">?</span> <span class="p">(</span><span class="nx">fallback</span> <span class="o">||</span> <span class="mi">0</span><span class="p">)</span> <span class="o">:</span> <span class="nb">Number</span><span class="p">(</span><span class="nx">numeric</span><span class="p">);</span>
+<a name="impress.js-pyg.html-86"></a>    <span class="p">};</span>
+<a name="impress.js-pyg.html-87"></a>    
+<a name="impress.js-pyg.html-88"></a>    <span class="c1">// `byId` returns element with given `id` - you probably have guessed that ;)</span>
+<a name="impress.js-pyg.html-89"></a>    <span class="kd">var</span> <span class="nx">byId</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">id</span> <span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-90"></a>        <span class="k">return</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span>
+<a name="impress.js-pyg.html-91"></a>    <span class="p">};</span>
+<a name="impress.js-pyg.html-92"></a>    
+<a name="impress.js-pyg.html-93"></a>    <span class="c1">// `$` returns first element for given CSS `selector` in the `context` of</span>
+<a name="impress.js-pyg.html-94"></a>    <span class="c1">// the given element or whole document.</span>
+<a name="impress.js-pyg.html-95"></a>    <span class="kd">var</span> <span class="nx">$</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">selector</span><span class="p">,</span> <span class="nx">context</span> <span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-96"></a>        <span class="nx">context</span> <span class="o">=</span> <span class="nx">context</span> <span class="o">||</span> <span class="nb">document</span><span class="p">;</span>
+<a name="impress.js-pyg.html-97"></a>        <span class="k">return</span> <span class="nx">context</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="nx">selector</span><span class="p">);</span>
+<a name="impress.js-pyg.html-98"></a>    <span class="p">};</span>
+<a name="impress.js-pyg.html-99"></a>    
+<a name="impress.js-pyg.html-100"></a>    <span class="c1">// `$$` return an array of elements for given CSS `selector` in the `context` of</span>
+<a name="impress.js-pyg.html-101"></a>    <span class="c1">// the given element or whole document.</span>
+<a name="impress.js-pyg.html-102"></a>    <span class="kd">var</span> <span class="nx">$$</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">selector</span><span class="p">,</span> <span class="nx">context</span> <span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-103"></a>        <span class="nx">context</span> <span class="o">=</span> <span class="nx">context</span> <span class="o">||</span> <span class="nb">document</span><span class="p">;</span>
+<a name="impress.js-pyg.html-104"></a>        <span class="k">return</span> <span class="nx">arrayify</span><span class="p">(</span> <span class="nx">context</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="nx">selector</span><span class="p">)</span> <span class="p">);</span>
+<a name="impress.js-pyg.html-105"></a>    <span class="p">};</span>
+<a name="impress.js-pyg.html-106"></a>    
+<a name="impress.js-pyg.html-107"></a>    <span class="c1">// `triggerEvent` builds a custom DOM event with given `eventName` and `detail` data</span>
+<a name="impress.js-pyg.html-108"></a>    <span class="c1">// and triggers it on element given as `el`.</span>
+<a name="impress.js-pyg.html-109"></a>    <span class="kd">var</span> <span class="nx">triggerEvent</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">eventName</span><span class="p">,</span> <span class="nx">detail</span><span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-110"></a>        <span class="kd">var</span> <span class="nx">event</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createEvent</span><span class="p">(</span><span class="s2">&quot;CustomEvent&quot;</span><span class="p">);</span>
+<a name="impress.js-pyg.html-111"></a>        <span class="nx">event</span><span class="p">.</span><span class="nx">initCustomEvent</span><span class="p">(</span><span class="nx">eventName</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="nx">detail</span><span class="p">);</span>
+<a name="impress.js-pyg.html-112"></a>        <span class="nx">el</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">(</span><span class="nx">event</span><span class="p">);</span>
+<a name="impress.js-pyg.html-113"></a>    <span class="p">};</span>
+<a name="impress.js-pyg.html-114"></a>    
+<a name="impress.js-pyg.html-115"></a>    <span class="c1">// `translate` builds a translate transform string for given data.</span>
+<a name="impress.js-pyg.html-116"></a>    <span class="kd">var</span> <span class="nx">translate</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">t</span> <span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-117"></a>        <span class="k">return</span> <span class="s2">&quot; translate3d(&quot;</span> <span class="o">+</span> <span class="nx">t</span><span class="p">.</span><span class="nx">x</span> <span class="o">+</span> <span class="s2">&quot;px,&quot;</span> <span class="o">+</span> <span class="nx">t</span><span class="p">.</span><span class="nx">y</span> <span class="o">+</span> <span class="s2">&quot;px,&quot;</span> <span class="o">+</span> <span class="nx">t</span><span class="p">.</span><span class="nx">z</span> <span class="o">+</span> <span class="s2">&quot;px) &quot;</span><span class="p">;</span>
+<a name="impress.js-pyg.html-118"></a>    <span class="p">};</span>
+<a name="impress.js-pyg.html-119"></a>    
+<a name="impress.js-pyg.html-120"></a>    <span class="c1">// `rotate` builds a rotate transform string for given data.</span>
+<a name="impress.js-pyg.html-121"></a>    <span class="c1">// By default the rotations are in X Y Z order that can be reverted by passing `true`</span>
+<a name="impress.js-pyg.html-122"></a>    <span class="c1">// as second parameter.</span>
+<a name="impress.js-pyg.html-123"></a>    <span class="kd">var</span> <span class="nx">rotate</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">r</span><span class="p">,</span> <span class="nx">revert</span> <span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-124"></a>        <span class="kd">var</span> <span class="nx">rX</span> <span class="o">=</span> <span class="s2">&quot; rotateX(&quot;</span> <span class="o">+</span> <span class="nx">r</span><span class="p">.</span><span class="nx">x</span> <span class="o">+</span> <span class="s2">&quot;deg) &quot;</span><span class="p">,</span>
+<a name="impress.js-pyg.html-125"></a>            <span class="nx">rY</span> <span class="o">=</span> <span class="s2">&quot; rotateY(&quot;</span> <span class="o">+</span> <span class="nx">r</span><span class="p">.</span><span class="nx">y</span> <span class="o">+</span> <span class="s2">&quot;deg) &quot;</span><span class="p">,</span>
+<a name="impress.js-pyg.html-126"></a>            <span class="nx">rZ</span> <span class="o">=</span> <span class="s2">&quot; rotateZ(&quot;</span> <span class="o">+</span> <span class="nx">r</span><span class="p">.</span><span class="nx">z</span> <span class="o">+</span> <span class="s2">&quot;deg) &quot;</span><span class="p">;</span>
+<a name="impress.js-pyg.html-127"></a>        
+<a name="impress.js-pyg.html-128"></a>        <span class="k">return</span> <span class="nx">revert</span> <span class="o">?</span> <span class="nx">rZ</span><span class="o">+</span><span class="nx">rY</span><span class="o">+</span><span class="nx">rX</span> <span class="o">:</span> <span class="nx">rX</span><span class="o">+</span><span class="nx">rY</span><span class="o">+</span><span class="nx">rZ</span><span class="p">;</span>
+<a name="impress.js-pyg.html-129"></a>    <span class="p">};</span>
+<a name="impress.js-pyg.html-130"></a>    
+<a name="impress.js-pyg.html-131"></a>    <span class="c1">// `scale` builds a scale transform string for given data.</span>
+<a name="impress.js-pyg.html-132"></a>    <span class="kd">var</span> <span class="nx">scale</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">s</span> <span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-133"></a>        <span class="k">return</span> <span class="s2">&quot; scale(&quot;</span> <span class="o">+</span> <span class="nx">s</span> <span class="o">+</span> <span class="s2">&quot;) &quot;</span><span class="p">;</span>
+<a name="impress.js-pyg.html-134"></a>    <span class="p">};</span>
+<a name="impress.js-pyg.html-135"></a>    
+<a name="impress.js-pyg.html-136"></a>    <span class="c1">// `perspective` builds a perspective transform string for given data.</span>
+<a name="impress.js-pyg.html-137"></a>    <span class="kd">var</span> <span class="nx">perspective</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">p</span> <span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-138"></a>        <span class="k">return</span> <span class="s2">&quot; perspective(&quot;</span> <span class="o">+</span> <span class="nx">p</span> <span class="o">+</span> <span class="s2">&quot;px) &quot;</span><span class="p">;</span>
+<a name="impress.js-pyg.html-139"></a>    <span class="p">};</span>
+<a name="impress.js-pyg.html-140"></a>    
+<a name="impress.js-pyg.html-141"></a>    <span class="c1">// `getElementFromHash` returns an element located by id from hash part of</span>
+<a name="impress.js-pyg.html-142"></a>    <span class="c1">// window location.</span>
+<a name="impress.js-pyg.html-143"></a>    <span class="kd">var</span> <span class="nx">getElementFromHash</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-144"></a>        <span class="c1">// get id from url # by removing `#` or `#/` from the beginning,</span>
+<a name="impress.js-pyg.html-145"></a>        <span class="c1">// so both &quot;fallback&quot; `#slide-id` and &quot;enhanced&quot; `#/slide-id` will work</span>
+<a name="impress.js-pyg.html-146"></a>        <span class="k">return</span> <span class="nx">byId</span><span class="p">(</span> <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">hash</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/^#\/?/</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="p">);</span>
+<a name="impress.js-pyg.html-147"></a>    <span class="p">};</span>
+<a name="impress.js-pyg.html-148"></a>    
+<a name="impress.js-pyg.html-149"></a>    <span class="c1">// `computeWindowScale` counts the scale factor between window size and size</span>
+<a name="impress.js-pyg.html-150"></a>    <span class="c1">// defined for the presentation in the config.</span>
+<a name="impress.js-pyg.html-151"></a>    <span class="kd">var</span> <span class="nx">computeWindowScale</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">config</span> <span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-152"></a>        <span class="kd">var</span> <span class="nx">hScale</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">innerHeight</span> <span class="o">/</span> <span class="nx">config</span><span class="p">.</span><span class="nx">height</span><span class="p">,</span>
+<a name="impress.js-pyg.html-153"></a>            <span class="nx">wScale</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">innerWidth</span> <span class="o">/</span> <span class="nx">config</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span>
+<a name="impress.js-pyg.html-154"></a>            <span class="nx">scale</span> <span class="o">=</span> <span class="nx">hScale</span> <span class="o">&gt;</span> <span class="nx">wScale</span> <span class="o">?</span> <span class="nx">wScale</span> <span class="o">:</span> <span class="nx">hScale</span><span class="p">;</span>
+<a name="impress.js-pyg.html-155"></a>        
+<a name="impress.js-pyg.html-156"></a>        <span class="k">if</span> <span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">maxScale</span> <span class="o">&amp;&amp;</span> <span class="nx">scale</span> <span class="o">&gt;</span> <span class="nx">config</span><span class="p">.</span><span class="nx">maxScale</span><span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-157"></a>            <span class="nx">scale</span> <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">maxScale</span><span class="p">;</span>
+<a name="impress.js-pyg.html-158"></a>        <span class="p">}</span>
+<a name="impress.js-pyg.html-159"></a>        
+<a name="impress.js-pyg.html-160"></a>        <span class="k">if</span> <span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">minScale</span> <span class="o">&amp;&amp;</span> <span class="nx">scale</span> <span class="o">&lt;</span> <span class="nx">config</span><span class="p">.</span><span class="nx">minScale</span><span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-161"></a>            <span class="nx">scale</span> <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">minScale</span><span class="p">;</span>
+<a name="impress.js-pyg.html-162"></a>        <span class="p">}</span>
+<a name="impress.js-pyg.html-163"></a>        
+<a name="impress.js-pyg.html-164"></a>        <span class="k">return</span> <span class="nx">scale</span><span class="p">;</span>
+<a name="impress.js-pyg.html-165"></a>    <span class="p">};</span>
+<a name="impress.js-pyg.html-166"></a>    
+<a name="impress.js-pyg.html-167"></a>    <span class="c1">// CHECK SUPPORT</span>
+<a name="impress.js-pyg.html-168"></a>    <span class="kd">var</span> <span class="nx">body</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">;</span>
+<a name="impress.js-pyg.html-169"></a>    
+<a name="impress.js-pyg.html-170"></a>    <span class="kd">var</span> <span class="nx">ua</span> <span class="o">=</span> <span class="nx">navigator</span><span class="p">.</span><span class="nx">userAgent</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">();</span>
+<a name="impress.js-pyg.html-171"></a>    <span class="kd">var</span> <span class="nx">impressSupported</span> <span class="o">=</span> 
+<a name="impress.js-pyg.html-172"></a>                          <span class="c1">// browser should support CSS 3D transtorms </span>
+<a name="impress.js-pyg.html-173"></a>                           <span class="p">(</span> <span class="nx">pfx</span><span class="p">(</span><span class="s2">&quot;perspective&quot;</span><span class="p">)</span> <span class="o">!==</span> <span class="kc">null</span> <span class="p">)</span> <span class="o">&amp;&amp;</span>
+<a name="impress.js-pyg.html-174"></a>                           
+<a name="impress.js-pyg.html-175"></a>                          <span class="c1">// and `classList` and `dataset` APIs</span>
+<a name="impress.js-pyg.html-176"></a>                           <span class="p">(</span> <span class="nx">body</span><span class="p">.</span><span class="nx">classList</span> <span class="p">)</span> <span class="o">&amp;&amp;</span>
+<a name="impress.js-pyg.html-177"></a>                           <span class="p">(</span> <span class="nx">body</span><span class="p">.</span><span class="nx">dataset</span> <span class="p">)</span> <span class="o">&amp;&amp;</span>
+<a name="impress.js-pyg.html-178"></a>                           
+<a name="impress.js-pyg.html-179"></a>                          <span class="c1">// but some mobile devices need to be blacklisted,</span>
+<a name="impress.js-pyg.html-180"></a>                          <span class="c1">// because their CSS 3D support or hardware is not</span>
+<a name="impress.js-pyg.html-181"></a>                          <span class="c1">// good enough to run impress.js properly, sorry...</span>
+<a name="impress.js-pyg.html-182"></a>                           <span class="p">(</span> <span class="nx">ua</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="sr">/(iphone)|(ipod)|(android)/</span><span class="p">)</span> <span class="o">===</span> <span class="o">-</span><span class="mi">1</span> <span class="p">);</span>
+<a name="impress.js-pyg.html-183"></a>    
+<a name="impress.js-pyg.html-184"></a>    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">impressSupported</span><span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-185"></a>        <span class="c1">// we can&#39;t be sure that `classList` is supported</span>
+<a name="impress.js-pyg.html-186"></a>        <span class="nx">body</span><span class="p">.</span><span class="nx">className</span> <span class="o">+=</span> <span class="s2">&quot; impress-not-supported &quot;</span><span class="p">;</span>
+<a name="impress.js-pyg.html-187"></a>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-188"></a>        <span class="nx">body</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s2">&quot;impress-not-supported&quot;</span><span class="p">);</span>
+<a name="impress.js-pyg.html-189"></a>        <span class="nx">body</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;impress-supported&quot;</span><span class="p">);</span>
+<a name="impress.js-pyg.html-190"></a>    <span class="p">}</span>
+<a name="impress.js-pyg.html-191"></a>    
+<a name="impress.js-pyg.html-192"></a>    <span class="c1">// GLOBALS AND DEFAULTS</span>
+<a name="impress.js-pyg.html-193"></a>    
+<a name="impress.js-pyg.html-194"></a>    <span class="c1">// This is were the root elements of all impress.js instances will be kept.</span>
+<a name="impress.js-pyg.html-195"></a>    <span class="c1">// Yes, this means you can have more than one instance on a page, but I&#39;m not</span>
+<a name="impress.js-pyg.html-196"></a>    <span class="c1">// sure if it makes any sense in practice ;)</span>
+<a name="impress.js-pyg.html-197"></a>    <span class="kd">var</span> <span class="nx">roots</span> <span class="o">=</span> <span class="p">{};</span>
+<a name="impress.js-pyg.html-198"></a>    
+<a name="impress.js-pyg.html-199"></a>    <span class="c1">// some default config values.</span>
+<a name="impress.js-pyg.html-200"></a>    <span class="kd">var</span> <span class="nx">defaults</span> <span class="o">=</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-201"></a>        <span class="nx">width</span><span class="o">:</span> <span class="mi">1024</span><span class="p">,</span>
+<a name="impress.js-pyg.html-202"></a>        <span class="nx">height</span><span class="o">:</span> <span class="mi">768</span><span class="p">,</span>
+<a name="impress.js-pyg.html-203"></a>        <span class="nx">maxScale</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+<a name="impress.js-pyg.html-204"></a>        <span class="nx">minScale</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+<a name="impress.js-pyg.html-205"></a>        
+<a name="impress.js-pyg.html-206"></a>        <span class="nx">perspective</span><span class="o">:</span> <span class="mi">1000</span><span class="p">,</span>
+<a name="impress.js-pyg.html-207"></a>        
+<a name="impress.js-pyg.html-208"></a>        <span class="nx">transitionDuration</span><span class="o">:</span> <span class="mi">1000</span>
+<a name="impress.js-pyg.html-209"></a>    <span class="p">};</span>
+<a name="impress.js-pyg.html-210"></a>    
+<a name="impress.js-pyg.html-211"></a>    <span class="c1">// it&#39;s just an empty function ... and a useless comment.</span>
+<a name="impress.js-pyg.html-212"></a>    <span class="kd">var</span> <span class="nx">empty</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span> <span class="p">};</span>
+<a name="impress.js-pyg.html-213"></a>    
+<a name="impress.js-pyg.html-214"></a>    <span class="c1">// IMPRESS.JS API</span>
+<a name="impress.js-pyg.html-215"></a>    
+<a name="impress.js-pyg.html-216"></a>    <span class="c1">// And that&#39;s where interesting things will start to happen.</span>
+<a name="impress.js-pyg.html-217"></a>    <span class="c1">// It&#39;s the core `impress` function that returns the impress.js API</span>
+<a name="impress.js-pyg.html-218"></a>    <span class="c1">// for a presentation based on the element with given id (&#39;impress&#39;</span>
+<a name="impress.js-pyg.html-219"></a>    <span class="c1">// by default).</span>
+<a name="impress.js-pyg.html-220"></a>    <span class="kd">var</span> <span class="nx">impress</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">impress</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">rootId</span> <span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-221"></a>        
+<a name="impress.js-pyg.html-222"></a>        <span class="c1">// If impress.js is not supported by the browser return a dummy API</span>
+<a name="impress.js-pyg.html-223"></a>        <span class="c1">// it may not be a perfect solution but we return early and avoid</span>
+<a name="impress.js-pyg.html-224"></a>        <span class="c1">// running code that may use features not implemented in the browser.</span>
+<a name="impress.js-pyg.html-225"></a>        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">impressSupported</span><span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-226"></a>            <span class="k">return</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-227"></a>                <span class="nx">init</span><span class="o">:</span> <span class="nx">empty</span><span class="p">,</span>
+<a name="impress.js-pyg.html-228"></a>                <span class="kr">goto</span><span class="o">:</span> <span class="nx">empty</span><span class="p">,</span>
+<a name="impress.js-pyg.html-229"></a>                <span class="nx">prev</span><span class="o">:</span> <span class="nx">empty</span><span class="p">,</span>
+<a name="impress.js-pyg.html-230"></a>                <span class="nx">next</span><span class="o">:</span> <span class="nx">empty</span>
+<a name="impress.js-pyg.html-231"></a>            <span class="p">};</span>
+<a name="impress.js-pyg.html-232"></a>        <span class="p">}</span>
+<a name="impress.js-pyg.html-233"></a>        
+<a name="impress.js-pyg.html-234"></a>        <span class="nx">rootId</span> <span class="o">=</span> <span class="nx">rootId</span> <span class="o">||</span> <span class="s2">&quot;impress&quot;</span><span class="p">;</span>
+<a name="impress.js-pyg.html-235"></a>        
+<a name="impress.js-pyg.html-236"></a>        <span class="c1">// if given root is already initialized just return the API</span>
+<a name="impress.js-pyg.html-237"></a>        <span class="k">if</span> <span class="p">(</span><span class="nx">roots</span><span class="p">[</span><span class="s2">&quot;impress-root-&quot;</span> <span class="o">+</span> <span class="nx">rootId</span><span class="p">])</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-238"></a>            <span class="k">return</span> <span class="nx">roots</span><span class="p">[</span><span class="s2">&quot;impress-root-&quot;</span> <span class="o">+</span> <span class="nx">rootId</span><span class="p">];</span>
+<a name="impress.js-pyg.html-239"></a>        <span class="p">}</span>
+<a name="impress.js-pyg.html-240"></a>        
+<a name="impress.js-pyg.html-241"></a>        <span class="c1">// data of all presentation steps</span>
+<a name="impress.js-pyg.html-242"></a>        <span class="kd">var</span> <span class="nx">stepsData</span> <span class="o">=</span> <span class="p">{};</span>
+<a name="impress.js-pyg.html-243"></a>        
+<a name="impress.js-pyg.html-244"></a>        <span class="c1">// element of currently active step</span>
+<a name="impress.js-pyg.html-245"></a>        <span class="kd">var</span> <span class="nx">activeStep</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<a name="impress.js-pyg.html-246"></a>        
+<a name="impress.js-pyg.html-247"></a>        <span class="c1">// current state (position, rotation and scale) of the presentation</span>
+<a name="impress.js-pyg.html-248"></a>        <span class="kd">var</span> <span class="nx">currentState</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<a name="impress.js-pyg.html-249"></a>        
+<a name="impress.js-pyg.html-250"></a>        <span class="c1">// array of step elements</span>
+<a name="impress.js-pyg.html-251"></a>        <span class="kd">var</span> <span class="nx">steps</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<a name="impress.js-pyg.html-252"></a>        
+<a name="impress.js-pyg.html-253"></a>        <span class="c1">// configuration options</span>
+<a name="impress.js-pyg.html-254"></a>        <span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<a name="impress.js-pyg.html-255"></a>        
+<a name="impress.js-pyg.html-256"></a>        <span class="c1">// scale factor of the browser window</span>
+<a name="impress.js-pyg.html-257"></a>        <span class="kd">var</span> <span class="nx">windowScale</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>        
+<a name="impress.js-pyg.html-258"></a>        
+<a name="impress.js-pyg.html-259"></a>        <span class="c1">// root presentation elements</span>
+<a name="impress.js-pyg.html-260"></a>        <span class="kd">var</span> <span class="nx">root</span> <span class="o">=</span> <span class="nx">byId</span><span class="p">(</span> <span class="nx">rootId</span> <span class="p">);</span>
+<a name="impress.js-pyg.html-261"></a>        <span class="kd">var</span> <span class="nx">canvas</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">);</span>
+<a name="impress.js-pyg.html-262"></a>        
+<a name="impress.js-pyg.html-263"></a>        <span class="kd">var</span> <span class="nx">initialized</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+<a name="impress.js-pyg.html-264"></a>        
+<a name="impress.js-pyg.html-265"></a>        <span class="c1">// STEP EVENTS</span>
+<a name="impress.js-pyg.html-266"></a>        <span class="c1">//</span>
+<a name="impress.js-pyg.html-267"></a>        <span class="c1">// There are currently two step events triggered by impress.js</span>
+<a name="impress.js-pyg.html-268"></a>        <span class="c1">// `impress:stepenter` is triggered when the step is shown on the </span>
+<a name="impress.js-pyg.html-269"></a>        <span class="c1">// screen (the transition from the previous one is finished) and</span>
+<a name="impress.js-pyg.html-270"></a>        <span class="c1">// `impress:stepleave` is triggered when the step is left (the</span>
+<a name="impress.js-pyg.html-271"></a>        <span class="c1">// transition to next step just starts).</span>
+<a name="impress.js-pyg.html-272"></a>        
+<a name="impress.js-pyg.html-273"></a>        <span class="c1">// reference to last entered step</span>
+<a name="impress.js-pyg.html-274"></a>        <span class="kd">var</span> <span class="nx">lastEntered</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<a name="impress.js-pyg.html-275"></a>        
+<a name="impress.js-pyg.html-276"></a>        <span class="c1">// `onStepEnter` is called whenever the step element is entered</span>
+<a name="impress.js-pyg.html-277"></a>        <span class="c1">// but the event is triggered only if the step is different than</span>
+<a name="impress.js-pyg.html-278"></a>        <span class="c1">// last entered step.</span>
+<a name="impress.js-pyg.html-279"></a>        <span class="kd">var</span> <span class="nx">onStepEnter</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">step</span><span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-280"></a>            <span class="k">if</span> <span class="p">(</span><span class="nx">lastEntered</span> <span class="o">!==</span> <span class="nx">step</span><span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-281"></a>                <span class="nx">triggerEvent</span><span class="p">(</span><span class="nx">step</span><span class="p">,</span> <span class="s2">&quot;impress:stepenter&quot;</span><span class="p">);</span>
+<a name="impress.js-pyg.html-282"></a>                <span class="nx">lastEntered</span> <span class="o">=</span> <span class="nx">step</span><span class="p">;</span>
+<a name="impress.js-pyg.html-283"></a>            <span class="p">}</span>
+<a name="impress.js-pyg.html-284"></a>        <span class="p">};</span>
+<a name="impress.js-pyg.html-285"></a>        
+<a name="impress.js-pyg.html-286"></a>        <span class="c1">// `onStepLeave` is called whenever the step element is left</span>
+<a name="impress.js-pyg.html-287"></a>        <span class="c1">// but the event is triggered only if the step is the same as</span>
+<a name="impress.js-pyg.html-288"></a>        <span class="c1">// last entered step.</span>
+<a name="impress.js-pyg.html-289"></a>        <span class="kd">var</span> <span class="nx">onStepLeave</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">step</span><span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-290"></a>            <span class="k">if</span> <span class="p">(</span><span class="nx">lastEntered</span> <span class="o">===</span> <span class="nx">step</span><span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-291"></a>                <span class="nx">triggerEvent</span><span class="p">(</span><span class="nx">step</span><span class="p">,</span> <span class="s2">&quot;impress:stepleave&quot;</span><span class="p">);</span>
+<a name="impress.js-pyg.html-292"></a>                <span class="nx">lastEntered</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<a name="impress.js-pyg.html-293"></a>            <span class="p">}</span>
+<a name="impress.js-pyg.html-294"></a>        <span class="p">};</span>
+<a name="impress.js-pyg.html-295"></a>        
+<a name="impress.js-pyg.html-296"></a>        <span class="c1">// `initStep` initializes given step element by reading data from its</span>
+<a name="impress.js-pyg.html-297"></a>        <span class="c1">// data attributes and setting correct styles.</span>
+<a name="impress.js-pyg.html-298"></a>        <span class="kd">var</span> <span class="nx">initStep</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">el</span><span class="p">,</span> <span class="nx">idx</span> <span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-299"></a>            <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">el</span><span class="p">.</span><span class="nx">dataset</span><span class="p">,</span>
+<a name="impress.js-pyg.html-300"></a>                <span class="nx">step</span> <span class="o">=</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-301"></a>                    <span class="nx">translate</span><span class="o">:</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-302"></a>                        <span class="nx">x</span><span class="o">:</span> <span class="nx">toNumber</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">x</span><span class="p">),</span>
+<a name="impress.js-pyg.html-303"></a>                        <span class="nx">y</span><span class="o">:</span> <span class="nx">toNumber</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">y</span><span class="p">),</span>
+<a name="impress.js-pyg.html-304"></a>                        <span class="nx">z</span><span class="o">:</span> <span class="nx">toNumber</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">z</span><span class="p">)</span>
+<a name="impress.js-pyg.html-305"></a>                    <span class="p">},</span>
+<a name="impress.js-pyg.html-306"></a>                    <span class="nx">rotate</span><span class="o">:</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-307"></a>                        <span class="nx">x</span><span class="o">:</span> <span class="nx">toNumber</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">rotateX</span><span class="p">),</span>
+<a name="impress.js-pyg.html-308"></a>                        <span class="nx">y</span><span class="o">:</span> <span class="nx">toNumber</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">rotateY</span><span class="p">),</span>
+<a name="impress.js-pyg.html-309"></a>                        <span class="nx">z</span><span class="o">:</span> <span class="nx">toNumber</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">rotateZ</span> <span class="o">||</span> <span class="nx">data</span><span class="p">.</span><span class="nx">rotate</span><span class="p">)</span>
+<a name="impress.js-pyg.html-310"></a>                    <span class="p">},</span>
+<a name="impress.js-pyg.html-311"></a>                    <span class="nx">scale</span><span class="o">:</span> <span class="nx">toNumber</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">scale</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+<a name="impress.js-pyg.html-312"></a>                    <span class="nx">el</span><span class="o">:</span> <span class="nx">el</span>
+<a name="impress.js-pyg.html-313"></a>                <span class="p">};</span>
+<a name="impress.js-pyg.html-314"></a>            
+<a name="impress.js-pyg.html-315"></a>            <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="nx">el</span><span class="p">.</span><span class="nx">id</span> <span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-316"></a>                <span class="nx">el</span><span class="p">.</span><span class="nx">id</span> <span class="o">=</span> <span class="s2">&quot;step-&quot;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+<a name="impress.js-pyg.html-317"></a>            <span class="p">}</span>
+<a name="impress.js-pyg.html-318"></a>            
+<a name="impress.js-pyg.html-319"></a>            <span class="nx">stepsData</span><span class="p">[</span><span class="s2">&quot;impress-&quot;</span> <span class="o">+</span> <span class="nx">el</span><span class="p">.</span><span class="nx">id</span><span class="p">]</span> <span class="o">=</span> <span class="nx">step</span><span class="p">;</span>
+<a name="impress.js-pyg.html-320"></a>            
+<a name="impress.js-pyg.html-321"></a>            <span class="nx">css</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-322"></a>                <span class="nx">position</span><span class="o">:</span> <span class="s2">&quot;absolute&quot;</span><span class="p">,</span>
+<a name="impress.js-pyg.html-323"></a>                <span class="nx">transform</span><span class="o">:</span> <span class="s2">&quot;translate(-50%,-50%)&quot;</span> <span class="o">+</span>
+<a name="impress.js-pyg.html-324"></a>                           <span class="nx">translate</span><span class="p">(</span><span class="nx">step</span><span class="p">.</span><span class="nx">translate</span><span class="p">)</span> <span class="o">+</span>
+<a name="impress.js-pyg.html-325"></a>                           <span class="nx">rotate</span><span class="p">(</span><span class="nx">step</span><span class="p">.</span><span class="nx">rotate</span><span class="p">)</span> <span class="o">+</span>
+<a name="impress.js-pyg.html-326"></a>                           <span class="nx">scale</span><span class="p">(</span><span class="nx">step</span><span class="p">.</span><span class="nx">scale</span><span class="p">),</span>
+<a name="impress.js-pyg.html-327"></a>                <span class="nx">transformStyle</span><span class="o">:</span> <span class="s2">&quot;preserve-3d&quot;</span>
+<a name="impress.js-pyg.html-328"></a>            <span class="p">});</span>
+<a name="impress.js-pyg.html-329"></a>        <span class="p">};</span>
+<a name="impress.js-pyg.html-330"></a>        
+<a name="impress.js-pyg.html-331"></a>        <span class="c1">// `init` API function that initializes (and runs) the presentation.</span>
+<a name="impress.js-pyg.html-332"></a>        <span class="kd">var</span> <span class="nx">init</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-333"></a>            <span class="k">if</span> <span class="p">(</span><span class="nx">initialized</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span><span class="p">;</span> <span class="p">}</span>
+<a name="impress.js-pyg.html-334"></a>            
+<a name="impress.js-pyg.html-335"></a>            <span class="c1">// First we set up the viewport for mobile devices.</span>
+<a name="impress.js-pyg.html-336"></a>            <span class="c1">// For some reason iPad goes nuts when it is not done properly.</span>
+<a name="impress.js-pyg.html-337"></a>            <span class="kd">var</span> <span class="nx">meta</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;meta[name=&#39;viewport&#39;]&quot;</span><span class="p">)</span> <span class="o">||</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&quot;meta&quot;</span><span class="p">);</span>
+<a name="impress.js-pyg.html-338"></a>            <span class="nx">meta</span><span class="p">.</span><span class="nx">content</span> <span class="o">=</span> <span class="s2">&quot;width=device-width, minimum-scale=1, maximum-scale=1, user-scalable=no&quot;</span><span class="p">;</span>
+<a name="impress.js-pyg.html-339"></a>            <span class="k">if</span> <span class="p">(</span><span class="nx">meta</span><span class="p">.</span><span class="nx">parentNode</span> <span class="o">!==</span> <span class="nb">document</span><span class="p">.</span><span class="nx">head</span><span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-340"></a>                <span class="nx">meta</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">&#39;viewport&#39;</span><span class="p">;</span>
+<a name="impress.js-pyg.html-341"></a>                <span class="nb">document</span><span class="p">.</span><span class="nx">head</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">meta</span><span class="p">);</span>
+<a name="impress.js-pyg.html-342"></a>            <span class="p">}</span>
+<a name="impress.js-pyg.html-343"></a>            
+<a name="impress.js-pyg.html-344"></a>            <span class="c1">// initialize configuration object</span>
+<a name="impress.js-pyg.html-345"></a>            <span class="kd">var</span> <span class="nx">rootData</span> <span class="o">=</span> <span class="nx">root</span><span class="p">.</span><span class="nx">dataset</span><span class="p">;</span>
+<a name="impress.js-pyg.html-346"></a>            <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-347"></a>                <span class="nx">width</span><span class="o">:</span> <span class="nx">toNumber</span><span class="p">(</span> <span class="nx">rootData</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span> <span class="nx">defaults</span><span class="p">.</span><span class="nx">width</span> <span class="p">),</span>
+<a name="impress.js-pyg.html-348"></a>                <span class="nx">height</span><span class="o">:</span> <span class="nx">toNumber</span><span class="p">(</span> <span class="nx">rootData</span><span class="p">.</span><span class="nx">height</span><span class="p">,</span> <span class="nx">defaults</span><span class="p">.</span><span class="nx">height</span> <span class="p">),</span>
+<a name="impress.js-pyg.html-349"></a>                <span class="nx">maxScale</span><span class="o">:</span> <span class="nx">toNumber</span><span class="p">(</span> <span class="nx">rootData</span><span class="p">.</span><span class="nx">maxScale</span><span class="p">,</span> <span class="nx">defaults</span><span class="p">.</span><span class="nx">maxScale</span> <span class="p">),</span>
+<a name="impress.js-pyg.html-350"></a>                <span class="nx">minScale</span><span class="o">:</span> <span class="nx">toNumber</span><span class="p">(</span> <span class="nx">rootData</span><span class="p">.</span><span class="nx">minScale</span><span class="p">,</span> <span class="nx">defaults</span><span class="p">.</span><span class="nx">minScale</span> <span class="p">),</span>                
+<a name="impress.js-pyg.html-351"></a>                <span class="nx">perspective</span><span class="o">:</span> <span class="nx">toNumber</span><span class="p">(</span> <span class="nx">rootData</span><span class="p">.</span><span class="nx">perspective</span><span class="p">,</span> <span class="nx">defaults</span><span class="p">.</span><span class="nx">perspective</span> <span class="p">),</span>
+<a name="impress.js-pyg.html-352"></a>                <span class="nx">transitionDuration</span><span class="o">:</span> <span class="nx">toNumber</span><span class="p">(</span> <span class="nx">rootData</span><span class="p">.</span><span class="nx">transitionDuration</span><span class="p">,</span> <span class="nx">defaults</span><span class="p">.</span><span class="nx">transitionDuration</span> <span class="p">)</span>
+<a name="impress.js-pyg.html-353"></a>            <span class="p">};</span>
+<a name="impress.js-pyg.html-354"></a>            
+<a name="impress.js-pyg.html-355"></a>            <span class="nx">windowScale</span> <span class="o">=</span> <span class="nx">computeWindowScale</span><span class="p">(</span> <span class="nx">config</span> <span class="p">);</span>
+<a name="impress.js-pyg.html-356"></a>            
+<a name="impress.js-pyg.html-357"></a>            <span class="c1">// wrap steps with &quot;canvas&quot; element</span>
+<a name="impress.js-pyg.html-358"></a>            <span class="nx">arrayify</span><span class="p">(</span> <span class="nx">root</span><span class="p">.</span><span class="nx">childNodes</span> <span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span> <span class="nx">el</span> <span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-359"></a>                <span class="nx">canvas</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span> <span class="nx">el</span> <span class="p">);</span>
+<a name="impress.js-pyg.html-360"></a>            <span class="p">});</span>
+<a name="impress.js-pyg.html-361"></a>            <span class="nx">root</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">canvas</span><span class="p">);</span>
+<a name="impress.js-pyg.html-362"></a>            
+<a name="impress.js-pyg.html-363"></a>            <span class="c1">// set initial styles</span>
+<a name="impress.js-pyg.html-364"></a>            <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">height</span> <span class="o">=</span> <span class="s2">&quot;100%&quot;</span><span class="p">;</span>
+<a name="impress.js-pyg.html-365"></a>            
+<a name="impress.js-pyg.html-366"></a>            <span class="nx">css</span><span class="p">(</span><span class="nx">body</span><span class="p">,</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-367"></a>                <span class="nx">height</span><span class="o">:</span> <span class="s2">&quot;100%&quot;</span><span class="p">,</span>
+<a name="impress.js-pyg.html-368"></a>                <span class="nx">overflow</span><span class="o">:</span> <span class="s2">&quot;hidden&quot;</span>
+<a name="impress.js-pyg.html-369"></a>            <span class="p">});</span>
+<a name="impress.js-pyg.html-370"></a>            
+<a name="impress.js-pyg.html-371"></a>            <span class="kd">var</span> <span class="nx">rootStyles</span> <span class="o">=</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-372"></a>                <span class="nx">position</span><span class="o">:</span> <span class="s2">&quot;absolute&quot;</span><span class="p">,</span>
+<a name="impress.js-pyg.html-373"></a>                <span class="nx">transformOrigin</span><span class="o">:</span> <span class="s2">&quot;top left&quot;</span><span class="p">,</span>
+<a name="impress.js-pyg.html-374"></a>                <span class="nx">transition</span><span class="o">:</span> <span class="s2">&quot;all 0s ease-in-out&quot;</span><span class="p">,</span>
+<a name="impress.js-pyg.html-375"></a>                <span class="nx">transformStyle</span><span class="o">:</span> <span class="s2">&quot;preserve-3d&quot;</span>
+<a name="impress.js-pyg.html-376"></a>            <span class="p">};</span>
+<a name="impress.js-pyg.html-377"></a>            
+<a name="impress.js-pyg.html-378"></a>            <span class="nx">css</span><span class="p">(</span><span class="nx">root</span><span class="p">,</span> <span class="nx">rootStyles</span><span class="p">);</span>
+<a name="impress.js-pyg.html-379"></a>            <span class="nx">css</span><span class="p">(</span><span class="nx">root</span><span class="p">,</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-380"></a>                <span class="nx">top</span><span class="o">:</span> <span class="s2">&quot;50%&quot;</span><span class="p">,</span>
+<a name="impress.js-pyg.html-381"></a>                <span class="nx">left</span><span class="o">:</span> <span class="s2">&quot;50%&quot;</span><span class="p">,</span>
+<a name="impress.js-pyg.html-382"></a>                <span class="nx">transform</span><span class="o">:</span> <span class="nx">perspective</span><span class="p">(</span> <span class="nx">config</span><span class="p">.</span><span class="nx">perspective</span><span class="o">/</span><span class="nx">windowScale</span> <span class="p">)</span> <span class="o">+</span> <span class="nx">scale</span><span class="p">(</span> <span class="nx">windowScale</span> <span class="p">)</span>
+<a name="impress.js-pyg.html-383"></a>            <span class="p">});</span>
+<a name="impress.js-pyg.html-384"></a>            <span class="nx">css</span><span class="p">(</span><span class="nx">canvas</span><span class="p">,</span> <span class="nx">rootStyles</span><span class="p">);</span>
+<a name="impress.js-pyg.html-385"></a>            
+<a name="impress.js-pyg.html-386"></a>            <span class="nx">body</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s2">&quot;impress-disabled&quot;</span><span class="p">);</span>
+<a name="impress.js-pyg.html-387"></a>            <span class="nx">body</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;impress-enabled&quot;</span><span class="p">);</span>
+<a name="impress.js-pyg.html-388"></a>            
+<a name="impress.js-pyg.html-389"></a>            <span class="c1">// get and init steps</span>
+<a name="impress.js-pyg.html-390"></a>            <span class="nx">steps</span> <span class="o">=</span> <span class="nx">$$</span><span class="p">(</span><span class="s2">&quot;.step&quot;</span><span class="p">,</span> <span class="nx">root</span><span class="p">);</span>
+<a name="impress.js-pyg.html-391"></a>            <span class="nx">steps</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span> <span class="nx">initStep</span> <span class="p">);</span>
+<a name="impress.js-pyg.html-392"></a>            
+<a name="impress.js-pyg.html-393"></a>            <span class="c1">// set a default initial state of the canvas</span>
+<a name="impress.js-pyg.html-394"></a>            <span class="nx">currentState</span> <span class="o">=</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-395"></a>                <span class="nx">translate</span><span class="o">:</span> <span class="p">{</span> <span class="nx">x</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">y</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">z</span><span class="o">:</span> <span class="mi">0</span> <span class="p">},</span>
+<a name="impress.js-pyg.html-396"></a>                <span class="nx">rotate</span><span class="o">:</span>    <span class="p">{</span> <span class="nx">x</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">y</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">z</span><span class="o">:</span> <span class="mi">0</span> <span class="p">},</span>
+<a name="impress.js-pyg.html-397"></a>                <span class="nx">scale</span><span class="o">:</span>     <span class="mi">1</span>
+<a name="impress.js-pyg.html-398"></a>            <span class="p">};</span>
+<a name="impress.js-pyg.html-399"></a>            
+<a name="impress.js-pyg.html-400"></a>            <span class="nx">initialized</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+<a name="impress.js-pyg.html-401"></a>            
+<a name="impress.js-pyg.html-402"></a>            <span class="nx">triggerEvent</span><span class="p">(</span><span class="nx">root</span><span class="p">,</span> <span class="s2">&quot;impress:init&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">api</span><span class="o">:</span> <span class="nx">roots</span><span class="p">[</span> <span class="s2">&quot;impress-root-&quot;</span> <span class="o">+</span> <span class="nx">rootId</span> <span class="p">]</span> <span class="p">});</span>
+<a name="impress.js-pyg.html-403"></a>        <span class="p">};</span>
+<a name="impress.js-pyg.html-404"></a>        
+<a name="impress.js-pyg.html-405"></a>        <span class="c1">// `getStep` is a helper function that returns a step element defined by parameter.</span>
+<a name="impress.js-pyg.html-406"></a>        <span class="c1">// If a number is given, step with index given by the number is returned, if a string</span>
+<a name="impress.js-pyg.html-407"></a>        <span class="c1">// is given step element with such id is returned, if DOM element is given it is returned</span>
+<a name="impress.js-pyg.html-408"></a>        <span class="c1">// if it is a correct step element.</span>
+<a name="impress.js-pyg.html-409"></a>        <span class="kd">var</span> <span class="nx">getStep</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">step</span> <span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-410"></a>            <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">step</span> <span class="o">===</span> <span class="s2">&quot;number&quot;</span><span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-411"></a>                <span class="nx">step</span> <span class="o">=</span> <span class="nx">step</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">?</span> <span class="nx">steps</span><span class="p">[</span> <span class="nx">steps</span><span class="p">.</span><span class="nx">length</span> <span class="o">+</span> <span class="nx">step</span><span class="p">]</span> <span class="o">:</span> <span class="nx">steps</span><span class="p">[</span> <span class="nx">step</span> <span class="p">];</span>
+<a name="impress.js-pyg.html-412"></a>            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">step</span> <span class="o">===</span> <span class="s2">&quot;string&quot;</span><span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-413"></a>                <span class="nx">step</span> <span class="o">=</span> <span class="nx">byId</span><span class="p">(</span><span class="nx">step</span><span class="p">);</span>
+<a name="impress.js-pyg.html-414"></a>            <span class="p">}</span>
+<a name="impress.js-pyg.html-415"></a>            <span class="k">return</span> <span class="p">(</span><span class="nx">step</span> <span class="o">&amp;&amp;</span> <span class="nx">step</span><span class="p">.</span><span class="nx">id</span> <span class="o">&amp;&amp;</span> <span class="nx">stepsData</span><span class="p">[</span><span class="s2">&quot;impress-&quot;</span> <span class="o">+</span> <span class="nx">step</span><span class="p">.</span><span class="nx">id</span><span class="p">])</span> <span class="o">?</span> <span class="nx">step</span> <span class="o">:</span> <span class="kc">null</span><span class="p">;</span>
+<a name="impress.js-pyg.html-416"></a>        <span class="p">};</span>
+<a name="impress.js-pyg.html-417"></a>        
+<a name="impress.js-pyg.html-418"></a>        <span class="c1">// used to reset timeout for `impress:stepenter` event</span>
+<a name="impress.js-pyg.html-419"></a>        <span class="kd">var</span> <span class="nx">stepEnterTimeout</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<a name="impress.js-pyg.html-420"></a>        
+<a name="impress.js-pyg.html-421"></a>        <span class="c1">// `goto` API function that moves to step given with `el` parameter (by index, id or element),</span>
+<a name="impress.js-pyg.html-422"></a>        <span class="c1">// with a transition `duration` optionally given as second parameter.</span>
+<a name="impress.js-pyg.html-423"></a>        <span class="kd">var</span> <span class="kr">goto</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">el</span><span class="p">,</span> <span class="nx">duration</span> <span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-424"></a>            
+<a name="impress.js-pyg.html-425"></a>            <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="nx">initialized</span> <span class="o">||</span> <span class="o">!</span><span class="p">(</span><span class="nx">el</span> <span class="o">=</span> <span class="nx">getStep</span><span class="p">(</span><span class="nx">el</span><span class="p">))</span> <span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-426"></a>                <span class="c1">// presentation not initialized or given element is not a step</span>
+<a name="impress.js-pyg.html-427"></a>                <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+<a name="impress.js-pyg.html-428"></a>            <span class="p">}</span>
+<a name="impress.js-pyg.html-429"></a>            
+<a name="impress.js-pyg.html-430"></a>            <span class="c1">// Sometimes it&#39;s possible to trigger focus on first link with some keyboard action.</span>
+<a name="impress.js-pyg.html-431"></a>            <span class="c1">// Browser in such a case tries to scroll the page to make this element visible</span>
+<a name="impress.js-pyg.html-432"></a>            <span class="c1">// (even that body overflow is set to hidden) and it breaks our careful positioning.</span>
+<a name="impress.js-pyg.html-433"></a>            <span class="c1">//</span>
+<a name="impress.js-pyg.html-434"></a>            <span class="c1">// So, as a lousy (and lazy) workaround we will make the page scroll back to the top</span>
+<a name="impress.js-pyg.html-435"></a>            <span class="c1">// whenever slide is selected</span>
+<a name="impress.js-pyg.html-436"></a>            <span class="c1">//</span>
+<a name="impress.js-pyg.html-437"></a>            <span class="c1">// If you are reading this and know any better way to handle it, I&#39;ll be glad to hear about it!</span>
+<a name="impress.js-pyg.html-438"></a>            <span class="nb">window</span><span class="p">.</span><span class="nx">scrollTo</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<a name="impress.js-pyg.html-439"></a>            
+<a name="impress.js-pyg.html-440"></a>            <span class="kd">var</span> <span class="nx">step</span> <span class="o">=</span> <span class="nx">stepsData</span><span class="p">[</span><span class="s2">&quot;impress-&quot;</span> <span class="o">+</span> <span class="nx">el</span><span class="p">.</span><span class="nx">id</span><span class="p">];</span>
+<a name="impress.js-pyg.html-441"></a>            
+<a name="impress.js-pyg.html-442"></a>            <span class="k">if</span> <span class="p">(</span> <span class="nx">activeStep</span> <span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-443"></a>                <span class="nx">activeStep</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s2">&quot;active&quot;</span><span class="p">);</span>
+<a name="impress.js-pyg.html-444"></a>                <span class="nx">body</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s2">&quot;impress-on-&quot;</span> <span class="o">+</span> <span class="nx">activeStep</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+<a name="impress.js-pyg.html-445"></a>            <span class="p">}</span>
+<a name="impress.js-pyg.html-446"></a>            <span class="nx">el</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;active&quot;</span><span class="p">);</span>
+<a name="impress.js-pyg.html-447"></a>            
+<a name="impress.js-pyg.html-448"></a>            <span class="nx">body</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;impress-on-&quot;</span> <span class="o">+</span> <span class="nx">el</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+<a name="impress.js-pyg.html-449"></a>            
+<a name="impress.js-pyg.html-450"></a>            <span class="c1">// compute target state of the canvas based on given step</span>
+<a name="impress.js-pyg.html-451"></a>            <span class="kd">var</span> <span class="nx">target</span> <span class="o">=</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-452"></a>                <span class="nx">rotate</span><span class="o">:</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-453"></a>                    <span class="nx">x</span><span class="o">:</span> <span class="o">-</span><span class="nx">step</span><span class="p">.</span><span class="nx">rotate</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span>
+<a name="impress.js-pyg.html-454"></a>                    <span class="nx">y</span><span class="o">:</span> <span class="o">-</span><span class="nx">step</span><span class="p">.</span><span class="nx">rotate</span><span class="p">.</span><span class="nx">y</span><span class="p">,</span>
+<a name="impress.js-pyg.html-455"></a>                    <span class="nx">z</span><span class="o">:</span> <span class="o">-</span><span class="nx">step</span><span class="p">.</span><span class="nx">rotate</span><span class="p">.</span><span class="nx">z</span>
+<a name="impress.js-pyg.html-456"></a>                <span class="p">},</span>
+<a name="impress.js-pyg.html-457"></a>                <span class="nx">translate</span><span class="o">:</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-458"></a>                    <span class="nx">x</span><span class="o">:</span> <span class="o">-</span><span class="nx">step</span><span class="p">.</span><span class="nx">translate</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span>
+<a name="impress.js-pyg.html-459"></a>                    <span class="nx">y</span><span class="o">:</span> <span class="o">-</span><span class="nx">step</span><span class="p">.</span><span class="nx">translate</span><span class="p">.</span><span class="nx">y</span><span class="p">,</span>
+<a name="impress.js-pyg.html-460"></a>                    <span class="nx">z</span><span class="o">:</span> <span class="o">-</span><span class="nx">step</span><span class="p">.</span><span class="nx">translate</span><span class="p">.</span><span class="nx">z</span>
+<a name="impress.js-pyg.html-461"></a>                <span class="p">},</span>
+<a name="impress.js-pyg.html-462"></a>                <span class="nx">scale</span><span class="o">:</span> <span class="mi">1</span> <span class="o">/</span> <span class="nx">step</span><span class="p">.</span><span class="nx">scale</span>
+<a name="impress.js-pyg.html-463"></a>            <span class="p">};</span>
+<a name="impress.js-pyg.html-464"></a>            
+<a name="impress.js-pyg.html-465"></a>            <span class="c1">// Check if the transition is zooming in or not.</span>
+<a name="impress.js-pyg.html-466"></a>            <span class="c1">//</span>
+<a name="impress.js-pyg.html-467"></a>            <span class="c1">// This information is used to alter the transition style:</span>
+<a name="impress.js-pyg.html-468"></a>            <span class="c1">// when we are zooming in - we start with move and rotate transition</span>
+<a name="impress.js-pyg.html-469"></a>            <span class="c1">// and the scaling is delayed, but when we are zooming out we start</span>
+<a name="impress.js-pyg.html-470"></a>            <span class="c1">// with scaling down and move and rotation are delayed.</span>
+<a name="impress.js-pyg.html-471"></a>            <span class="kd">var</span> <span class="nx">zoomin</span> <span class="o">=</span> <span class="nx">target</span><span class="p">.</span><span class="nx">scale</span> <span class="o">&gt;=</span> <span class="nx">currentState</span><span class="p">.</span><span class="nx">scale</span><span class="p">;</span>
+<a name="impress.js-pyg.html-472"></a>            
+<a name="impress.js-pyg.html-473"></a>            <span class="nx">duration</span> <span class="o">=</span> <span class="nx">toNumber</span><span class="p">(</span><span class="nx">duration</span><span class="p">,</span> <span class="nx">config</span><span class="p">.</span><span class="nx">transitionDuration</span><span class="p">);</span>
+<a name="impress.js-pyg.html-474"></a>            <span class="kd">var</span> <span class="nx">delay</span> <span class="o">=</span> <span class="p">(</span><span class="nx">duration</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span>
+<a name="impress.js-pyg.html-475"></a>            
+<a name="impress.js-pyg.html-476"></a>            <span class="c1">// if the same step is re-selected, force computing window scaling,</span>
+<a name="impress.js-pyg.html-477"></a>            <span class="c1">// because it is likely to be caused by window resize</span>
+<a name="impress.js-pyg.html-478"></a>            <span class="k">if</span> <span class="p">(</span><span class="nx">el</span> <span class="o">===</span> <span class="nx">activeStep</span><span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-479"></a>                <span class="nx">windowScale</span> <span class="o">=</span> <span class="nx">computeWindowScale</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span>
+<a name="impress.js-pyg.html-480"></a>            <span class="p">}</span>
+<a name="impress.js-pyg.html-481"></a>            
+<a name="impress.js-pyg.html-482"></a>            <span class="kd">var</span> <span class="nx">targetScale</span> <span class="o">=</span> <span class="nx">target</span><span class="p">.</span><span class="nx">scale</span> <span class="o">*</span> <span class="nx">windowScale</span><span class="p">;</span>
+<a name="impress.js-pyg.html-483"></a>            
+<a name="impress.js-pyg.html-484"></a>            <span class="c1">// trigger leave of currently active element (if it&#39;s not the same step again)</span>
+<a name="impress.js-pyg.html-485"></a>            <span class="k">if</span> <span class="p">(</span><span class="nx">activeStep</span> <span class="o">&amp;&amp;</span> <span class="nx">activeStep</span> <span class="o">!==</span> <span class="nx">el</span><span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-486"></a>                <span class="nx">onStepLeave</span><span class="p">(</span><span class="nx">activeStep</span><span class="p">);</span>
+<a name="impress.js-pyg.html-487"></a>            <span class="p">}</span>
+<a name="impress.js-pyg.html-488"></a>            
+<a name="impress.js-pyg.html-489"></a>            <span class="c1">// Now we alter transforms of `root` and `canvas` to trigger transitions.</span>
+<a name="impress.js-pyg.html-490"></a>            <span class="c1">//</span>
+<a name="impress.js-pyg.html-491"></a>            <span class="c1">// And here is why there are two elements: `root` and `canvas` - they are</span>
+<a name="impress.js-pyg.html-492"></a>            <span class="c1">// being animated separately:</span>
+<a name="impress.js-pyg.html-493"></a>            <span class="c1">// `root` is used for scaling and `canvas` for translate and rotations.</span>
+<a name="impress.js-pyg.html-494"></a>            <span class="c1">// Transitions on them are triggered with different delays (to make</span>
+<a name="impress.js-pyg.html-495"></a>            <span class="c1">// visually nice and &#39;natural&#39; looking transitions), so we need to know</span>
+<a name="impress.js-pyg.html-496"></a>            <span class="c1">// that both of them are finished.</span>
+<a name="impress.js-pyg.html-497"></a>            <span class="nx">css</span><span class="p">(</span><span class="nx">root</span><span class="p">,</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-498"></a>                <span class="c1">// to keep the perspective look similar for different scales</span>
+<a name="impress.js-pyg.html-499"></a>                <span class="c1">// we need to &#39;scale&#39; the perspective, too</span>
+<a name="impress.js-pyg.html-500"></a>                <span class="nx">transform</span><span class="o">:</span> <span class="nx">perspective</span><span class="p">(</span> <span class="nx">config</span><span class="p">.</span><span class="nx">perspective</span> <span class="o">/</span> <span class="nx">targetScale</span> <span class="p">)</span> <span class="o">+</span> <span class="nx">scale</span><span class="p">(</span> <span class="nx">targetScale</span> <span class="p">),</span>
+<a name="impress.js-pyg.html-501"></a>                <span class="nx">transitionDuration</span><span class="o">:</span> <span class="nx">duration</span> <span class="o">+</span> <span class="s2">&quot;ms&quot;</span><span class="p">,</span>
+<a name="impress.js-pyg.html-502"></a>                <span class="nx">transitionDelay</span><span class="o">:</span> <span class="p">(</span><span class="nx">zoomin</span> <span class="o">?</span> <span class="nx">delay</span> <span class="o">:</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;ms&quot;</span>
+<a name="impress.js-pyg.html-503"></a>            <span class="p">});</span>
+<a name="impress.js-pyg.html-504"></a>            
+<a name="impress.js-pyg.html-505"></a>            <span class="nx">css</span><span class="p">(</span><span class="nx">canvas</span><span class="p">,</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-506"></a>                <span class="nx">transform</span><span class="o">:</span> <span class="nx">rotate</span><span class="p">(</span><span class="nx">target</span><span class="p">.</span><span class="nx">rotate</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span> <span class="o">+</span> <span class="nx">translate</span><span class="p">(</span><span class="nx">target</span><span class="p">.</span><span class="nx">translate</span><span class="p">),</span>
+<a name="impress.js-pyg.html-507"></a>                <span class="nx">transitionDuration</span><span class="o">:</span> <span class="nx">duration</span> <span class="o">+</span> <span class="s2">&quot;ms&quot;</span><span class="p">,</span>
+<a name="impress.js-pyg.html-508"></a>                <span class="nx">transitionDelay</span><span class="o">:</span> <span class="p">(</span><span class="nx">zoomin</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="nx">delay</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;ms&quot;</span>
+<a name="impress.js-pyg.html-509"></a>            <span class="p">});</span>
+<a name="impress.js-pyg.html-510"></a>            
+<a name="impress.js-pyg.html-511"></a>            <span class="c1">// Here is a tricky part...</span>
+<a name="impress.js-pyg.html-512"></a>            <span class="c1">//</span>
+<a name="impress.js-pyg.html-513"></a>            <span class="c1">// If there is no change in scale or no change in rotation and translation, it means there was actually</span>
+<a name="impress.js-pyg.html-514"></a>            <span class="c1">// no delay - because there was no transition on `root` or `canvas` elements.</span>
+<a name="impress.js-pyg.html-515"></a>            <span class="c1">// We want to trigger `impress:stepenter` event in the correct moment, so here we compare the current</span>
+<a name="impress.js-pyg.html-516"></a>            <span class="c1">// and target values to check if delay should be taken into account.</span>
+<a name="impress.js-pyg.html-517"></a>            <span class="c1">//</span>
+<a name="impress.js-pyg.html-518"></a>            <span class="c1">// I know that this `if` statement looks scary, but it&#39;s pretty simple when you know what is going on</span>
+<a name="impress.js-pyg.html-519"></a>            <span class="c1">// - it&#39;s simply comparing all the values.</span>
+<a name="impress.js-pyg.html-520"></a>            <span class="k">if</span> <span class="p">(</span> <span class="nx">currentState</span><span class="p">.</span><span class="nx">scale</span> <span class="o">===</span> <span class="nx">target</span><span class="p">.</span><span class="nx">scale</span> <span class="o">||</span>
+<a name="impress.js-pyg.html-521"></a>                <span class="p">(</span><span class="nx">currentState</span><span class="p">.</span><span class="nx">rotate</span><span class="p">.</span><span class="nx">x</span> <span class="o">===</span> <span class="nx">target</span><span class="p">.</span><span class="nx">rotate</span><span class="p">.</span><span class="nx">x</span> <span class="o">&amp;&amp;</span> <span class="nx">currentState</span><span class="p">.</span><span class="nx">rotate</span><span class="p">.</span><span class="nx">y</span> <span class="o">===</span> <span class="nx">target</span><span class="p">.</span><span class="nx">rotate</span><span class="p">.</span><span class="nx">y</span> <span class="o">&amp;&amp;</span>
+<a name="impress.js-pyg.html-522"></a>                 <span class="nx">currentState</span><span class="p">.</span><span class="nx">rotate</span><span class="p">.</span><span class="nx">z</span> <span class="o">===</span> <span class="nx">target</span><span class="p">.</span><span class="nx">rotate</span><span class="p">.</span><span class="nx">z</span> <span class="o">&amp;&amp;</span> <span class="nx">currentState</span><span class="p">.</span><span class="nx">translate</span><span class="p">.</span><span class="nx">x</span> <span class="o">===</span> <span class="nx">target</span><span class="p">.</span><span class="nx">translate</span><span class="p">.</span><span class="nx">x</span> <span class="o">&amp;&amp;</span>
+<a name="impress.js-pyg.html-523"></a>                 <span class="nx">currentState</span><span class="p">.</span><span class="nx">translate</span><span class="p">.</span><span class="nx">y</span> <span class="o">===</span> <span class="nx">target</span><span class="p">.</span><span class="nx">translate</span><span class="p">.</span><span class="nx">y</span> <span class="o">&amp;&amp;</span> <span class="nx">currentState</span><span class="p">.</span><span class="nx">translate</span><span class="p">.</span><span class="nx">z</span> <span class="o">===</span> <span class="nx">target</span><span class="p">.</span><span class="nx">translate</span><span class="p">.</span><span class="nx">z</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-524"></a>                <span class="nx">delay</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<a name="impress.js-pyg.html-525"></a>            <span class="p">}</span>
+<a name="impress.js-pyg.html-526"></a>            
+<a name="impress.js-pyg.html-527"></a>            <span class="c1">// store current state</span>
+<a name="impress.js-pyg.html-528"></a>            <span class="nx">currentState</span> <span class="o">=</span> <span class="nx">target</span><span class="p">;</span>
+<a name="impress.js-pyg.html-529"></a>            <span class="nx">activeStep</span> <span class="o">=</span> <span class="nx">el</span><span class="p">;</span>
+<a name="impress.js-pyg.html-530"></a>            
+<a name="impress.js-pyg.html-531"></a>            <span class="c1">// And here is where we trigger `impress:stepenter` event.</span>
+<a name="impress.js-pyg.html-532"></a>            <span class="c1">// We simply set up a timeout to fire it taking transition duration (and possible delay) into account.</span>
+<a name="impress.js-pyg.html-533"></a>            <span class="c1">//</span>
+<a name="impress.js-pyg.html-534"></a>            <span class="c1">// I really wanted to make it in more elegant way. The `transitionend` event seemed to be the best way</span>
+<a name="impress.js-pyg.html-535"></a>            <span class="c1">// to do it, but the fact that I&#39;m using transitions on two separate elements and that the `transitionend`</span>
+<a name="impress.js-pyg.html-536"></a>            <span class="c1">// event is only triggered when there was a transition (change in the values) caused some bugs and </span>
+<a name="impress.js-pyg.html-537"></a>            <span class="c1">// made the code really complicated, cause I had to handle all the conditions separately. And it still</span>
+<a name="impress.js-pyg.html-538"></a>            <span class="c1">// needed a `setTimeout` fallback for the situations when there is no transition at all.</span>
+<a name="impress.js-pyg.html-539"></a>            <span class="c1">// So I decided that I&#39;d rather make the code simpler than use shiny new `transitionend`.</span>
+<a name="impress.js-pyg.html-540"></a>            <span class="c1">//</span>
+<a name="impress.js-pyg.html-541"></a>            <span class="c1">// If you want learn something interesting and see how it was done with `transitionend` go back to</span>
+<a name="impress.js-pyg.html-542"></a>            <span class="c1">// version 0.5.2 of impress.js: http://github.com/bartaz/impress.js/blob/0.5.2/js/impress.js</span>
+<a name="impress.js-pyg.html-543"></a>            <span class="nb">window</span><span class="p">.</span><span class="nx">clearTimeout</span><span class="p">(</span><span class="nx">stepEnterTimeout</span><span class="p">);</span>
+<a name="impress.js-pyg.html-544"></a>            <span class="nx">stepEnterTimeout</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-545"></a>                <span class="nx">onStepEnter</span><span class="p">(</span><span class="nx">activeStep</span><span class="p">);</span>
+<a name="impress.js-pyg.html-546"></a>            <span class="p">},</span> <span class="nx">duration</span> <span class="o">+</span> <span class="nx">delay</span><span class="p">);</span>
+<a name="impress.js-pyg.html-547"></a>            
+<a name="impress.js-pyg.html-548"></a>            <span class="k">return</span> <span class="nx">el</span><span class="p">;</span>
+<a name="impress.js-pyg.html-549"></a>        <span class="p">};</span>
+<a name="impress.js-pyg.html-550"></a>        
+<a name="impress.js-pyg.html-551"></a>        <span class="c1">// `prev` API function goes to previous step (in document order)</span>
+<a name="impress.js-pyg.html-552"></a>        <span class="kd">var</span> <span class="nx">prev</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-553"></a>            <span class="kd">var</span> <span class="nx">prev</span> <span class="o">=</span> <span class="nx">steps</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span> <span class="nx">activeStep</span> <span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+<a name="impress.js-pyg.html-554"></a>            <span class="nx">prev</span> <span class="o">=</span> <span class="nx">prev</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">?</span> <span class="nx">steps</span><span class="p">[</span> <span class="nx">prev</span> <span class="p">]</span> <span class="o">:</span> <span class="nx">steps</span><span class="p">[</span> <span class="nx">steps</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mi">1</span> <span class="p">];</span>
+<a name="impress.js-pyg.html-555"></a>            
+<a name="impress.js-pyg.html-556"></a>            <span class="k">return</span> <span class="kr">goto</span><span class="p">(</span><span class="nx">prev</span><span class="p">);</span>
+<a name="impress.js-pyg.html-557"></a>        <span class="p">};</span>
+<a name="impress.js-pyg.html-558"></a>        
+<a name="impress.js-pyg.html-559"></a>        <span class="c1">// `next` API function goes to next step (in document order)</span>
+<a name="impress.js-pyg.html-560"></a>        <span class="kd">var</span> <span class="nx">next</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-561"></a>            <span class="kd">var</span> <span class="nx">next</span> <span class="o">=</span> <span class="nx">steps</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span> <span class="nx">activeStep</span> <span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+<a name="impress.js-pyg.html-562"></a>            <span class="nx">next</span> <span class="o">=</span> <span class="nx">next</span> <span class="o">&lt;</span> <span class="nx">steps</span><span class="p">.</span><span class="nx">length</span> <span class="o">?</span> <span class="nx">steps</span><span class="p">[</span> <span class="nx">next</span> <span class="p">]</span> <span class="o">:</span> <span class="nx">steps</span><span class="p">[</span> <span class="mi">0</span> <span class="p">];</span>
+<a name="impress.js-pyg.html-563"></a>            
+<a name="impress.js-pyg.html-564"></a>            <span class="k">return</span> <span class="kr">goto</span><span class="p">(</span><span class="nx">next</span><span class="p">);</span>
+<a name="impress.js-pyg.html-565"></a>        <span class="p">};</span>
+<a name="impress.js-pyg.html-566"></a>        
+<a name="impress.js-pyg.html-567"></a>        <span class="c1">// Adding some useful classes to step elements.</span>
+<a name="impress.js-pyg.html-568"></a>        <span class="c1">//</span>
+<a name="impress.js-pyg.html-569"></a>        <span class="c1">// All the steps that have not been shown yet are given `future` class.</span>
+<a name="impress.js-pyg.html-570"></a>        <span class="c1">// When the step is entered the `future` class is removed and the `present`</span>
+<a name="impress.js-pyg.html-571"></a>        <span class="c1">// class is given. When the step is left `present` class is replaced with</span>
+<a name="impress.js-pyg.html-572"></a>        <span class="c1">// `past` class.</span>
+<a name="impress.js-pyg.html-573"></a>        <span class="c1">//</span>
+<a name="impress.js-pyg.html-574"></a>        <span class="c1">// So every step element is always in one of three possible states:</span>
+<a name="impress.js-pyg.html-575"></a>        <span class="c1">// `future`, `present` and `past`.</span>
+<a name="impress.js-pyg.html-576"></a>        <span class="c1">//</span>
+<a name="impress.js-pyg.html-577"></a>        <span class="c1">// There classes can be used in CSS to style different types of steps.</span>
+<a name="impress.js-pyg.html-578"></a>        <span class="c1">// For example the `present` class can be used to trigger some custom</span>
+<a name="impress.js-pyg.html-579"></a>        <span class="c1">// animations when step is shown.</span>
+<a name="impress.js-pyg.html-580"></a>        <span class="nx">root</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;impress:init&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+<a name="impress.js-pyg.html-581"></a>            <span class="c1">// STEP CLASSES</span>
+<a name="impress.js-pyg.html-582"></a>            <span class="nx">steps</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">step</span><span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-583"></a>                <span class="nx">step</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;future&quot;</span><span class="p">);</span>
+<a name="impress.js-pyg.html-584"></a>            <span class="p">});</span>
+<a name="impress.js-pyg.html-585"></a>            
+<a name="impress.js-pyg.html-586"></a>            <span class="nx">root</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;impress:stepenter&quot;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-587"></a>                <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s2">&quot;past&quot;</span><span class="p">);</span>
+<a name="impress.js-pyg.html-588"></a>                <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s2">&quot;future&quot;</span><span class="p">);</span>
+<a name="impress.js-pyg.html-589"></a>                <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;present&quot;</span><span class="p">);</span>
+<a name="impress.js-pyg.html-590"></a>            <span class="p">},</span> <span class="kc">false</span><span class="p">);</span>
+<a name="impress.js-pyg.html-591"></a>            
+<a name="impress.js-pyg.html-592"></a>            <span class="nx">root</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;impress:stepleave&quot;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-593"></a>                <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s2">&quot;present&quot;</span><span class="p">);</span>
+<a name="impress.js-pyg.html-594"></a>                <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;past&quot;</span><span class="p">);</span>
+<a name="impress.js-pyg.html-595"></a>            <span class="p">},</span> <span class="kc">false</span><span class="p">);</span>
+<a name="impress.js-pyg.html-596"></a>            
+<a name="impress.js-pyg.html-597"></a>        <span class="p">},</span> <span class="kc">false</span><span class="p">);</span>
+<a name="impress.js-pyg.html-598"></a>        
+<a name="impress.js-pyg.html-599"></a>        <span class="c1">// Adding hash change support.</span>
+<a name="impress.js-pyg.html-600"></a>        <span class="nx">root</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;impress:init&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+<a name="impress.js-pyg.html-601"></a>            
+<a name="impress.js-pyg.html-602"></a>            <span class="c1">// last hash detected</span>
+<a name="impress.js-pyg.html-603"></a>            <span class="kd">var</span> <span class="nx">lastHash</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+<a name="impress.js-pyg.html-604"></a>            
+<a name="impress.js-pyg.html-605"></a>            <span class="c1">// `#/step-id` is used instead of `#step-id` to prevent default browser</span>
+<a name="impress.js-pyg.html-606"></a>            <span class="c1">// scrolling to element in hash.</span>
+<a name="impress.js-pyg.html-607"></a>            <span class="c1">//</span>
+<a name="impress.js-pyg.html-608"></a>            <span class="c1">// And it has to be set after animation finishes, because in Chrome it</span>
+<a name="impress.js-pyg.html-609"></a>            <span class="c1">// makes transtion laggy.</span>
+<a name="impress.js-pyg.html-610"></a>            <span class="c1">// BUG: http://code.google.com/p/chromium/issues/detail?id=62820</span>
+<a name="impress.js-pyg.html-611"></a>            <span class="nx">root</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;impress:stepenter&quot;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-612"></a>                <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">hash</span> <span class="o">=</span> <span class="nx">lastHash</span> <span class="o">=</span> <span class="s2">&quot;#/&quot;</span> <span class="o">+</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
+<a name="impress.js-pyg.html-613"></a>            <span class="p">},</span> <span class="kc">false</span><span class="p">);</span>
+<a name="impress.js-pyg.html-614"></a>            
+<a name="impress.js-pyg.html-615"></a>            <span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;hashchange&quot;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-616"></a>                <span class="c1">// When the step is entered hash in the location is updated</span>
+<a name="impress.js-pyg.html-617"></a>                <span class="c1">// (just few lines above from here), so the hash change is </span>
+<a name="impress.js-pyg.html-618"></a>                <span class="c1">// triggered and we would call `goto` again on the same element.</span>
+<a name="impress.js-pyg.html-619"></a>                <span class="c1">//</span>
+<a name="impress.js-pyg.html-620"></a>                <span class="c1">// To avoid this we store last entered hash and compare.</span>
+<a name="impress.js-pyg.html-621"></a>                <span class="k">if</span> <span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">hash</span> <span class="o">!==</span> <span class="nx">lastHash</span><span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-622"></a>                    <span class="kr">goto</span><span class="p">(</span> <span class="nx">getElementFromHash</span><span class="p">()</span> <span class="p">);</span>
+<a name="impress.js-pyg.html-623"></a>                <span class="p">}</span>
+<a name="impress.js-pyg.html-624"></a>            <span class="p">},</span> <span class="kc">false</span><span class="p">);</span>
+<a name="impress.js-pyg.html-625"></a>            
+<a name="impress.js-pyg.html-626"></a>            <span class="c1">// START </span>
+<a name="impress.js-pyg.html-627"></a>            <span class="c1">// by selecting step defined in url or first step of the presentation</span>
+<a name="impress.js-pyg.html-628"></a>            <span class="kr">goto</span><span class="p">(</span><span class="nx">getElementFromHash</span><span class="p">()</span> <span class="o">||</span> <span class="nx">steps</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">);</span>
+<a name="impress.js-pyg.html-629"></a>        <span class="p">},</span> <span class="kc">false</span><span class="p">);</span>
+<a name="impress.js-pyg.html-630"></a>        
+<a name="impress.js-pyg.html-631"></a>        <span class="nx">body</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;impress-disabled&quot;</span><span class="p">);</span>
+<a name="impress.js-pyg.html-632"></a>        
+<a name="impress.js-pyg.html-633"></a>        <span class="c1">// store and return API for given impress.js root element</span>
+<a name="impress.js-pyg.html-634"></a>        <span class="k">return</span> <span class="p">(</span><span class="nx">roots</span><span class="p">[</span> <span class="s2">&quot;impress-root-&quot;</span> <span class="o">+</span> <span class="nx">rootId</span> <span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-635"></a>            <span class="nx">init</span><span class="o">:</span> <span class="nx">init</span><span class="p">,</span>
+<a name="impress.js-pyg.html-636"></a>            <span class="kr">goto</span><span class="o">:</span> <span class="kr">goto</span><span class="p">,</span>
+<a name="impress.js-pyg.html-637"></a>            <span class="nx">next</span><span class="o">:</span> <span class="nx">next</span><span class="p">,</span>
+<a name="impress.js-pyg.html-638"></a>            <span class="nx">prev</span><span class="o">:</span> <span class="nx">prev</span>
+<a name="impress.js-pyg.html-639"></a>        <span class="p">});</span>
+<a name="impress.js-pyg.html-640"></a>
+<a name="impress.js-pyg.html-641"></a>    <span class="p">};</span>
+<a name="impress.js-pyg.html-642"></a>    
+<a name="impress.js-pyg.html-643"></a>    <span class="c1">// flag that can be used in JS to check if browser have passed the support test</span>
+<a name="impress.js-pyg.html-644"></a>    <span class="nx">impress</span><span class="p">.</span><span class="nx">supported</span> <span class="o">=</span> <span class="nx">impressSupported</span><span class="p">;</span>
+<a name="impress.js-pyg.html-645"></a>    
+<a name="impress.js-pyg.html-646"></a><span class="p">})(</span><span class="nb">document</span><span class="p">,</span> <span class="nb">window</span><span class="p">);</span>
+<a name="impress.js-pyg.html-647"></a>
+<a name="impress.js-pyg.html-648"></a><span class="c1">// NAVIGATION EVENTS</span>
+<a name="impress.js-pyg.html-649"></a>
+<a name="impress.js-pyg.html-650"></a><span class="c1">// As you can see this part is separate from the impress.js core code.</span>
+<a name="impress.js-pyg.html-651"></a><span class="c1">// It&#39;s because these navigation actions only need what impress.js provides with</span>
+<a name="impress.js-pyg.html-652"></a><span class="c1">// its simple API.</span>
+<a name="impress.js-pyg.html-653"></a><span class="c1">//</span>
+<a name="impress.js-pyg.html-654"></a><span class="c1">// In future I think about moving it to make them optional, move to separate files</span>
+<a name="impress.js-pyg.html-655"></a><span class="c1">// and treat more like a &#39;plugins&#39;.</span>
+<a name="impress.js-pyg.html-656"></a><span class="p">(</span><span class="kd">function</span> <span class="p">(</span> <span class="nb">document</span><span class="p">,</span> <span class="nb">window</span> <span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-657"></a>    <span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+<a name="impress.js-pyg.html-658"></a>    
+<a name="impress.js-pyg.html-659"></a>    <span class="c1">// throttling function calls, by Remy Sharp</span>
+<a name="impress.js-pyg.html-660"></a>    <span class="c1">// http://remysharp.com/2010/07/21/throttling-function-calls/</span>
+<a name="impress.js-pyg.html-661"></a>    <span class="kd">var</span> <span class="nx">throttle</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">fn</span><span class="p">,</span> <span class="nx">delay</span><span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-662"></a>        <span class="kd">var</span> <span class="nx">timer</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<a name="impress.js-pyg.html-663"></a>        <span class="k">return</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-664"></a>            <span class="kd">var</span> <span class="nx">context</span> <span class="o">=</span> <span class="k">this</span><span class="p">,</span> <span class="nx">args</span> <span class="o">=</span> <span class="nx">arguments</span><span class="p">;</span>
+<a name="impress.js-pyg.html-665"></a>            <span class="nx">clearTimeout</span><span class="p">(</span><span class="nx">timer</span><span class="p">);</span>
+<a name="impress.js-pyg.html-666"></a>            <span class="nx">timer</span> <span class="o">=</span> <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-667"></a>                <span class="nx">fn</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span>
+<a name="impress.js-pyg.html-668"></a>            <span class="p">},</span> <span class="nx">delay</span><span class="p">);</span>
+<a name="impress.js-pyg.html-669"></a>        <span class="p">};</span>
+<a name="impress.js-pyg.html-670"></a>    <span class="p">};</span>
+<a name="impress.js-pyg.html-671"></a>    
+<a name="impress.js-pyg.html-672"></a>    <span class="c1">// wait for impress.js to be initialized</span>
+<a name="impress.js-pyg.html-673"></a>    <span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;impress:init&quot;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-674"></a>        <span class="c1">// Getting API from event data.</span>
+<a name="impress.js-pyg.html-675"></a>        <span class="c1">// So you don&#39;t event need to know what is the id of the root element</span>
+<a name="impress.js-pyg.html-676"></a>        <span class="c1">// or anything. `impress:init` event data gives you everything you </span>
+<a name="impress.js-pyg.html-677"></a>        <span class="c1">// need to control the presentation that was just initialized.</span>
+<a name="impress.js-pyg.html-678"></a>        <span class="kd">var</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">detail</span><span class="p">.</span><span class="nx">api</span><span class="p">;</span>
+<a name="impress.js-pyg.html-679"></a>        
+<a name="impress.js-pyg.html-680"></a>        <span class="c1">// KEYBOARD NAVIGATION HANDLERS</span>
+<a name="impress.js-pyg.html-681"></a>        
+<a name="impress.js-pyg.html-682"></a>        <span class="c1">// Prevent default keydown action when one of supported key is pressed.</span>
+<a name="impress.js-pyg.html-683"></a>        <span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;keydown&quot;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">event</span> <span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-684"></a>            <span class="k">if</span> <span class="p">(</span> <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">===</span> <span class="mi">9</span> <span class="o">||</span> <span class="p">(</span> <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">&gt;=</span> <span class="mi">32</span> <span class="o">&amp;&amp;</span> <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">&lt;=</span> <span class="mi">34</span> <span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">&gt;=</span> <span class="mi">37</span> <span class="o">&amp;&amp;</span> <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">&lt;=</span> <span class="mi">40</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-685"></a>                <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+<a name="impress.js-pyg.html-686"></a>            <span class="p">}</span>
+<a name="impress.js-pyg.html-687"></a>        <span class="p">},</span> <span class="kc">false</span><span class="p">);</span>
+<a name="impress.js-pyg.html-688"></a>        
+<a name="impress.js-pyg.html-689"></a>        <span class="c1">// Trigger impress action (next or prev) on keyup.</span>
+<a name="impress.js-pyg.html-690"></a>        
+<a name="impress.js-pyg.html-691"></a>        <span class="c1">// Supported keys are:</span>
+<a name="impress.js-pyg.html-692"></a>        <span class="c1">// [space] - quite common in presentation software to move forward</span>
+<a name="impress.js-pyg.html-693"></a>        <span class="c1">// [up] [right] / [down] [left] - again common and natural addition,</span>
+<a name="impress.js-pyg.html-694"></a>        <span class="c1">// [pgdown] / [pgup] - often triggered by remote controllers,</span>
+<a name="impress.js-pyg.html-695"></a>        <span class="c1">// [tab] - this one is quite controversial, but the reason it ended up on</span>
+<a name="impress.js-pyg.html-696"></a>        <span class="c1">//   this list is quite an interesting story... Remember that strange part</span>
+<a name="impress.js-pyg.html-697"></a>        <span class="c1">//   in the impress.js code where window is scrolled to 0,0 on every presentation</span>
+<a name="impress.js-pyg.html-698"></a>        <span class="c1">//   step, because sometimes browser scrolls viewport because of the focused element?</span>
+<a name="impress.js-pyg.html-699"></a>        <span class="c1">//   Well, the [tab] key by default navigates around focusable elements, so clicking</span>
+<a name="impress.js-pyg.html-700"></a>        <span class="c1">//   it very often caused scrolling to focused element and breaking impress.js</span>
+<a name="impress.js-pyg.html-701"></a>        <span class="c1">//   positioning. I didn&#39;t want to just prevent this default action, so I used [tab]</span>
+<a name="impress.js-pyg.html-702"></a>        <span class="c1">//   as another way to moving to next step... And yes, I know that for the sake of</span>
+<a name="impress.js-pyg.html-703"></a>        <span class="c1">//   consistency I should add [shift+tab] as opposite action...</span>
+<a name="impress.js-pyg.html-704"></a>        <span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;keyup&quot;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">event</span> <span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-705"></a>            <span class="k">if</span> <span class="p">(</span> <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">===</span> <span class="mi">9</span> <span class="o">||</span> <span class="p">(</span> <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">&gt;=</span> <span class="mi">32</span> <span class="o">&amp;&amp;</span> <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">&lt;=</span> <span class="mi">34</span> <span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">&gt;=</span> <span class="mi">37</span> <span class="o">&amp;&amp;</span> <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">&lt;=</span> <span class="mi">40</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-706"></a>                <span class="k">switch</span><span class="p">(</span> <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-707"></a>                    <span class="k">case</span> <span class="mi">33</span><span class="o">:</span> <span class="c1">// pg up</span>
+<a name="impress.js-pyg.html-708"></a>                    <span class="k">case</span> <span class="mi">37</span><span class="o">:</span> <span class="c1">// left</span>
+<a name="impress.js-pyg.html-709"></a>                    <span class="k">case</span> <span class="mi">38</span><span class="o">:</span> <span class="c1">// up</span>
+<a name="impress.js-pyg.html-710"></a>                             <span class="nx">api</span><span class="p">.</span><span class="nx">prev</span><span class="p">();</span>
+<a name="impress.js-pyg.html-711"></a>                             <span class="k">break</span><span class="p">;</span>
+<a name="impress.js-pyg.html-712"></a>                    <span class="k">case</span> <span class="mi">9</span><span class="o">:</span>  <span class="c1">// tab</span>
+<a name="impress.js-pyg.html-713"></a>                    <span class="k">case</span> <span class="mi">32</span><span class="o">:</span> <span class="c1">// space</span>
+<a name="impress.js-pyg.html-714"></a>                    <span class="k">case</span> <span class="mi">34</span><span class="o">:</span> <span class="c1">// pg down</span>
+<a name="impress.js-pyg.html-715"></a>                    <span class="k">case</span> <span class="mi">39</span><span class="o">:</span> <span class="c1">// right</span>
+<a name="impress.js-pyg.html-716"></a>                    <span class="k">case</span> <span class="mi">40</span><span class="o">:</span> <span class="c1">// down</span>
+<a name="impress.js-pyg.html-717"></a>                             <span class="nx">api</span><span class="p">.</span><span class="nx">next</span><span class="p">();</span>
+<a name="impress.js-pyg.html-718"></a>                             <span class="k">break</span><span class="p">;</span>
+<a name="impress.js-pyg.html-719"></a>                <span class="p">}</span>
+<a name="impress.js-pyg.html-720"></a>                
+<a name="impress.js-pyg.html-721"></a>                <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+<a name="impress.js-pyg.html-722"></a>            <span class="p">}</span>
+<a name="impress.js-pyg.html-723"></a>        <span class="p">},</span> <span class="kc">false</span><span class="p">);</span>
+<a name="impress.js-pyg.html-724"></a>        
+<a name="impress.js-pyg.html-725"></a>        <span class="c1">// delegated handler for clicking on the links to presentation steps</span>
+<a name="impress.js-pyg.html-726"></a>        <span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">event</span> <span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-727"></a>            <span class="c1">// event delegation with &quot;bubbling&quot;</span>
+<a name="impress.js-pyg.html-728"></a>            <span class="c1">// check if event target (or any of its parents is a link)</span>
+<a name="impress.js-pyg.html-729"></a>            <span class="kd">var</span> <span class="nx">target</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
+<a name="impress.js-pyg.html-730"></a>            <span class="k">while</span> <span class="p">(</span> <span class="p">(</span><span class="nx">target</span><span class="p">.</span><span class="nx">tagName</span> <span class="o">!==</span> <span class="s2">&quot;A&quot;</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
+<a name="impress.js-pyg.html-731"></a>                    <span class="p">(</span><span class="nx">target</span> <span class="o">!==</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-732"></a>                <span class="nx">target</span> <span class="o">=</span> <span class="nx">target</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">;</span>
+<a name="impress.js-pyg.html-733"></a>            <span class="p">}</span>
+<a name="impress.js-pyg.html-734"></a>            
+<a name="impress.js-pyg.html-735"></a>            <span class="k">if</span> <span class="p">(</span> <span class="nx">target</span><span class="p">.</span><span class="nx">tagName</span> <span class="o">===</span> <span class="s2">&quot;A&quot;</span> <span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-736"></a>                <span class="kd">var</span> <span class="nx">href</span> <span class="o">=</span> <span class="nx">target</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="s2">&quot;href&quot;</span><span class="p">);</span>
+<a name="impress.js-pyg.html-737"></a>                
+<a name="impress.js-pyg.html-738"></a>                <span class="c1">// if it&#39;s a link to presentation step, target this step</span>
+<a name="impress.js-pyg.html-739"></a>                <span class="k">if</span> <span class="p">(</span> <span class="nx">href</span> <span class="o">&amp;&amp;</span> <span class="nx">href</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">===</span> <span class="s1">&#39;#&#39;</span> <span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-740"></a>                    <span class="nx">target</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span> <span class="nx">href</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">);</span>
+<a name="impress.js-pyg.html-741"></a>                <span class="p">}</span>
+<a name="impress.js-pyg.html-742"></a>            <span class="p">}</span>
+<a name="impress.js-pyg.html-743"></a>            
+<a name="impress.js-pyg.html-744"></a>            <span class="k">if</span> <span class="p">(</span> <span class="nx">api</span><span class="p">.</span><span class="kr">goto</span><span class="p">(</span><span class="nx">target</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-745"></a>                <span class="nx">event</span><span class="p">.</span><span class="nx">stopImmediatePropagation</span><span class="p">();</span>
+<a name="impress.js-pyg.html-746"></a>                <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+<a name="impress.js-pyg.html-747"></a>            <span class="p">}</span>
+<a name="impress.js-pyg.html-748"></a>        <span class="p">},</span> <span class="kc">false</span><span class="p">);</span>
+<a name="impress.js-pyg.html-749"></a>        
+<a name="impress.js-pyg.html-750"></a>        <span class="c1">// delegated handler for clicking on step elements</span>
+<a name="impress.js-pyg.html-751"></a>        <span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">event</span> <span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-752"></a>            <span class="kd">var</span> <span class="nx">target</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
+<a name="impress.js-pyg.html-753"></a>            <span class="c1">// find closest step element that is not active</span>
+<a name="impress.js-pyg.html-754"></a>            <span class="k">while</span> <span class="p">(</span> <span class="o">!</span><span class="p">(</span><span class="nx">target</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="s2">&quot;step&quot;</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">target</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="s2">&quot;active&quot;</span><span class="p">))</span> <span class="o">&amp;&amp;</span>
+<a name="impress.js-pyg.html-755"></a>                    <span class="p">(</span><span class="nx">target</span> <span class="o">!==</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-756"></a>                <span class="nx">target</span> <span class="o">=</span> <span class="nx">target</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">;</span>
+<a name="impress.js-pyg.html-757"></a>            <span class="p">}</span>
+<a name="impress.js-pyg.html-758"></a>            
+<a name="impress.js-pyg.html-759"></a>            <span class="k">if</span> <span class="p">(</span> <span class="nx">api</span><span class="p">.</span><span class="kr">goto</span><span class="p">(</span><span class="nx">target</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-760"></a>                <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+<a name="impress.js-pyg.html-761"></a>            <span class="p">}</span>
+<a name="impress.js-pyg.html-762"></a>        <span class="p">},</span> <span class="kc">false</span><span class="p">);</span>
+<a name="impress.js-pyg.html-763"></a>        
+<a name="impress.js-pyg.html-764"></a>        <span class="c1">// touch handler to detect taps on the left and right side of the screen</span>
+<a name="impress.js-pyg.html-765"></a>        <span class="c1">// based on awesome work of @hakimel: https://github.com/hakimel/reveal.js</span>
+<a name="impress.js-pyg.html-766"></a>        <span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;touchstart&quot;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">event</span> <span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-767"></a>            <span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">touches</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-768"></a>                <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">touches</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">clientX</span><span class="p">,</span>
+<a name="impress.js-pyg.html-769"></a>                    <span class="nx">width</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">innerWidth</span> <span class="o">*</span> <span class="mf">0.3</span><span class="p">,</span>
+<a name="impress.js-pyg.html-770"></a>                    <span class="nx">result</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<a name="impress.js-pyg.html-771"></a>                    
+<a name="impress.js-pyg.html-772"></a>                <span class="k">if</span> <span class="p">(</span> <span class="nx">x</span> <span class="o">&lt;</span> <span class="nx">width</span> <span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-773"></a>                    <span class="nx">result</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">prev</span><span class="p">();</span>
+<a name="impress.js-pyg.html-774"></a>                <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="nx">x</span> <span class="o">&gt;</span> <span class="nb">window</span><span class="p">.</span><span class="nx">innerWidth</span> <span class="o">-</span> <span class="nx">width</span> <span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-775"></a>                    <span class="nx">result</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">next</span><span class="p">();</span>
+<a name="impress.js-pyg.html-776"></a>                <span class="p">}</span>
+<a name="impress.js-pyg.html-777"></a>                
+<a name="impress.js-pyg.html-778"></a>                <span class="k">if</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-779"></a>                    <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+<a name="impress.js-pyg.html-780"></a>                <span class="p">}</span>
+<a name="impress.js-pyg.html-781"></a>            <span class="p">}</span>
+<a name="impress.js-pyg.html-782"></a>        <span class="p">},</span> <span class="kc">false</span><span class="p">);</span>
+<a name="impress.js-pyg.html-783"></a>        
+<a name="impress.js-pyg.html-784"></a>        <span class="c1">// rescale presentation when window is resized</span>
+<a name="impress.js-pyg.html-785"></a>        <span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;resize&quot;</span><span class="p">,</span> <span class="nx">throttle</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+<a name="impress.js-pyg.html-786"></a>            <span class="c1">// force going to active step again, to trigger rescaling</span>
+<a name="impress.js-pyg.html-787"></a>            <span class="nx">api</span><span class="p">.</span><span class="kr">goto</span><span class="p">(</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;.step.active&quot;</span><span class="p">),</span> <span class="mi">500</span> <span class="p">);</span>
+<a name="impress.js-pyg.html-788"></a>        <span class="p">},</span> <span class="mi">250</span><span class="p">),</span> <span class="kc">false</span><span class="p">);</span>
+<a name="impress.js-pyg.html-789"></a>        
+<a name="impress.js-pyg.html-790"></a>    <span class="p">},</span> <span class="kc">false</span><span class="p">);</span>
+<a name="impress.js-pyg.html-791"></a>        
+<a name="impress.js-pyg.html-792"></a><span class="p">})(</span><span class="nb">document</span><span class="p">,</span> <span class="nb">window</span><span class="p">);</span>
+<a name="impress.js-pyg.html-793"></a>
+<a name="impress.js-pyg.html-794"></a><span class="c1">// THAT&#39;S ALL FOLKS!</span>
+<a name="impress.js-pyg.html-795"></a><span class="c1">//</span>
+<a name="impress.js-pyg.html-796"></a><span class="c1">// Thanks for reading it all.</span>
+<a name="impress.js-pyg.html-797"></a><span class="c1">// Or thanks for scrolling down and reading the last part.</span>
+<a name="impress.js-pyg.html-798"></a><span class="c1">//</span>
+<a name="impress.js-pyg.html-799"></a><span class="c1">// I&#39;ve learnt a lot when building impress.js and I hope this code and comments</span>
+<a name="impress.js-pyg.html-800"></a><span class="c1">// will help somebody learn at least some part of it.</span>
+</pre></div>

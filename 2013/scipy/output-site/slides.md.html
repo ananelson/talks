@@ -1,0 +1,122 @@
+<div class="highlight"><pre><a name="slides.md-pyg.html-1"></a><span class="n">Writing</span> <span class="n">Reproducible</span> <span class="n">Papers</span> <span class="k">with</span> <span class="n">Dexy</span>
+<a name="slides.md-pyg.html-2"></a><span class="p">-------------------------------------</span>
+<a name="slides.md-pyg.html-3"></a><span class="p">&lt;</span><span class="n">br</span> <span class="p">/&gt;</span>
+<a name="slides.md-pyg.html-4"></a><span class="p">&lt;</span><span class="n">http</span><span class="p">:</span><span class="c1">//dexy.it&gt;</span>
+<a name="slides.md-pyg.html-5"></a><span class="p">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="p">=</span><span class="s">&quot;http://twitter.com/dexyit&quot;</span><span class="p">&gt;@</span><span class="n">dexyit</span><span class="p">&lt;/</span><span class="n">a</span><span class="p">&gt;</span>
+<a name="slides.md-pyg.html-6"></a><span class="p">&lt;</span><span class="n">br</span> <span class="p">/&gt;</span>
+<a name="slides.md-pyg.html-7"></a><span class="n">Ana</span> <span class="n">Nelson</span>
+<a name="slides.md-pyg.html-8"></a><span class="p">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="p">=</span><span class="s">&quot;http://twitter.com/ananelson&quot;</span><span class="p">&gt;@</span><span class="n">ananelson</span><span class="p">&lt;/</span><span class="n">a</span><span class="p">&gt;</span>
+<a name="slides.md-pyg.html-9"></a><span class="n">ana</span><span class="p">@</span><span class="n">ananelson</span><span class="p">.</span><span class="n">com</span>
+<a name="slides.md-pyg.html-10"></a><span class="p">&lt;</span><span class="n">http</span><span class="p">:</span><span class="c1">//github.com/ananelson/talks&gt;</span>
+<a name="slides.md-pyg.html-11"></a>
+<a name="slides.md-pyg.html-12"></a>
+<a name="slides.md-pyg.html-13"></a><span class="n">Reproducibility</span>
+<a name="slides.md-pyg.html-14"></a><span class="p">---------------</span>
+<a name="slides.md-pyg.html-15"></a>
+<a name="slides.md-pyg.html-16"></a><span class="p">-</span> <span class="n">I</span> <span class="n">want</span> <span class="n">to</span> <span class="n">redo</span> <span class="n">the</span> <span class="n">exact</span> <span class="n">steps</span> <span class="n">I</span> <span class="n">did</span> <span class="k">this</span> <span class="n">morning</span> <span class="n">on</span> <span class="k">this</span> <span class="n">machine</span><span class="p">,</span> <span class="n">so</span> <span class="n">I</span> <span class="n">can</span> <span class="n">update</span> <span class="n">my</span> <span class="n">article</span> <span class="p">[</span><span class="k">with</span> <span class="n">different</span> <span class="n">data</span> <span class="n">or</span> <span class="n">code</span><span class="p">].</span>
+<a name="slides.md-pyg.html-17"></a><span class="p">-</span> <span class="n">I</span> <span class="n">want</span> <span class="n">to</span> <span class="n">understand</span> <span class="n">how</span> <span class="n">someone</span> <span class="k">else</span> <span class="n">got</span> <span class="n">to</span> <span class="n">the</span> <span class="n">results</span> <span class="k">in</span> <span class="n">their</span> <span class="n">published</span> <span class="n">paper</span><span class="p">.</span>
+<a name="slides.md-pyg.html-18"></a><span class="p">-</span> <span class="n">I</span> <span class="n">want</span> <span class="n">to</span> <span class="n">make</span> <span class="n">use</span> <span class="n">of</span> <span class="n">someone</span> <span class="k">else</span><span class="err">&#39;</span><span class="n">s</span> <span class="n">code</span> <span class="n">and</span> <span class="n">data</span> <span class="n">so</span> <span class="n">I</span> <span class="n">can</span> <span class="n">extend</span> <span class="n">their</span> <span class="n">work</span><span class="p">.</span>
+<a name="slides.md-pyg.html-19"></a>
+<a name="slides.md-pyg.html-20"></a>
+<a name="slides.md-pyg.html-21"></a><span class="n">Ingredients</span>
+<a name="slides.md-pyg.html-22"></a><span class="p">-----------</span>
+<a name="slides.md-pyg.html-23"></a>
+<a name="slides.md-pyg.html-24"></a><span class="p">-</span> <span class="n">Operating</span> <span class="n">System</span><span class="p">/</span><span class="n">Software</span>
+<a name="slides.md-pyg.html-25"></a><span class="p">-</span> <span class="n">Data</span>
+<a name="slides.md-pyg.html-26"></a><span class="p">-</span> <span class="n">Source</span> <span class="n">Code</span>
+<a name="slides.md-pyg.html-27"></a><span class="p">-</span> <span class="n">Workflow</span>
+<a name="slides.md-pyg.html-28"></a>
+<a name="slides.md-pyg.html-29"></a>
+<a name="slides.md-pyg.html-30"></a><span class="n">Reproducibility</span>
+<a name="slides.md-pyg.html-31"></a><span class="p">---------------</span>
+<a name="slides.md-pyg.html-32"></a>
+<a name="slides.md-pyg.html-33"></a><span class="p">*</span> <span class="p">*</span><span class="n">Capture</span><span class="p">*</span> <span class="p">-</span> <span class="n">capture</span> <span class="n">of</span> <span class="n">the</span> <span class="n">steps</span> <span class="n">carried</span> <span class="n">out</span> <span class="k">in</span> <span class="n">an</span> <span class="n">experiment</span>
+<a name="slides.md-pyg.html-34"></a><span class="p">*</span> <span class="p">*</span><span class="n">Representation</span><span class="p">*</span> <span class="p">-</span> <span class="n">creation</span> <span class="n">of</span> <span class="n">an</span> <span class="n">executable</span> <span class="n">specification</span> <span class="n">of</span> <span class="n">the</span> <span class="n">experiment</span> <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">g</span><span class="p">.</span> <span class="n">workflow</span><span class="p">)</span>
+<a name="slides.md-pyg.html-35"></a><span class="p">*</span> <span class="p">*</span><span class="n">Portability</span><span class="p">*</span> <span class="p">-</span> <span class="n">ability</span> <span class="k">for</span> <span class="n">an</span> <span class="n">experiment</span> <span class="n">to</span> <span class="n">be</span> <span class="n">re</span><span class="p">-</span><span class="n">executed</span> <span class="k">in</span> <span class="n">an</span> <span class="n">environment</span> <span class="n">different</span> <span class="n">from</span> <span class="n">the</span> <span class="n">one</span> <span class="n">originally</span> <span class="n">used</span>
+<a name="slides.md-pyg.html-36"></a><span class="p">*</span> <span class="p">*</span><span class="n">Document</span> <span class="n">Linkage</span><span class="p">*</span> <span class="p">-</span> <span class="n">linkage</span> <span class="n">between</span> <span class="n">experiments</span> <span class="n">and</span> <span class="n">documents</span><span class="p">,</span> <span class="n">creation</span> <span class="n">of</span> <span class="n">executable</span> <span class="n">documents</span>
+<a name="slides.md-pyg.html-37"></a><span class="p">*</span> <span class="p">*</span><span class="n">Verification</span> <span class="n">and</span> <span class="n">Exploration</span><span class="p">*</span> <span class="p">-</span> <span class="n">ability</span> <span class="n">to</span> <span class="n">reproduce</span> <span class="n">the</span> <span class="n">original</span> <span class="n">results</span> <span class="n">and</span> <span class="n">to</span> <span class="n">vary</span> <span class="n">original</span> <span class="n">parameters</span><span class="p">/</span><span class="n">data</span>
+<a name="slides.md-pyg.html-38"></a><span class="p">*</span> <span class="p">*</span><span class="n">Archival</span><span class="p">*</span> <span class="p">-</span> <span class="n">archival</span> <span class="n">of</span> <span class="n">experiment</span> <span class="n">and</span> <span class="n">data</span> <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">g</span><span class="p">.</span> <span class="n">repository</span><span class="p">)</span>
+<a name="slides.md-pyg.html-39"></a><span class="p">*</span> <span class="p">*</span><span class="n">Longevity</span><span class="p">*</span> <span class="p">-</span> <span class="n">ability</span> <span class="n">to</span> <span class="n">maintain</span> <span class="n">an</span> <span class="n">experiment</span><span class="err">&#39;</span><span class="n">s</span> <span class="n">consistency</span> <span class="n">and</span> <span class="n">reproducibility</span> <span class="n">a</span> <span class="n">long</span><span class="p">-</span><span class="n">term</span> <span class="n">basis</span>
+<a name="slides.md-pyg.html-40"></a>
+<a name="slides.md-pyg.html-41"></a>
+<a name="slides.md-pyg.html-42"></a><span class="n">Capturing</span> <span class="p">&amp;</span> <span class="n">Tangling</span>
+<a name="slides.md-pyg.html-43"></a><span class="p">--------------------</span>
+<a name="slides.md-pyg.html-44"></a>
+<a name="slides.md-pyg.html-45"></a><span class="p">-</span> <span class="n">Use</span> <span class="n">virtual</span> <span class="n">machine</span> <span class="n">images</span> <span class="p">(</span><span class="k">for</span> <span class="n">example</span><span class="p">)</span> <span class="n">to</span> <span class="n">automatically</span> <span class="n">capture</span> <span class="n">full</span> <span class="n">environments</span> <span class="n">including</span> <span class="n">software</span> <span class="n">and</span> <span class="n">data</span><span class="p">?</span>
+<a name="slides.md-pyg.html-46"></a><span class="p">-</span> <span class="n">Have</span> <span class="n">self</span><span class="p">-</span><span class="n">contained</span> <span class="n">documents</span> <span class="k">with</span> <span class="n">data</span><span class="p">,</span> <span class="n">analysis</span> <span class="n">and</span> <span class="n">code</span><span class="p">?</span>
+<a name="slides.md-pyg.html-47"></a>
+<a name="slides.md-pyg.html-48"></a>
+<a name="slides.md-pyg.html-49"></a><span class="n">Dexy</span><span class="err">&#39;</span><span class="n">s</span> <span class="n">Approach</span>
+<a name="slides.md-pyg.html-50"></a><span class="p">---------------</span>
+<a name="slides.md-pyg.html-51"></a>
+<a name="slides.md-pyg.html-52"></a><span class="n">Dexy</span> <span class="n">runs</span> <span class="n">other</span> <span class="n">tools</span>
+<a name="slides.md-pyg.html-53"></a><span class="p">-</span> <span class="k">in</span> <span class="n">the</span> <span class="n">order</span> <span class="n">you</span> <span class="n">specify</span><span class="p">,</span>
+<a name="slides.md-pyg.html-54"></a><span class="p">-</span> <span class="n">acting</span> <span class="n">on</span> <span class="n">the</span> <span class="n">input</span> <span class="n">data</span> <span class="n">you</span> <span class="n">specify</span><span class="p">,</span>
+<a name="slides.md-pyg.html-55"></a><span class="p">-</span> <span class="n">and</span> <span class="n">helps</span> <span class="n">you</span> <span class="n">get</span> <span class="n">all</span> <span class="k">this</span> <span class="n">content</span> <span class="n">into</span> <span class="n">static</span> <span class="p">(</span><span class="n">but</span> <span class="n">refreshable</span><span class="p">)</span> <span class="n">documents</span><span class="p">.</span>
+<a name="slides.md-pyg.html-56"></a>
+<a name="slides.md-pyg.html-57"></a>
+<a name="slides.md-pyg.html-58"></a><span class="n">Example</span>
+<a name="slides.md-pyg.html-59"></a><span class="p">-------</span>
+<a name="slides.md-pyg.html-60"></a>
+<a name="slides.md-pyg.html-61"></a><span class="p">[&amp;</span><span class="n">rarr</span><span class="p">;</span> <span class="n">A</span> <span class="n">tiny</span> <span class="n">example</span> <span class="n">to</span> <span class="n">make</span> <span class="k">this</span> <span class="n">more</span> <span class="n">intuitive</span><span class="p">.](/</span><span class="n">example</span><span class="p">)</span>
+<a name="slides.md-pyg.html-62"></a>
+<a name="slides.md-pyg.html-63"></a>
+<a name="slides.md-pyg.html-64"></a><span class="n">Dexy</span><span class="err">&#39;</span><span class="n">s</span> <span class="n">Approach</span>
+<a name="slides.md-pyg.html-65"></a><span class="p">---------------</span>
+<a name="slides.md-pyg.html-66"></a>
+<a name="slides.md-pyg.html-67"></a><span class="n">Dexy</span> <span class="n">runs</span> <span class="n">other</span> <span class="n">tools</span>
+<a name="slides.md-pyg.html-68"></a><span class="p">-</span> <span class="k">in</span> <span class="n">the</span> <span class="n">order</span> <span class="n">you</span> <span class="n">specify</span><span class="p">,</span>
+<a name="slides.md-pyg.html-69"></a><span class="p">-</span> <span class="n">acting</span> <span class="n">on</span> <span class="n">the</span> <span class="n">input</span> <span class="n">data</span> <span class="n">you</span> <span class="n">specify</span><span class="p">,</span>
+<a name="slides.md-pyg.html-70"></a><span class="p">-</span> <span class="n">and</span> <span class="n">helps</span> <span class="n">you</span> <span class="n">get</span> <span class="n">all</span> <span class="k">this</span> <span class="n">content</span> <span class="n">into</span> <span class="n">static</span> <span class="p">(</span><span class="n">but</span> <span class="n">refreshable</span><span class="p">)</span> <span class="n">documents</span><span class="p">.</span>
+<a name="slides.md-pyg.html-71"></a>
+<a name="slides.md-pyg.html-72"></a>
+<a name="slides.md-pyg.html-73"></a><span class="n">What</span> <span class="n">Tools</span><span class="p">?</span>
+<a name="slides.md-pyg.html-74"></a><span class="p">-----------</span>
+<a name="slides.md-pyg.html-75"></a>
+<a name="slides.md-pyg.html-76"></a><span class="p">-</span> <span class="n">Any</span> <span class="n">automatable</span> <span class="n">tools</span> <span class="p">(</span><span class="n">interpreters</span><span class="p">/</span><span class="n">compilers</span><span class="p">,</span> <span class="n">syntax</span> <span class="n">highlighters</span><span class="p">,</span> <span class="n">code</span> <span class="n">analyzers</span><span class="p">,</span> <span class="n">graphing</span><span class="p">/</span><span class="n">statistics</span> <span class="n">tools</span><span class="p">)...</span>
+<a name="slides.md-pyg.html-77"></a><span class="p">-</span> <span class="p">...</span> <span class="n">which</span> <span class="n">have</span> <span class="n">a</span> <span class="n">command</span> <span class="n">line</span> <span class="n">interface</span> <span class="n">or</span> <span class="n">other</span> <span class="n">API</span><span class="p">.</span>
+<a name="slides.md-pyg.html-78"></a><span class="p">-</span> <span class="p">&lt;</span><span class="n">http</span><span class="p">:</span><span class="c1">//dexy.it/filters&gt;</span>
+<a name="slides.md-pyg.html-79"></a>
+<a name="slides.md-pyg.html-80"></a>
+<a name="slides.md-pyg.html-81"></a><span class="n">What</span> <span class="n">Input</span> <span class="n">Data</span><span class="p">?</span>
+<a name="slides.md-pyg.html-82"></a><span class="p">----------------</span>
+<a name="slides.md-pyg.html-83"></a>
+<a name="slides.md-pyg.html-84"></a><span class="p">-</span> <span class="n">Scripts</span><span class="p">,</span> <span class="n">data</span> <span class="n">files</span><span class="p">,</span> <span class="n">document</span> <span class="n">templates</span><span class="p">.</span>
+<a name="slides.md-pyg.html-85"></a><span class="p">-</span> <span class="n">Dexy</span> <span class="n">works</span> <span class="n">on</span> <span class="n">file</span> <span class="n">system</span> <span class="n">directories</span> <span class="p">(</span><span class="n">hopefully</span> <span class="n">under</span> <span class="n">version</span> <span class="n">control</span><span class="p">).</span>
+<a name="slides.md-pyg.html-86"></a>
+<a name="slides.md-pyg.html-87"></a>
+<a name="slides.md-pyg.html-88"></a><span class="n">What</span> <span class="n">Documents</span><span class="p">?</span>
+<a name="slides.md-pyg.html-89"></a><span class="p">---------------</span>
+<a name="slides.md-pyg.html-90"></a>
+<a name="slides.md-pyg.html-91"></a><span class="p">-</span> <span class="n">There</span> <span class="k">is</span> <span class="n">no</span> <span class="n">native</span> <span class="n">dexy</span> <span class="n">document</span> <span class="n">format</span><span class="p">.</span> <span class="n">You</span> <span class="n">can</span> <span class="n">write</span> <span class="n">documents</span> <span class="n">using</span> <span class="n">any</span> <span class="n">text</span><span class="p">-</span><span class="n">based</span> <span class="p">(</span><span class="n">or</span> <span class="n">otherwise</span> <span class="n">parseable</span><span class="p">/</span><span class="n">automatable</span><span class="p">)</span> <span class="n">format</span><span class="p">.</span>
+<a name="slides.md-pyg.html-92"></a><span class="p">-</span> <span class="n">You</span> <span class="n">can</span> <span class="n">use</span> <span class="n">a</span> <span class="n">templating</span> <span class="n">system</span> <span class="p">(</span><span class="n">such</span> <span class="k">as</span> <span class="n">jinja</span><span class="p">)</span> <span class="n">to</span> <span class="n">insert</span> <span class="n">references</span> <span class="n">to</span> <span class="n">locations</span> <span class="k">in</span> <span class="n">other</span> <span class="n">files</span> <span class="n">into</span> <span class="n">your</span> <span class="n">documents</span><span class="p">.</span>
+<a name="slides.md-pyg.html-93"></a><span class="p">-</span> <span class="n">Dexy</span> <span class="n">will</span> <span class="n">run</span> <span class="n">any</span> <span class="n">tool</span> <span class="n">you</span> <span class="n">want</span> <span class="n">to</span> <span class="n">convert</span> <span class="n">your</span> <span class="n">text</span> <span class="n">plus</span> <span class="n">the</span> <span class="n">dynamically</span> <span class="n">inserted</span> <span class="n">content</span> <span class="n">into</span> <span class="n">other</span> <span class="n">formats</span> <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">g</span><span class="p">.</span> <span class="n">run</span> <span class="n">pdflatex</span> <span class="n">on</span> <span class="p">.</span><span class="n">tex</span><span class="p">,</span> <span class="n">or</span> <span class="n">run</span> <span class="n">docutils</span> <span class="n">on</span> <span class="p">.</span><span class="n">rst</span><span class="p">,</span> <span class="n">or</span> <span class="n">run</span> <span class="n">pandoc</span> <span class="n">on</span> <span class="p">.</span><span class="n">md</span><span class="p">)</span> 
+<a name="slides.md-pyg.html-94"></a>
+<a name="slides.md-pyg.html-95"></a>
+<a name="slides.md-pyg.html-96"></a><span class="p">&lt;</span><span class="n">img</span> <span class="n">src</span><span class="p">=</span><span class="s">&quot;logo.png&quot;</span> <span class="n">width</span><span class="p">=</span><span class="s">&quot;400px;&quot;</span> <span class="p">/&gt;</span>
+<a name="slides.md-pyg.html-97"></a>
+<a name="slides.md-pyg.html-98"></a><span class="p">*</span> <span class="n">document</span><span class="p">-</span><span class="n">oriented</span> <span class="err">&#39;</span><span class="n">make</span><span class="err">&#39;</span>
+<a name="slides.md-pyg.html-99"></a><span class="p">*</span> <span class="n">project</span> <span class="n">automation</span>
+<a name="slides.md-pyg.html-100"></a><span class="p">*</span> <span class="n">code</span> <span class="k">is</span> <span class="n">code</span><span class="p">,</span> <span class="n">prose</span> <span class="k">is</span> <span class="n">prose</span><span class="p">,</span> <span class="n">data</span> <span class="k">is</span> <span class="n">data</span>
+<a name="slides.md-pyg.html-101"></a><span class="p">*</span> <span class="n">many</span><span class="p">-</span><span class="n">to</span><span class="p">-</span><span class="n">many</span> <span class="n">relationships</span> <span class="n">of</span> <span class="n">prose</span> <span class="n">to</span> <span class="n">code</span><span class="p">/</span><span class="n">data</span>
+<a name="slides.md-pyg.html-102"></a><span class="p">*</span> <span class="n">document</span> <span class="n">live</span> <span class="n">code</span>
+<a name="slides.md-pyg.html-103"></a><span class="p">*</span> <span class="n">Open</span> <span class="n">Source</span> <span class="p">(</span><span class="n">MIT</span><span class="p">)</span>
+<a name="slides.md-pyg.html-104"></a><span class="p">*</span> <span class="n">Written</span> <span class="k">in</span> <span class="n">Python</span>
+<a name="slides.md-pyg.html-105"></a>
+<a name="slides.md-pyg.html-106"></a>
+<a name="slides.md-pyg.html-107"></a><span class="n">Software</span> <span class="n">Documentation</span>
+<a name="slides.md-pyg.html-108"></a><span class="p">----------------------</span>
+<a name="slides.md-pyg.html-109"></a>
+<a name="slides.md-pyg.html-110"></a><span class="n">You</span> <span class="n">can</span> <span class="n">also</span> <span class="n">use</span> <span class="n">Dexy</span> <span class="n">to</span> <span class="n">document</span> <span class="n">your</span><span class="p">:</span>
+<a name="slides.md-pyg.html-111"></a>
+<a name="slides.md-pyg.html-112"></a><span class="p">*</span> <span class="n">command</span> <span class="n">line</span> <span class="n">tool</span>
+<a name="slides.md-pyg.html-113"></a><span class="p">*</span> <span class="n">library</span>
+<a name="slides.md-pyg.html-114"></a><span class="p">*</span> <span class="n">web</span> <span class="n">app</span>
+<a name="slides.md-pyg.html-115"></a>
+<a name="slides.md-pyg.html-116"></a>
+<a name="slides.md-pyg.html-117"></a><span class="n">Get</span> <span class="n">Started</span>
+<a name="slides.md-pyg.html-118"></a><span class="p">-----------</span>
+<a name="slides.md-pyg.html-119"></a>
+<a name="slides.md-pyg.html-120"></a><span class="n">http</span><span class="p">:</span><span class="c1">//www.dexy.it/guide/getting-started.html</span>
+<a name="slides.md-pyg.html-121"></a><span class="n">info</span><span class="p">@</span><span class="n">dexy</span><span class="p">.</span><span class="n">it</span>
+</pre></div>
