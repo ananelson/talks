@@ -1,16 +1,26 @@
 ### "inputs"
 inputs:
+    - idio
+    - script:run-casper
+    - run-tests
+    - standalone
+    - dexy.yaml|idio
     - docs/screenshots.js|idio|h
     - docs/screenshots.js|idio|l
+
+### "idio"
+idio:
     - .py|idio|h
     - .py|idio|l
     - .sh|idio|h
     - .sh|idio|l
     - .html|idio|h
     - .html|idio|l
-    - dexy.yaml|idio
-    - script:run-casper
-    - run-tests
+
+standalone:
+    - docs/developer.rst|pyg:
+        - output: True
+        - ws-template: _pyg.html
     - docs/screenshots.js|pyg:
         - output: True
         - ws-template: _pyg.html
@@ -25,6 +35,7 @@ run-tests:
 assets:
     - .js
     - .css
+    - .png
 
 ### "run-casper"
 script:run-casper:

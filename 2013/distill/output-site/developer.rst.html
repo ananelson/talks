@@ -1,0 +1,157 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Developer.Rst</title>
+    <link href="pastie.css" rel="stylesheet" />
+</head>
+
+<body>
+
+<div class="highlight"><pre><a name="docs--developer.rst-pyg.html-1"></a><span class="gh">Developer Docs</span>
+<a name="docs--developer.rst-pyg.html-2"></a><span class="gh">==============</span>
+<a name="docs--developer.rst-pyg.html-3"></a>
+<a name="docs--developer.rst-pyg.html-4"></a><span class="p">..</span> <span class="ow">contents</span><span class="p">::</span>
+<a name="docs--developer.rst-pyg.html-5"></a>
+<a name="docs--developer.rst-pyg.html-6"></a>{% from &quot;dexy.jinja&quot; import code, codes, ext with context %}
+<a name="docs--developer.rst-pyg.html-7"></a>
+<a name="docs--developer.rst-pyg.html-8"></a><span class="gh">Models</span>
+<a name="docs--developer.rst-pyg.html-9"></a><span class="gh">------</span>
+<a name="docs--developer.rst-pyg.html-10"></a>
+<a name="docs--developer.rst-pyg.html-11"></a>The <span class="nv">`models`</span> module is imported from django:
+<a name="docs--developer.rst-pyg.html-12"></a>
+<a name="docs--developer.rst-pyg.html-13"></a>{{ codes(&quot;mysite_com/polls/models.py|idio&quot;, &quot;models&quot;) }}
+<a name="docs--developer.rst-pyg.html-14"></a>
+<a name="docs--developer.rst-pyg.html-15"></a>We define a Poll class:
+<a name="docs--developer.rst-pyg.html-16"></a>
+<a name="docs--developer.rst-pyg.html-17"></a>{{ codes(&quot;mysite_com/polls/models.py|idio&quot;, &quot;poll&quot;) }}
+<a name="docs--developer.rst-pyg.html-18"></a>
+<a name="docs--developer.rst-pyg.html-19"></a>And a Choice class:
+<a name="docs--developer.rst-pyg.html-20"></a>
+<a name="docs--developer.rst-pyg.html-21"></a>{{ codes(&quot;mysite_com/polls/models.py|idio&quot;, &quot;choice&quot;) }}
+<a name="docs--developer.rst-pyg.html-22"></a>
+<a name="docs--developer.rst-pyg.html-23"></a>Here are the fields defined for Poll:
+<a name="docs--developer.rst-pyg.html-24"></a>
+<a name="docs--developer.rst-pyg.html-25"></a>{{ codes(&quot;mysite_com/polls/models.py|idio&quot;, &quot;poll-fields&quot;) }}
+<a name="docs--developer.rst-pyg.html-26"></a>
+<a name="docs--developer.rst-pyg.html-27"></a>And for Choice:
+<a name="docs--developer.rst-pyg.html-28"></a>
+<a name="docs--developer.rst-pyg.html-29"></a>{{ codes(&quot;mysite_com/polls/models.py|idio&quot;, &quot;choice-fields&quot;) }}
+<a name="docs--developer.rst-pyg.html-30"></a>
+<a name="docs--developer.rst-pyg.html-31"></a>Each defines a descriptive <span class="nv">`__unicode__`</span> method:
+<a name="docs--developer.rst-pyg.html-32"></a>
+<a name="docs--developer.rst-pyg.html-33"></a>{{ codes(&quot;mysite_com/polls/models.py|idio&quot;, &quot;poll-unicode&quot;) }}
+<a name="docs--developer.rst-pyg.html-34"></a>{{ codes(&quot;mysite_com/polls/models.py|idio&quot;, &quot;choice-unicode&quot;) }}
+<a name="docs--developer.rst-pyg.html-35"></a>
+<a name="docs--developer.rst-pyg.html-36"></a>We also have a <span class="nv">`was_published_recently`</span> method defined on Poll:
+<a name="docs--developer.rst-pyg.html-37"></a>
+<a name="docs--developer.rst-pyg.html-38"></a>{{ codes(&quot;mysite_com/polls/models.py|idio&quot;, &quot;recent&quot;) }}
+<a name="docs--developer.rst-pyg.html-39"></a>
+<a name="docs--developer.rst-pyg.html-40"></a>And some unit tests for this method:
+<a name="docs--developer.rst-pyg.html-41"></a>
+<a name="docs--developer.rst-pyg.html-42"></a>{{ codes(&quot;mysite_com/polls/tests.py|idio&quot;, &quot;old-poll&quot;) }}
+<a name="docs--developer.rst-pyg.html-43"></a>{{ codes(&quot;mysite_com/polls/tests.py|idio&quot;, &quot;recent-poll&quot;) }}
+<a name="docs--developer.rst-pyg.html-44"></a>{{ codes(&quot;mysite_com/polls/tests.py|idio&quot;, &quot;future-poll&quot;) }}
+<a name="docs--developer.rst-pyg.html-45"></a>
+<a name="docs--developer.rst-pyg.html-46"></a>Here are the results of running unit tests on the polls app<span class="se">::</span>
+<a name="docs--developer.rst-pyg.html-47"></a>    
+<a name="docs--developer.rst-pyg.html-48"></a><span class="s">    {{ d[&#39;/scripts/run-tests.sh|shint&#39;] | indent(4) }}</span>
+<a name="docs--developer.rst-pyg.html-49"></a>
+<a name="docs--developer.rst-pyg.html-50"></a>
+<a name="docs--developer.rst-pyg.html-51"></a><span class="gh">Site Config</span>
+<a name="docs--developer.rst-pyg.html-52"></a><span class="gh">-----------</span>
+<a name="docs--developer.rst-pyg.html-53"></a>
+<a name="docs--developer.rst-pyg.html-54"></a>URL routing is defined in a site-wide urls.py:
+<a name="docs--developer.rst-pyg.html-55"></a>
+<a name="docs--developer.rst-pyg.html-56"></a>{{ code(&quot;mysite_com/mysite_com/urls.py|idio&quot;) }}
+<a name="docs--developer.rst-pyg.html-57"></a>
+<a name="docs--developer.rst-pyg.html-58"></a>And a separate urls.py in the polls app:
+<a name="docs--developer.rst-pyg.html-59"></a>
+<a name="docs--developer.rst-pyg.html-60"></a>{{ code(&quot;mysite_com/polls/urls.py|idio&quot;) }}
+<a name="docs--developer.rst-pyg.html-61"></a>
+<a name="docs--developer.rst-pyg.html-62"></a>
+<a name="docs--developer.rst-pyg.html-63"></a><span class="gh">Admin Interface</span>
+<a name="docs--developer.rst-pyg.html-64"></a><span class="gh">---------------</span>
+<a name="docs--developer.rst-pyg.html-65"></a>
+<a name="docs--developer.rst-pyg.html-66"></a>Django provides a ready-made admin interface. The admin interface is activated
+<a name="docs--developer.rst-pyg.html-67"></a>in <span class="nv">`settings.py`</span> as follows:
+<a name="docs--developer.rst-pyg.html-68"></a>
+<a name="docs--developer.rst-pyg.html-69"></a>{{ codes(&#39;/mysite_com/mysite_com/settings.py|idio&#39;, &#39;installed-apps&#39;) }}
+<a name="docs--developer.rst-pyg.html-70"></a>
+<a name="docs--developer.rst-pyg.html-71"></a>The base template for the admin section is:
+<a name="docs--developer.rst-pyg.html-72"></a>
+<a name="docs--developer.rst-pyg.html-73"></a>{{ code(&quot;mysite_com/templates/admin/base_site.html|idio&quot;) }}
+<a name="docs--developer.rst-pyg.html-74"></a>
+<a name="docs--developer.rst-pyg.html-75"></a>Here is what the main admin page looks like:
+<a name="docs--developer.rst-pyg.html-76"></a>
+<a name="docs--developer.rst-pyg.html-77"></a><span class="p">..</span> <span class="ow">image</span><span class="p">::</span> logged-in-admin.png
+<a name="docs--developer.rst-pyg.html-78"></a>
+<a name="docs--developer.rst-pyg.html-79"></a>The admin interface for polls is configured in the polls app:
+<a name="docs--developer.rst-pyg.html-80"></a>
+<a name="docs--developer.rst-pyg.html-81"></a>{{ code(&#39;mysite_com/polls/admin.py|idio&#39;) }}
+<a name="docs--developer.rst-pyg.html-82"></a>
+<a name="docs--developer.rst-pyg.html-83"></a>Further config is attached to the <span class="nv">`Poll`</span> class:
+<a name="docs--developer.rst-pyg.html-84"></a>
+<a name="docs--developer.rst-pyg.html-85"></a>{{ codes(&quot;mysite_com/polls/models.py|idio&quot;, &quot;admin-config&quot;) }}
+<a name="docs--developer.rst-pyg.html-86"></a>
+<a name="docs--developer.rst-pyg.html-87"></a>Here is the polls admin:
+<a name="docs--developer.rst-pyg.html-88"></a>
+<a name="docs--developer.rst-pyg.html-89"></a><span class="p">..</span> <span class="ow">image</span><span class="p">::</span> polls-admin.png
+<a name="docs--developer.rst-pyg.html-90"></a>
+<a name="docs--developer.rst-pyg.html-91"></a>Let&#39;s add a new poll:
+<a name="docs--developer.rst-pyg.html-92"></a>
+<a name="docs--developer.rst-pyg.html-93"></a>{{ codes(&quot;screenshots.js|idio&quot;, &quot;add-new-poll&quot;) }}
+<a name="docs--developer.rst-pyg.html-94"></a>
+<a name="docs--developer.rst-pyg.html-95"></a><span class="p">..</span> <span class="ow">image</span><span class="p">::</span> add-new-poll-filled-in.png
+<a name="docs--developer.rst-pyg.html-96"></a>
+<a name="docs--developer.rst-pyg.html-97"></a>Here&#39;s our new poll:
+<a name="docs--developer.rst-pyg.html-98"></a>
+<a name="docs--developer.rst-pyg.html-99"></a><span class="p">..</span> <span class="ow">image</span><span class="p">::</span> poll-added.png
+<a name="docs--developer.rst-pyg.html-100"></a>
+<a name="docs--developer.rst-pyg.html-101"></a><span class="gh">Views</span>
+<a name="docs--developer.rst-pyg.html-102"></a><span class="gh">-----</span>
+<a name="docs--developer.rst-pyg.html-103"></a>
+<a name="docs--developer.rst-pyg.html-104"></a>Here is the URL routing for the polls app:
+<a name="docs--developer.rst-pyg.html-105"></a>
+<a name="docs--developer.rst-pyg.html-106"></a>{{ code(&quot;mysite_com/polls/urls.py|idio&quot;) }}
+<a name="docs--developer.rst-pyg.html-107"></a>
+<a name="docs--developer.rst-pyg.html-108"></a><span class="gh">Index</span>
+<a name="docs--developer.rst-pyg.html-109"></a><span class="gh">.....</span>
+<a name="docs--developer.rst-pyg.html-110"></a>
+<a name="docs--developer.rst-pyg.html-111"></a>{{ codes(&quot;mysite_com/polls/views.py|idio&quot;, &quot;index&quot;) }}
+<a name="docs--developer.rst-pyg.html-112"></a>
+<a name="docs--developer.rst-pyg.html-113"></a>{{ code(&quot;mysite_com/polls/templates/polls/index.html|idio&quot;) }}
+<a name="docs--developer.rst-pyg.html-114"></a>
+<a name="docs--developer.rst-pyg.html-115"></a>Here&#39;s how this looked at the start:
+<a name="docs--developer.rst-pyg.html-116"></a>
+<a name="docs--developer.rst-pyg.html-117"></a><span class="p">..</span> <span class="ow">image</span><span class="p">::</span> no-polls-available.png
+<a name="docs--developer.rst-pyg.html-118"></a>
+<a name="docs--developer.rst-pyg.html-119"></a>Here&#39;s how this looks after adding a poll via the admin interface:
+<a name="docs--developer.rst-pyg.html-120"></a>
+<a name="docs--developer.rst-pyg.html-121"></a><span class="p">..</span> <span class="ow">image</span><span class="p">::</span> index.png
+<a name="docs--developer.rst-pyg.html-122"></a>
+<a name="docs--developer.rst-pyg.html-123"></a><span class="gh">Detail</span>
+<a name="docs--developer.rst-pyg.html-124"></a><span class="gh">......</span>
+<a name="docs--developer.rst-pyg.html-125"></a>
+<a name="docs--developer.rst-pyg.html-126"></a>{{ codes(&quot;mysite_com/polls/views.py|idio&quot;, &quot;detail&quot;) }}
+<a name="docs--developer.rst-pyg.html-127"></a>
+<a name="docs--developer.rst-pyg.html-128"></a>{{ code(&quot;mysite_com/polls/templates/polls/detail.html|idio&quot;) }}
+<a name="docs--developer.rst-pyg.html-129"></a>
+<a name="docs--developer.rst-pyg.html-130"></a><span class="p">..</span> <span class="ow">image</span><span class="p">::</span> voting.png
+<a name="docs--developer.rst-pyg.html-131"></a>
+<a name="docs--developer.rst-pyg.html-132"></a><span class="gh">Results</span>
+<a name="docs--developer.rst-pyg.html-133"></a><span class="gh">.......</span>
+<a name="docs--developer.rst-pyg.html-134"></a>
+<a name="docs--developer.rst-pyg.html-135"></a>{{ codes(&quot;mysite_com/polls/views.py|idio&quot;, &quot;results&quot;) }}
+<a name="docs--developer.rst-pyg.html-136"></a>
+<a name="docs--developer.rst-pyg.html-137"></a>{{ code(&quot;mysite_com/polls/templates/polls/results.html|idio&quot;) }}
+<a name="docs--developer.rst-pyg.html-138"></a>
+<a name="docs--developer.rst-pyg.html-139"></a><span class="p">..</span> <span class="ow">image</span><span class="p">::</span> voted.png
+<a name="docs--developer.rst-pyg.html-140"></a>
+<a name="docs--developer.rst-pyg.html-141"></a><span class="p">..</span> <span class="ow">image</span><span class="p">::</span> many-votes.png
+</pre></div>
+
+
+</body>
+</html>

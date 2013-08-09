@@ -48,11 +48,25 @@ Django. So, Python?
 - javascript
 
 
+![logo](logo.png)
+- make-like tool
+- automation, especially for documentation
+- free-form, format-agnostic
+- language-agnostic
+
+
+dexy.yaml
+---------
+<p><a href="developer.rst.html" target="_new">developer.rst</a></p><br />
+
+{{ d["dexy.yaml|idio"]['rst'] }}
+
+
 dexy.yaml
 ---------
 <br />
 
-{{ d["dexy.yaml|idio"]['rst'] }}
+{{ d["dexy.yaml|idio"]['inputs'] }}
 
 
 dexy.yaml
@@ -81,13 +95,6 @@ stop server
 <br />
 
 {{ d["scripts/stop-server.sh|idio|h"] }}
-
-
-dexy.yaml
----------
-<br />
-
-{{ d["dexy.yaml|idio"]['inputs'] }}
 
 
 dexy.yaml
@@ -127,11 +134,10 @@ Automation
 Holistic Development
 --------------------
 
-- Automation means you don't have to flush your mental buffer mid-task.
 - Writing developer docs is a profoundly powerful tool for improving code.
     - Forces you to explain your code.
     - Presents your code in a new visual context.
-- Writing integrated code, docs and tests brings it to another level.
+- Automation means you don't have to flush your mental buffer mid-task.
 
 
 Thank You!

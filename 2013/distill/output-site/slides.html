@@ -74,8 +74,16 @@ Ana Nelson <a href="http://twitter.com/ananelson">@ananelson</a><br />
 </div>
 
 <div class="slide step" id="slide7">
+<p><img alt="logo" src="logo.png" /><br />
+- make-like tool<br />
+- automation, especially for documentation<br />
+- free-form, format-agnostic<br />
+- language-agnostic</p>
+</div>
+
+<div class="slide step" id="slide8">
 <h2>dexy.yaml</h2>
-<p><br /></p>
+<p><p><a href="developer.rst.html" target="_new">developer.rst</a></p><br /></p>
 <div class="highlight"><pre><a name="dexy.yaml-idio.html-1"></a><span class="l-Scalar-Plain">.rst|jinja|rstbody|easyhtml</span><span class="p-Indicator">:</span>
 <a name="dexy.yaml-idio.html-2"></a>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">inputs</span>
 <a name="dexy.yaml-idio.html-3"></a>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">easyhtml</span><span class="p-Indicator">:</span> <span class="p-Indicator">{</span>
@@ -84,7 +92,21 @@ Ana Nelson <a href="http://twitter.com/ananelson">@ananelson</a><br />
 </pre></div>
 </div>
 
-<div class="slide step" id="slide8">
+<div class="slide step" id="slide9">
+<h2>dexy.yaml</h2>
+<p><br /></p>
+<div class="highlight"><pre><a name="dexy.yaml-idio.html-1"></a><span class="l-Scalar-Plain">inputs</span><span class="p-Indicator">:</span>
+<a name="dexy.yaml-idio.html-2"></a>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">idio</span>
+<a name="dexy.yaml-idio.html-3"></a>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">script:run-casper</span>
+<a name="dexy.yaml-idio.html-4"></a>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">run-tests</span>
+<a name="dexy.yaml-idio.html-5"></a>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">standalone</span>
+<a name="dexy.yaml-idio.html-6"></a>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">dexy.yaml|idio</span>
+<a name="dexy.yaml-idio.html-7"></a>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">docs/screenshots.js|idio|h</span>
+<a name="dexy.yaml-idio.html-8"></a>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">docs/screenshots.js|idio|l</span>
+</pre></div>
+</div>
+
+<div class="slide step" id="slide10">
 <h2>dexy.yaml</h2>
 <p><br /></p>
 <div class="highlight"><pre><a name="dexy.yaml-idio.html-1"></a><span class="l-Scalar-Plain">script:run-casper</span><span class="p-Indicator">:</span>
@@ -98,7 +120,7 @@ Ana Nelson <a href="http://twitter.com/ananelson">@ananelson</a><br />
 </pre></div>
 </div>
 
-<div class="slide step" id="slide9">
+<div class="slide step" id="slide11">
 <h2>start server</h2>
 <p><br /></p>
 <div class="highlight"><pre><a name="scripts--reset-server.sh-idio.html-1"></a><span class="nb">cd </span>mysite_com
@@ -111,7 +133,7 @@ Ana Nelson <a href="http://twitter.com/ananelson">@ananelson</a><br />
 </pre></div>
 </div>
 
-<div class="slide step" id="slide10">
+<div class="slide step" id="slide12">
 <h2>screenshots</h2>
 <ul>
 <li>use <a href="http://casperjs.org">casper.js</a> and <a href="http://phantomjs.org">phantom.js</a></li>
@@ -119,7 +141,7 @@ Ana Nelson <a href="http://twitter.com/ananelson">@ananelson</a><br />
 </ul>
 </div>
 
-<div class="slide step" id="slide11">
+<div class="slide step" id="slide13">
 <h2>stop server</h2>
 <p><br /></p>
 <div class="highlight"><pre><a name="scripts--stop-server.sh-idio.html-1"></a><span class="nv">DJANGO_PID</span><span class="o">=</span><span class="sb">`</span>cat mysite_com/django.pid<span class="sb">`</span>
@@ -128,28 +150,7 @@ Ana Nelson <a href="http://twitter.com/ananelson">@ananelson</a><br />
 </pre></div>
 </div>
 
-<div class="slide step" id="slide12">
-<h2>dexy.yaml</h2>
-<p><br /></p>
-<div class="highlight"><pre><a name="dexy.yaml-idio.html-1"></a><span class="l-Scalar-Plain">inputs</span><span class="p-Indicator">:</span>
-<a name="dexy.yaml-idio.html-2"></a>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">docs/screenshots.js|idio|h</span>
-<a name="dexy.yaml-idio.html-3"></a>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">docs/screenshots.js|idio|l</span>
-<a name="dexy.yaml-idio.html-4"></a>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">.py|idio|h</span>
-<a name="dexy.yaml-idio.html-5"></a>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">.py|idio|l</span>
-<a name="dexy.yaml-idio.html-6"></a>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">.sh|idio|h</span>
-<a name="dexy.yaml-idio.html-7"></a>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">.sh|idio|l</span>
-<a name="dexy.yaml-idio.html-8"></a>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">.html|idio|h</span>
-<a name="dexy.yaml-idio.html-9"></a>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">.html|idio|l</span>
-<a name="dexy.yaml-idio.html-10"></a>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">dexy.yaml|idio</span>
-<a name="dexy.yaml-idio.html-11"></a>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">script:run-casper</span>
-<a name="dexy.yaml-idio.html-12"></a>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">run-tests</span>
-<a name="dexy.yaml-idio.html-13"></a>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">docs/screenshots.js|pyg</span><span class="p-Indicator">:</span>
-<a name="dexy.yaml-idio.html-14"></a>        <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">output</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">True</span>
-<a name="dexy.yaml-idio.html-15"></a>        <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">ws-template</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">_pyg.html</span>
-</pre></div>
-</div>
-
-<div class="slide step" id="slide13">
+<div class="slide step" id="slide14">
 <h2>dexy.yaml</h2>
 <p><br /></p>
 <div class="highlight"><pre><a name="dexy.yaml-idio.html-1"></a><span class="l-Scalar-Plain">run-tests</span><span class="p-Indicator">:</span>
@@ -158,11 +159,11 @@ Ana Nelson <a href="http://twitter.com/ananelson">@ananelson</a><br />
 </pre></div>
 </div>
 
-<div class="slide step" id="slide14">
+<div class="slide step" id="slide15">
 <h2>Dexy Demo</h2>
 </div>
 
-<div class="slide step" id="slide15">
+<div class="slide step" id="slide16">
 <h2>What's Next?</h2>
 <ul>
 <li>End-User Docs</li>
@@ -173,7 +174,7 @@ Ana Nelson <a href="http://twitter.com/ananelson">@ananelson</a><br />
 </ul>
 </div>
 
-<div class="slide step" id="slide16">
+<div class="slide step" id="slide17">
 <div class="highlight"><pre><a name="docs--analyze.R-idio-r-pyg.html-1"></a><span class="gp">&gt; </span>v <span class="o">&lt;-</span> fetch<span class="p">(</span>dbSendQuery<span class="p">(</span>con<span class="p">,</span>
 <a name="docs--analyze.R-idio-r-pyg.html-2"></a><span class="gp">+ </span>      <span class="s">&quot;select * from polls_choice&quot;</span><span class="p">))</span>
 <a name="docs--analyze.R-idio-r-pyg.html-3"></a><span class="gp">&gt; </span>dotchart<span class="p">(</span>v<span class="o">$</span>votes<span class="p">,</span> labels<span class="o">=</span>v<span class="o">$</span>choice_text<span class="p">,</span>
@@ -183,7 +184,7 @@ Ana Nelson <a href="http://twitter.com/ananelson">@ananelson</a><br />
 <p><img alt="dotchart of votes" src="plot.png" /></p>
 </div>
 
-<div class="slide step" id="slide17">
+<div class="slide step" id="slide18">
 <h2>Automation</h2>
 <ul>
 <li>Maintainability</li>
@@ -192,20 +193,19 @@ Ana Nelson <a href="http://twitter.com/ananelson">@ananelson</a><br />
 </ul>
 </div>
 
-<div class="slide step" id="slide18">
+<div class="slide step" id="slide19">
 <h2>Holistic Development</h2>
 <ul>
-<li>Automation means you don't have to flush your mental buffer mid-task.</li>
 <li>Writing developer docs is a profoundly powerful tool for improving code.<ul>
 <li>Forces you to explain your code.</li>
 <li>Presents your code in a new visual context.</li>
 </ul>
 </li>
-<li>Writing integrated code, docs and tests brings it to another level.</li>
+<li>Automation means you don't have to flush your mental buffer mid-task.</li>
 </ul>
 </div>
 
-<div class="slide step" id="slide19">
+<div class="slide step" id="slide20">
 <h2>Thank You!</h2>
 <p><p><br />
 <a href="http://dexy.it">http://dexy.it</a> <a href="http://twitter.com/dexyit">@dexyit</a><br />
