@@ -1,2 +1,2 @@
 [General]
-cookies="@Variant(\0\0\0\x7f\0\0\0\x16QList<QNetworkCookie>\0\0\0\0\x1\0\0\0\x2\0\0\0usessionid=7ucp2sp7mcyg3t7fl8pdr1z1effo15iq; HttpOnly; expires=Fri, 23-Aug-2013 18:46:17 GMT; domain=localhost; path=/\0\0\0kcsrftoken=8ceNDqpNcKDd55ntpHhVIXDGCYdEFhGy; expires=Fri, 08-Aug-2014 18:46:20 GMT; domain=localhost; path=/)"
+cookies="@Variant(\0\0\0\x7f\0\0\0\x16QList<QNetworkCookie>\0\0\0\0\x1\0\0\0\x2\0\0\0usessionid=66oiz9yv3emw9dqylmwoud3rgnnuia0r; HttpOnly; expires=Fri, 23-Aug-2013 20:20:04 GMT; domain=localhost; path=/\0\0\0kcsrftoken=pA9B43zY3fplwVzSI8QGnyjWbklcOvrt; expires=Fri, 08-Aug-2014 20:20:07 GMT; domain=localhost; path=/)"

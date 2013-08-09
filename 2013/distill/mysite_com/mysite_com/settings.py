@@ -5,7 +5,8 @@ ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
 
-PROJECT_ROOT = "/home/ana/dev/talks/2013/distill/mysite_com/"
+import os
+PROJECT_ROOT = os.path.expanduser("~/dev/talks/2013/distill/mysite_com/")
 
 MANAGERS = ADMINS
 

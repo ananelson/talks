@@ -20,10 +20,12 @@
 <div id="impress">
     <div class="slide step" id="slide0">
 <h2>FULL STACK DOCUMENTATION</h2>
-<p><p>A HOLISTIC APPROACH TO DOCUMENTATION, TESTING, DEVELOPMENT AND DEPLOYMENT</p><br />
-<p><a href="http://dexy.it">http://dexy.it</a> <a href="http://twitter.com/dexyit">@dexyit</a></p><br />
-<p>Ana Nelson <a href="http://twitter.com/ananelson">@ananelson</a><br />
-<a href="http://github.com/ananelson/talks">http://github.com/ananelson/talks</a></p></p>
+<p>A HOLISTIC APPROACH TO DOCUMENTATION, TESTING, DEVELOPMENT AND DEPLOYMENT<br />
+<p><br />
+<a href="http://dexy.it">http://dexy.it</a> <a href="http://twitter.com/dexyit">@dexyit</a><br />
+Ana Nelson <a href="http://twitter.com/ananelson">@ananelson</a><br />
+<a href="http://github.com/ananelson/talks">http://github.com/ananelson/talks</a><br />
+</p></p>
 </div>
 
 <div class="slide step" id="slide1">
@@ -55,11 +57,23 @@
 <div class="slide step" id="slide5">
 <h2>An Example</h2>
 <ul>
-<li><a href="file:///home/ana/dev/talks/2013/distill/output/developer.html" target="_new">Developer docs for the Django tutorial's polls app.</a></li>
+<li><a href="file:///home/ana/dev/talks/2013/distill/output-site/developer.html" target="_new">Developer docs for the Django tutorial's polls app.</a></li>
 </ul>
 </div>
 
 <div class="slide step" id="slide6">
+<h2>Django. So, Python?</h2>
+<ul>
+<li>python</li>
+<li>html</li>
+<li>django templates</li>
+<li>bash</li>
+<li>sql</li>
+<li>javascript</li>
+</ul>
+</div>
+
+<div class="slide step" id="slide7">
 <h2>dexy.yaml</h2>
 <p><br /></p>
 <div class="highlight"><pre><a name="dexy.yaml-idio.html-1"></a><span class="l-Scalar-Plain">.rst|jinja|rstbody|easyhtml</span><span class="p-Indicator">:</span>
@@ -70,7 +84,7 @@
 </pre></div>
 </div>
 
-<div class="slide step" id="slide7">
+<div class="slide step" id="slide8">
 <h2>dexy.yaml</h2>
 <p><br /></p>
 <div class="highlight"><pre><a name="dexy.yaml-idio.html-1"></a><span class="l-Scalar-Plain">script:run-casper</span><span class="p-Indicator">:</span>
@@ -84,7 +98,7 @@
 </pre></div>
 </div>
 
-<div class="slide step" id="slide8">
+<div class="slide step" id="slide9">
 <h2>start server</h2>
 <p><br /></p>
 <div class="highlight"><pre><a name="scripts--reset-server.sh-idio.html-1"></a><span class="nb">cd </span>mysite_com
@@ -97,7 +111,7 @@
 </pre></div>
 </div>
 
-<div class="slide step" id="slide9">
+<div class="slide step" id="slide10">
 <h2>screenshots</h2>
 <ul>
 <li>use <a href="http://casperjs.org">casper.js</a> and <a href="http://phantomjs.org">phantom.js</a></li>
@@ -105,7 +119,7 @@
 </ul>
 </div>
 
-<div class="slide step" id="slide10">
+<div class="slide step" id="slide11">
 <h2>stop server</h2>
 <p><br /></p>
 <div class="highlight"><pre><a name="scripts--stop-server.sh-idio.html-1"></a><span class="nv">DJANGO_PID</span><span class="o">=</span><span class="sb">`</span>cat mysite_com/django.pid<span class="sb">`</span>
@@ -114,7 +128,7 @@
 </pre></div>
 </div>
 
-<div class="slide step" id="slide11">
+<div class="slide step" id="slide12">
 <h2>dexy.yaml</h2>
 <p><br /></p>
 <div class="highlight"><pre><a name="dexy.yaml-idio.html-1"></a><span class="l-Scalar-Plain">inputs</span><span class="p-Indicator">:</span>
@@ -135,7 +149,7 @@
 </pre></div>
 </div>
 
-<div class="slide step" id="slide12">
+<div class="slide step" id="slide13">
 <h2>dexy.yaml</h2>
 <p><br /></p>
 <div class="highlight"><pre><a name="dexy.yaml-idio.html-1"></a><span class="l-Scalar-Plain">run-tests</span><span class="p-Indicator">:</span>
@@ -144,7 +158,11 @@
 </pre></div>
 </div>
 
-<div class="slide step" id="slide13">
+<div class="slide step" id="slide14">
+<h2>Dexy Demo</h2>
+</div>
+
+<div class="slide step" id="slide15">
 <h2>What's Next?</h2>
 <ul>
 <li>End-User Docs</li>
@@ -155,15 +173,17 @@
 </ul>
 </div>
 
-<div class="slide step" id="slide14">
-<div class="highlight"><pre><a name="docs--analyze.R-idio-r-pyg.html-1"></a><span class="gp">&gt; </span>v <span class="o">&lt;-</span> fetch<span class="p">(</span>dbSendQuery<span class="p">(</span>con<span class="p">,</span> <span class="s">&quot;select * from polls_choice&quot;</span><span class="p">))</span>
-<a name="docs--analyze.R-idio-r-pyg.html-2"></a><span class="gp">&gt; </span>dotchart<span class="p">(</span>v<span class="o">$</span>votes<span class="p">,</span> labels<span class="o">=</span>v<span class="o">$</span>choice_text<span class="p">,</span> pch<span class="o">=</span><span class="m">19</span><span class="p">,</span> cex<span class="o">=</span><span class="m">1.5</span><span class="p">)</span>
+<div class="slide step" id="slide16">
+<div class="highlight"><pre><a name="docs--analyze.R-idio-r-pyg.html-1"></a><span class="gp">&gt; </span>v <span class="o">&lt;-</span> fetch<span class="p">(</span>dbSendQuery<span class="p">(</span>con<span class="p">,</span>
+<a name="docs--analyze.R-idio-r-pyg.html-2"></a><span class="gp">+ </span>      <span class="s">&quot;select * from polls_choice&quot;</span><span class="p">))</span>
+<a name="docs--analyze.R-idio-r-pyg.html-3"></a><span class="gp">&gt; </span>dotchart<span class="p">(</span>v<span class="o">$</span>votes<span class="p">,</span> labels<span class="o">=</span>v<span class="o">$</span>choice_text<span class="p">,</span>
+<a name="docs--analyze.R-idio-r-pyg.html-4"></a><span class="gp">+ </span>         pch<span class="o">=</span><span class="m">19</span><span class="p">,</span> cex<span class="o">=</span><span class="m">1.5</span><span class="p">)</span>
 </pre></div>
 
 <p><img alt="dotchart of votes" src="plot.png" /></p>
 </div>
 
-<div class="slide step" id="slide15">
+<div class="slide step" id="slide17">
 <h2>Automation</h2>
 <ul>
 <li>Maintainability</li>
@@ -172,7 +192,7 @@
 </ul>
 </div>
 
-<div class="slide step" id="slide16">
+<div class="slide step" id="slide18">
 <h2>Holistic Development</h2>
 <ul>
 <li>Automation means you don't have to flush your mental buffer mid-task.</li>
@@ -185,11 +205,13 @@
 </ul>
 </div>
 
-<div class="slide step" id="slide17">
+<div class="slide step" id="slide19">
 <h2>Thank You!</h2>
-<p><p><a href="http://dexy.it">http://dexy.it</a> <a href="http://twitter.com/dexyit">@dexyit</a></p><br />
-<p>Ana Nelson <a href="http://twitter.com/ananelson">@ananelson</a><br />
-<a href="http://github.com/ananelson/talks">http://github.com/ananelson/talks</a></p></p>
+<p><p><br />
+<a href="http://dexy.it">http://dexy.it</a> <a href="http://twitter.com/dexyit">@dexyit</a><br />
+Ana Nelson <a href="http://twitter.com/ananelson">@ananelson</a><br />
+<a href="http://github.com/ananelson/talks">http://github.com/ananelson/talks</a><br />
+</p></p>
 </div>
 </div>
 

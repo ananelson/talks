@@ -1,8 +1,11 @@
 ## FULL STACK DOCUMENTATION
-<p>A HOLISTIC APPROACH TO DOCUMENTATION, TESTING, DEVELOPMENT AND DEPLOYMENT</p>
-<p><http://dexy.it> <a href="http://twitter.com/dexyit">@dexyit</a></p>
-<p>Ana Nelson <a href="http://twitter.com/ananelson">@ananelson</a>
-<http://github.com/ananelson/talks></p>
+
+A HOLISTIC APPROACH TO DOCUMENTATION, TESTING, DEVELOPMENT AND DEPLOYMENT
+<p>
+<http://dexy.it> <a href="http://twitter.com/dexyit">@dexyit</a>
+Ana Nelson <a href="http://twitter.com/ananelson">@ananelson</a>
+<http://github.com/ananelson/talks>
+</p>
 
 {% from 'dexy.jinja' import code, codes, hl with context %}
 
@@ -31,7 +34,18 @@ Start With Developer Docs
 An Example
 ----------
 
-- <a href="file:///home/ana/dev/talks/2013/distill/output/developer.html" target="_new">Developer docs for the Django tutorial's polls app.</a>
+- <a href="file:///home/ana/dev/talks/2013/distill/output-site/developer.html" target="_new">Developer docs for the Django tutorial's polls app.</a>
+
+
+Django. So, Python?
+-------------------
+
+- python
+- html
+- django templates
+- bash
+- sql
+- javascript
 
 
 dexy.yaml
@@ -83,6 +97,11 @@ dexy.yaml
 {{ d["dexy.yaml|idio"]['run-tests'] }}
 
 
+Dexy Demo
+---------
+
+
+
 What's Next?
 ------------
 
@@ -117,6 +136,8 @@ Holistic Development
 
 Thank You!
 ----------
-<p><http://dexy.it> <a href="http://twitter.com/dexyit">@dexyit</a></p>
-<p>Ana Nelson <a href="http://twitter.com/ananelson">@ananelson</a>
-<http://github.com/ananelson/talks></p>
+<p>
+<http://dexy.it> <a href="http://twitter.com/dexyit">@dexyit</a>
+Ana Nelson <a href="http://twitter.com/ananelson">@ananelson</a>
+<http://github.com/ananelson/talks>
+</p>
