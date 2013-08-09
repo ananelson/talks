@@ -1,0 +1,31 @@
+inputs:
+    - .js|idio|h
+    - .js|idio|l
+    - .py|idio|h
+    - .py|idio|l
+    - .sh|idio|h
+    - .sh|idio|l
+    - .html|idio|h
+    - .html|idio|l
+
+assets:
+    - .js
+    - .css
+
+script:run-casper:
+    - scripts/reset-server.sh|shint:
+        - shint: { 'use-wd' : False }
+    - docs/screenshots.js|casperjs
+    - scripts/stop-server.sh|shint:
+        - shint: { 'use-wd' : False }
+
+.rst|jinja|rstbody|easyhtml:
+    - inputs
+    - script:run-casper
+    - easyhtml: {
+        css: "img { border: thin solid grey; }"
+        }
+
+docs/slides.md|jinja|impress|markdown:
+    - title: Integrating Documentation
+    - dexy.yaml|idio
