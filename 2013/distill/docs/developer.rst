@@ -1,69 +1,12 @@
 Developer Docs
 ==============
 
+.. contents::
+
 {% from "dexy.jinja" import code, codes, ext with context %}
 
-Docs for `mysite_com`.
-
-This website uses Django.
-
-Site Config
------------
-
-URL routing is defined in a site-wide urls.py:
-
-{{ code("mysite_com/mysite_com/urls.py|idio") }}
-
-And a separate urls.py in the polls app:
-
-{{ code("mysite_com/polls/urls.py|idio") }}
-
-
-Admin Interface
----------------
-
-Django provides a ready-made admin interface. The admin interface is activated
-in `settings.py` as follows:
-
-{{ codes('/mysite_com/mysite_com/settings.py|idio', 'installed-apps') }}
-
-The admin interface is configured in the polls app:
-
-{{ code('mysite_com/polls/admin.py|idio') }}
-
-The base template for the admin section is:
-
-{{ code("mysite_com/templates/admin/base_site.html|idio") }}
-
-Further config is attached to the `Poll` class:
-
-{{ codes("mysite_com/polls/models.py|idio", "admin-config") }}
-
-Here is what the main admin page looks like:
-
-.. image:: logged-in-admin.png
-
-Here is the polls admin:
-
-.. image:: polls-admin.png
-
-Let's add a new poll:
-
-{{ codes("screenshots.js|idio", "add-new-poll") }}
-
-.. image:: add-new-poll-filled-in.png
-
-Here's our new poll:
-
-.. image:: poll-added.png
-
-User Interface
---------------
-
-For the user interface, there is more code to show. :-)
-
 Models
-......
+------
 
 The `models` module is imported from django:
 
@@ -94,8 +37,71 @@ We also have a `was_published_recently` method defined on Poll:
 
 {{ codes("mysite_com/polls/models.py|idio", "recent") }}
 
+And some unit tests for this method:
+
+{{ codes("mysite_com/polls/tests.py|idio", "old-poll") }}
+{{ codes("mysite_com/polls/tests.py|idio", "recent-poll") }}
+{{ codes("mysite_com/polls/tests.py|idio", "future-poll") }}
+
+Here are the results of running unit tests on the polls app::
+    
+    {{ d['/scripts/run-tests.sh|shint'] | indent(4) }}
+
+
+Site Config
+-----------
+
+URL routing is defined in a site-wide urls.py:
+
+{{ code("mysite_com/mysite_com/urls.py|idio") }}
+
+And a separate urls.py in the polls app:
+
+{{ code("mysite_com/polls/urls.py|idio") }}
+
+
+Admin Interface
+---------------
+
+Django provides a ready-made admin interface. The admin interface is activated
+in `settings.py` as follows:
+
+{{ codes('/mysite_com/mysite_com/settings.py|idio', 'installed-apps') }}
+
+The base template for the admin section is:
+
+{{ code("mysite_com/templates/admin/base_site.html|idio") }}
+
+Here is what the main admin page looks like:
+
+.. image:: logged-in-admin.png
+
+The admin interface for polls is configured in the polls app:
+
+{{ code('mysite_com/polls/admin.py|idio') }}
+
+Further config is attached to the `Poll` class:
+
+{{ codes("mysite_com/polls/models.py|idio", "admin-config") }}
+
+Here is the polls admin:
+
+.. image:: polls-admin.png
+
+Let's add a new poll:
+
+{{ codes("screenshots.js|idio", "add-new-poll") }}
+
+.. image:: add-new-poll-filled-in.png
+
+Here's our new poll:
+
+.. image:: poll-added.png
+
 Views
 -----
+
+Here is the URL routing for the polls app:
 
 {{ code("mysite_com/polls/urls.py|idio") }}
 
@@ -106,14 +112,18 @@ Index
 
 {{ code("mysite_com/polls/templates/polls/index.html|idio") }}
 
+Here's how this looked at the start:
+
 .. image:: no-polls-available.png
+
+Here's how this looks after adding a poll via the admin interface:
 
 .. image:: index.png
 
 Detail
 ......
 
-{{ codes("mysite_com/polls/views.py|idio", "index") }}
+{{ codes("mysite_com/polls/views.py|idio", "detail") }}
 
 {{ code("mysite_com/polls/templates/polls/detail.html|idio") }}
 

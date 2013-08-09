@@ -1,2 +1,3 @@
 .dexy/
 mysite_com/mysite.sqlite3
+mysite_com/django.pid

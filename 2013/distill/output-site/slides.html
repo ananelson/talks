@@ -1,0 +1,221 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Integrating Documentation</title>
+    <link href="impress-demo.css" rel="stylesheet" />
+    <link href="pastie.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="favicon.png" />
+</head>
+
+<body class="impress-not-supported">
+
+<div class="fallback-message">
+    <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+</div>
+
+<div id="impress">
+    <div class="slide step" id="slide0">
+<h2>FULL STACK DOCUMENTATION</h2>
+<p><p>A HOLISTIC APPROACH TO DOCUMENTATION, TESTING, DEVELOPMENT AND DEPLOYMENT</p><br />
+<p><a href="http://dexy.it">http://dexy.it</a> <a href="http://twitter.com/dexyit">@dexyit</a></p><br />
+<p>Ana Nelson <a href="http://twitter.com/ananelson">@ananelson</a><br />
+<a href="http://github.com/ananelson/talks">http://github.com/ananelson/talks</a></p></p>
+</div>
+
+<div class="slide step" id="slide1">
+<p>Developers Won't Write Docs.</p>
+</div>
+
+<div class="slide step" id="slide2">
+<p>Developers Won't Write Docs for other people in their spare time using crappy tools for free without the end result being valued and maintained.</p>
+</div>
+
+<div class="slide step" id="slide3">
+<h2>Documentation Culture</h2>
+<ul>
+<li>Must be "we value/are willing to pay for docs" not just "we want docs".</li>
+<li>Docs must be maintainable (futility sucks).</li>
+<li>Tools must be fit for purpose.</li>
+</ul>
+</div>
+
+<div class="slide step" id="slide4">
+<h2>Start With Developer Docs</h2>
+<ul>
+<li>benefits developers AND everyone else</li>
+<li>allows developers to tell stories about what matters to them</li>
+<li>is a jumping-off point for the rest of the docs</li>
+</ul>
+</div>
+
+<div class="slide step" id="slide5">
+<h2>An Example</h2>
+<ul>
+<li><a href="file:///home/ana/dev/talks/2013/distill/output/developer.html" target="_new">Developer docs for the Django tutorial's polls app.</a></li>
+</ul>
+</div>
+
+<div class="slide step" id="slide6">
+<h2>dexy.yaml</h2>
+<p><br /></p>
+<div class="highlight"><pre><a name="dexy.yaml-idio.html-1"></a><span class="l-Scalar-Plain">.rst|jinja|rstbody|easyhtml</span><span class="p-Indicator">:</span>
+<a name="dexy.yaml-idio.html-2"></a>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">inputs</span>
+<a name="dexy.yaml-idio.html-3"></a>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">easyhtml</span><span class="p-Indicator">:</span> <span class="p-Indicator">{</span>
+<a name="dexy.yaml-idio.html-4"></a>        <span class="nv">css</span><span class="p-Indicator">:</span> <span class="s">&quot;img</span><span class="nv"> </span><span class="s">{</span><span class="nv"> </span><span class="s">border:</span><span class="nv"> </span><span class="s">thin</span><span class="nv"> </span><span class="s">solid</span><span class="nv"> </span><span class="s">grey;</span><span class="nv"> </span><span class="s">}&quot;</span>
+<a name="dexy.yaml-idio.html-5"></a>        <span class="p-Indicator">}</span>
+</pre></div>
+</div>
+
+<div class="slide step" id="slide7">
+<h2>dexy.yaml</h2>
+<p><br /></p>
+<div class="highlight"><pre><a name="dexy.yaml-idio.html-1"></a><span class="l-Scalar-Plain">script:run-casper</span><span class="p-Indicator">:</span>
+<a name="dexy.yaml-idio.html-2"></a>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">scripts/reset-server.sh|shint</span><span class="p-Indicator">:</span>
+<a name="dexy.yaml-idio.html-3"></a>        <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">shint</span><span class="p-Indicator">:</span> <span class="p-Indicator">{</span> <span class="s">&#39;use-wd&#39;</span> <span class="p-Indicator">:</span> <span class="nv">False</span> <span class="p-Indicator">}</span>
+<a name="dexy.yaml-idio.html-4"></a>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">docs/screenshots.js|casperjs</span>
+<a name="dexy.yaml-idio.html-5"></a>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">scripts/stop-server.sh|shint</span><span class="p-Indicator">:</span>
+<a name="dexy.yaml-idio.html-6"></a>        <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">shint</span><span class="p-Indicator">:</span> <span class="p-Indicator">{</span> <span class="s">&#39;use-wd&#39;</span> <span class="p-Indicator">:</span> <span class="nv">False</span> <span class="p-Indicator">}</span>
+<a name="dexy.yaml-idio.html-7"></a>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">docs/analyze.R|idio|r|pyg</span><span class="p-Indicator">:</span>
+<a name="dexy.yaml-idio.html-8"></a>        <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">r</span><span class="p-Indicator">:</span> <span class="p-Indicator">{</span> <span class="s">&#39;add-new-files&#39;</span> <span class="p-Indicator">:</span> <span class="nv">True</span> <span class="p-Indicator">}</span>
+</pre></div>
+</div>
+
+<div class="slide step" id="slide8">
+<h2>start server</h2>
+<p><br /></p>
+<div class="highlight"><pre><a name="scripts--reset-server.sh-idio.html-1"></a><span class="nb">cd </span>mysite_com
+<a name="scripts--reset-server.sh-idio.html-2"></a>rm -f mysite.sqlite3
+<a name="scripts--reset-server.sh-idio.html-3"></a>cp mysite-bak.sqlite3 mysite.sqlite3
+<a name="scripts--reset-server.sh-idio.html-4"></a>python manage.py runserver <span class="p">&amp;</span>
+<a name="scripts--reset-server.sh-idio.html-5"></a>sleep 1
+<a name="scripts--reset-server.sh-idio.html-6"></a><span class="nb">echo</span> <span class="s2">&quot;$!&quot;</span> &gt; django.pid
+<a name="scripts--reset-server.sh-idio.html-7"></a>curl -I http://localhost:8000/polls/ <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">&quot;server started.&quot;</span>
+</pre></div>
+</div>
+
+<div class="slide step" id="slide9">
+<h2>screenshots</h2>
+<ul>
+<li>use <a href="http://casperjs.org">casper.js</a> and <a href="http://phantomjs.org">phantom.js</a></li>
+<li><a href="screenshots.js.html">link</a></li>
+</ul>
+</div>
+
+<div class="slide step" id="slide10">
+<h2>stop server</h2>
+<p><br /></p>
+<div class="highlight"><pre><a name="scripts--stop-server.sh-idio.html-1"></a><span class="nv">DJANGO_PID</span><span class="o">=</span><span class="sb">`</span>cat mysite_com/django.pid<span class="sb">`</span>
+<a name="scripts--stop-server.sh-idio.html-2"></a>pkill -TERM -P <span class="nv">$DJANGO_PID</span>
+<a name="scripts--stop-server.sh-idio.html-3"></a>curl -I http://localhost:8000/polls/ <span class="o">||</span> <span class="nb">echo</span> <span class="s2">&quot;server stopped.&quot;</span>
+</pre></div>
+</div>
+
+<div class="slide step" id="slide11">
+<h2>dexy.yaml</h2>
+<p><br /></p>
+<div class="highlight"><pre><a name="dexy.yaml-idio.html-1"></a><span class="l-Scalar-Plain">inputs</span><span class="p-Indicator">:</span>
+<a name="dexy.yaml-idio.html-2"></a>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">docs/screenshots.js|idio|h</span>
+<a name="dexy.yaml-idio.html-3"></a>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">docs/screenshots.js|idio|l</span>
+<a name="dexy.yaml-idio.html-4"></a>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">.py|idio|h</span>
+<a name="dexy.yaml-idio.html-5"></a>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">.py|idio|l</span>
+<a name="dexy.yaml-idio.html-6"></a>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">.sh|idio|h</span>
+<a name="dexy.yaml-idio.html-7"></a>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">.sh|idio|l</span>
+<a name="dexy.yaml-idio.html-8"></a>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">.html|idio|h</span>
+<a name="dexy.yaml-idio.html-9"></a>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">.html|idio|l</span>
+<a name="dexy.yaml-idio.html-10"></a>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">dexy.yaml|idio</span>
+<a name="dexy.yaml-idio.html-11"></a>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">script:run-casper</span>
+<a name="dexy.yaml-idio.html-12"></a>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">run-tests</span>
+<a name="dexy.yaml-idio.html-13"></a>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">docs/screenshots.js|pyg</span><span class="p-Indicator">:</span>
+<a name="dexy.yaml-idio.html-14"></a>        <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">output</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">True</span>
+<a name="dexy.yaml-idio.html-15"></a>        <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">ws-template</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">_pyg.html</span>
+</pre></div>
+</div>
+
+<div class="slide step" id="slide12">
+<h2>dexy.yaml</h2>
+<p><br /></p>
+<div class="highlight"><pre><a name="dexy.yaml-idio.html-1"></a><span class="l-Scalar-Plain">run-tests</span><span class="p-Indicator">:</span>
+<a name="dexy.yaml-idio.html-2"></a>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">scripts/run-tests.sh|shint</span><span class="p-Indicator">:</span>
+<a name="dexy.yaml-idio.html-3"></a>        <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">shint</span><span class="p-Indicator">:</span> <span class="p-Indicator">{</span> <span class="s">&#39;use-wd&#39;</span> <span class="p-Indicator">:</span> <span class="nv">False</span> <span class="p-Indicator">}</span>
+</pre></div>
+</div>
+
+<div class="slide step" id="slide13">
+<h2>What's Next?</h2>
+<ul>
+<li>End-User Docs</li>
+<li>Sysadmin Docs (s/localhost/IP-of-cloud-VM-I-just-launched/)</li>
+<li>Developer Tutorials</li>
+<li>API Docs</li>
+<li>Reporting</li>
+</ul>
+</div>
+
+<div class="slide step" id="slide14">
+<div class="highlight"><pre><a name="docs--analyze.R-idio-r-pyg.html-1"></a><span class="gp">&gt; </span>v <span class="o">&lt;-</span> fetch<span class="p">(</span>dbSendQuery<span class="p">(</span>con<span class="p">,</span> <span class="s">&quot;select * from polls_choice&quot;</span><span class="p">))</span>
+<a name="docs--analyze.R-idio-r-pyg.html-2"></a><span class="gp">&gt; </span>dotchart<span class="p">(</span>v<span class="o">$</span>votes<span class="p">,</span> labels<span class="o">=</span>v<span class="o">$</span>choice_text<span class="p">,</span> pch<span class="o">=</span><span class="m">19</span><span class="p">,</span> cex<span class="o">=</span><span class="m">1.5</span><span class="p">)</span>
+</pre></div>
+
+<p><img alt="dotchart of votes" src="plot.png" /></p>
+</div>
+
+<div class="slide step" id="slide15">
+<h2>Automation</h2>
+<ul>
+<li>Maintainability</li>
+<li>Reusability</li>
+<li>Up-Front Investment, Pays Dividends</li>
+</ul>
+</div>
+
+<div class="slide step" id="slide16">
+<h2>Holistic Development</h2>
+<ul>
+<li>Automation means you don't have to flush your mental buffer mid-task.</li>
+<li>Writing developer docs is a profoundly powerful tool for improving code.<ul>
+<li>Forces you to explain your code.</li>
+<li>Presents your code in a new visual context.</li>
+</ul>
+</li>
+<li>Writing integrated code, docs and tests brings it to another level.</li>
+</ul>
+</div>
+
+<div class="slide step" id="slide17">
+<h2>Thank You!</h2>
+<p><p><a href="http://dexy.it">http://dexy.it</a> <a href="http://twitter.com/dexyit">@dexyit</a></p><br />
+<p>Ana Nelson <a href="http://twitter.com/ananelson">@ananelson</a><br />
+<a href="http://github.com/ananelson/talks">http://github.com/ananelson/talks</a></p></p>
+</div>
+</div>
+
+<div class="hint">
+    <p>Use a spacebar or arrow keys to navigate</p>
+</div>
+<script>
+if ("ontouchstart" in document.documentElement) { 
+    document.querySelector(".hint").innerHTML = "<p>Tap on the left or right to navigate</p>";
+}
+</script>
+
+<script src="impress.js"></script>
+<script src="jquery.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.step').map(function (i, x) {
+            var rand = Math.round(Math.random() * 10) + 1;
+            $(x).attr('data-y', rand * 7000);
+            $(x).attr('data-x', 10000 * i);
+            $(x).attr('data-scale', rand);
+        });
+
+        impress().init();
+    });
+</script>
+
+</body>
+</html>
