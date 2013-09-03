@@ -1,0 +1,59 @@
+### "inputs"
+inputs:
+    - idio
+    - script:run-casper
+    - run-tests
+    - standalone
+    - dexy.yaml|idio
+    - docs/screenshots.js|idio|h
+    - docs/screenshots.js|idio|l
+
+### "idio"
+idio:
+    - .py|idio|h
+    - .py|idio|l
+    - .sh|idio|h
+    - .sh|idio|l
+    - .html|idio|h
+    - .html|idio|l
+
+standalone:
+    - docs/developer.rst|pyg:
+        - output: True
+        - ws-template: _pyg.html
+    - docs/screenshots.js|pyg:
+        - output: True
+        - ws-template: _pyg.html
+
+### "run-tests"
+run-tests:
+    - scripts/run-tests.sh|shint:
+        - shint: { 'use-wd' : False }
+
+
+### "assets"
+assets:
+    - .js
+    - .css
+    - .png
+
+### "run-casper"
+script:run-casper:
+    - scripts/reset-server.sh|shint:
+        - shint: { 'use-wd' : False }
+    - docs/screenshots.js|casperjs
+    - scripts/stop-server.sh|shint:
+        - shint: { 'use-wd' : False }
+    - docs/analyze.R|idio|r|pyg:
+        - r: { 'add-new-files' : True }
+
+### "rst"
+.rst|jinja|rstbody|easyhtml:
+    - inputs
+    - easyhtml: {
+        css: "img { border: thin solid grey; }"
+        }
+
+### "slides"
+docs/slides.html|jinja:
+    - inputs
