@@ -1,11 +1,5 @@
-- slides.md|jinja|slides:
+- index.md|jinja|slides:
     - title: Closing the Documentation Loop
-    - code
-
-- slides.md|jinja|resub|markdown:
-    - output-name: notes.html
-    - ws-template: False
-    - resub: { "expressions" : [["^;", ""]] }
     - code
 
 - code:

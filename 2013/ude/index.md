@@ -9,7 +9,8 @@
 
 
 ## Slides
-TODO link to slides
+- <http://ananelson.com/ude>
+- <http://github.com/ananelson/talks>
 
 
 # Documentation
