@@ -13,6 +13,7 @@ code:
         - py:
             add-new-files: True
     - index.md|pyg
+    - index.md|idio
     - dexy.yaml|pyg
     - Dockerfile|pyg
 

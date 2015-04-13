@@ -1,9 +1,15 @@
-## {{ d['results.json']['n'] }} Circles
+## Follow Along
+
+<http://dexy.it/bids>
+<http://github.com/ananelson/talks>
+
+
+<!-- @export "main" -->
+## {{ d["results.json"]["n"] }} Circles
 
 {{ d["code.py|idio"]["graph-data"] }}
 ![xy plot example](pyplot-scatter-example.png)
-<aside class="notes">Simple but representative example</aside>
-
+<!-- @end -->
 
 ## Dexy
 
@@ -31,6 +37,13 @@ code &bull; prose &bull; data
 ## Config
 
 {{ d["dexy.yaml|pyg"] }}
+
+
+## Slide
+
+{{ d["index.md|idio"]["main"] }}
+{{ d["code.py|idio"]["graph-data"] }}
+![xy plot example](pyplot-scatter-example.png)
 
 
 ## Docker
